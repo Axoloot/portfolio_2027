@@ -179,6 +179,14 @@ body {
   transition: opacity 0.6s;
 }
 
+.caustics {
+  opacity: 0;
+  transition: opacity 1.2s;
+}
+.caustics[data-on] {
+  opacity: 1;
+}
+
 .rise,
 .sink {
   transform: scaleY(0);
