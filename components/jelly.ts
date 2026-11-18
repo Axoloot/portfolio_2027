@@ -143,7 +143,7 @@ export const jellies: Creature = ({ T, scene, blend }) => {
     reset() {
       bodies.forEach((b) => (b.mesh.visible = false));
     },
-    update(now, { w, h, top }) {
+    update(now, { w, h, top, k }) {
       const t = now / 1000;
       let any = false;
       for (const b of bodies) {
@@ -160,6 +160,7 @@ export const jellies: Creature = ({ T, scene, blend }) => {
         b.mesh.rotation.set(0.28 + 0.06 * Math.sin(drift * 2.1), drift, 0.07 * Math.sin(drift * 1.3));
         b.u.uTime.value = t;
         b.u.uPulse.value = c;
+        b.mesh.scale.setScalar(b.s.r * k);
       }
       return any;
     },

@@ -112,7 +112,7 @@ export const manta: Creature = ({ T, scene, blend, color }) => {
       mesh.visible = false;
       next = now + FIRST;
     },
-    update(now, { w, h, top }) {
+    update(now, { w, h, top, k: fit }) {
       if (!swim) {
         if (now < next) return false;
         const lo = Math.max(top + 60, h * 0.25);
@@ -132,7 +132,8 @@ export const manta: Creature = ({ T, scene, blend, color }) => {
         return false;
       }
       const sy = swim.y - (scrollY - swim.scroll) * PARALLAX - top;
-      const reach = SPAN * 1.6;
+      const reach = SPAN * 1.6 * fit;
+      mesh.scale.setScalar(1.05 * fit);
       const travel = w + 2 * reach;
       const x = swim.dir > 0 ? -reach + travel * k : w + reach - travel * k;
       const beat = t * 1.4;

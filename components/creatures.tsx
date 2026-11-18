@@ -5,9 +5,9 @@ import type * as Three from "three";
 import { jellies } from "./jelly";
 import { manta } from "./manta";
 
-const GATE = "(min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference)";
+const GATE = "(prefers-reduced-motion: no-preference)";
 
-export type View = { w: number; h: number; top: number };
+export type View = { w: number; h: number; top: number; k: number };
 
 export type Creature = (ctx: {
   T: typeof Three;
@@ -55,10 +55,11 @@ function start(T: typeof Three, canvas: HTMLCanvasElement, layer: HTMLElement) {
     parts.forEach((p) => p.theme(night));
   };
 
-  const view: View = { w: 0, h: 0, top: 0 };
+  const view: View = { w: 0, h: 0, top: 0, k: 1 };
   const resize = () => {
     view.w = canvas.clientWidth;
     view.h = canvas.clientHeight;
+    view.k = Math.min(1, Math.max(0.6, view.w / 1200));
     if (!view.w || !view.h) return;
     renderer.setSize(view.w, view.h, false);
     const f = view.h / 2 / Math.tan((15 * Math.PI) / 180);
@@ -147,7 +148,7 @@ export function Creatures() {
     };
   }, []);
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden lg:block">
+    <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
       <canvas ref={ref} className="sticky top-0 h-screen w-full" />
     </div>
   );

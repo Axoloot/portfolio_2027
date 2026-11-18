@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import type * as Three from "three";
 
-const GATE = "(min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference)";
+const GATE = "(prefers-reduced-motion: no-preference)";
 const HALF = 18;
 
 const flock = [
@@ -119,13 +119,16 @@ function start(T: typeof Three, canvas: HTMLCanvasElement) {
 
   const frame = (now: number) => {
     const t = now / 1000;
+    const fit = Math.min(1, Math.max(0.6, w / 1200));
     for (const g of birds) {
       const { b } = g;
+      const r = b.r * fit;
+      g.mesh.scale.setScalar(b.size * fit);
       const th = b.ph + b.w * t;
-      const depth = b.r * 2;
-      const x = w * b.cx + b.r * Math.cos(th);
+      const depth = r * 2;
+      const x = w * b.cx + r * Math.cos(th);
       const z = depth * Math.sin(th);
-      const dx = -b.r * Math.sin(th) * Math.sign(b.w);
+      const dx = -r * Math.sin(th) * Math.sign(b.w);
       const dz = depth * Math.cos(th) * Math.sign(b.w);
       if (t > g.burst + 1.6) g.burst = t + 5 + Math.random() * 4;
       const k = (t - g.burst) / 1.6;
@@ -193,5 +196,5 @@ export function Gulls() {
       stop();
     };
   }, []);
-  return <canvas ref={ref} aria-hidden className="pointer-events-none absolute inset-0 hidden h-full w-full lg:block" />;
+  return <canvas ref={ref} aria-hidden className="pointer-events-none absolute inset-0 h-full w-full" />;
 }
