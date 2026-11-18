@@ -5,6 +5,7 @@ import { dictionaries, hasLocale } from "@/content/ui";
 import { CopyEmail, FocusFilter, HeaderTone, RevealObserver, ThemeToggle } from "@/components/client";
 import { LeanLabel, Mark, ProjectMedia, SplitBar, Swell, Tag } from "@/components/ui";
 import { Sea } from "@/components/sea";
+import { Gulls } from "@/components/gulls";
 
 const wrap = "mx-auto w-full max-w-[1200px] px-[clamp(16px,4vw,48px)]";
 const link = "underline decoration-1 underline-offset-[5px] transition-colors";
@@ -58,6 +59,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           <div className="stars" aria-hidden />
           <div className="sun right-[-24px] top-[72px] size-[clamp(72px,10vw,140px)] sm:right-[7%]" aria-hidden />
           <div className="moon right-[-24px] top-[72px] size-[clamp(72px,10vw,140px)] sm:right-[7%]" aria-hidden />
+          <Gulls />
           <div className={`${wrap} relative pb-16 pt-[clamp(48px,9vw,112px)]`}>
             <p className="flex items-center gap-2.5 text-[15px] text-ink-soft">
               <span className="size-2 rounded-full bg-sun ring-4 ring-sun/25" />
