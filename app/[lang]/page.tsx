@@ -4,6 +4,7 @@ import { careerMix, education, impact, lean, projects, roles, site, skills, type
 import { dictionaries, hasLocale } from "@/content/ui";
 import { CopyEmail, FocusFilter, HeaderTone, RevealObserver, ThemeToggle } from "@/components/client";
 import { LeanLabel, Mark, ProjectMedia, SplitBar, Swell, Tag } from "@/components/ui";
+import { Sea } from "@/components/sea";
 
 const wrap = "mx-auto w-full max-w-[1200px] px-[clamp(16px,4vw,48px)]";
 const link = "underline decoration-1 underline-offset-[5px] transition-colors";
@@ -53,7 +54,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       </header>
 
       <main id="main">
-        <div className="sky on-surface overflow-hidden text-ink">
+        <div className="sky on-surface overflow-x-clip text-ink">
           <div className="stars" aria-hidden />
           <div className="sun right-[-24px] top-[72px] size-[clamp(72px,10vw,140px)] sm:right-[7%]" aria-hidden />
           <div className="moon right-[-24px] top-[72px] size-[clamp(72px,10vw,140px)] sm:right-[7%]" aria-hidden />
@@ -105,7 +106,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative z-10">
             <div className={`${wrap} grid items-end gap-x-10 gap-y-3 pb-5 pt-10 md:grid-cols-[auto_1fr]`}>
               <p className="stretch-125 flex items-baseline gap-4 text-[clamp(64px,11vw,148px)] font-bold leading-[0.8] tracking-[-0.045em] tabular-nums">
                 {mix.dev}%<span className="stretch-100 text-[clamp(22px,2.4vw,30px)] font-semibold tracking-tight text-sun-ink">{t.waterline.devTitle}</span>
@@ -113,17 +114,20 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <p className="max-w-[24em] pb-2 text-ink-soft">{t.waterline.devText}</p>
             </div>
           </div>
-          <div id="waterline" className="relative h-12 overflow-hidden" aria-hidden>
-            <div className="swell-slow absolute inset-x-0 bottom-0 flex">
-              <Swell stroke="transparent" fill="color-mix(in srgb, var(--c-shallow) 40%, transparent)" />
+          <div id="waterline" className="relative h-12" aria-hidden>
+            <div className="swells absolute inset-0 overflow-hidden">
+              <div className="swell-slow absolute inset-x-0 bottom-0 flex">
+                <Swell stroke="transparent" fill="color-mix(in srgb, var(--c-shallow) 40%, transparent)" />
+              </div>
+              <div className="swell absolute inset-x-0 bottom-0 flex">
+                <Swell stroke="var(--color-glow)" fill="var(--c-shallow)" />
+              </div>
             </div>
-            <div className="swell absolute inset-x-0 bottom-0 flex">
-              <Swell stroke="var(--color-glow)" fill="var(--c-shallow)" />
-            </div>
+            <Sea />
           </div>
         </div>
         <div className="bg-shallow text-foam" role="group" aria-label={t.waterline.label}>
-            <div className={`${wrap} grid items-start gap-x-10 gap-y-3 pb-10 pt-4 md:grid-cols-[auto_1fr]`}>
+            <div className={`${wrap} relative z-10 grid items-start gap-x-10 gap-y-3 pb-10 pt-4 md:grid-cols-[auto_1fr]`}>
               <p className="stretch-125 flex items-baseline gap-4 text-[clamp(64px,11vw,148px)] font-bold leading-[0.8] tracking-[-0.045em] tabular-nums text-glow">
                 {mix.ops}%<span className="stretch-100 text-[clamp(22px,2.4vw,30px)] font-semibold tracking-tight">{t.waterline.opsTitle}</span>
               </p>
