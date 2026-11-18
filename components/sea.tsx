@@ -2,54 +2,13 @@
 
 import { useEffect, useRef } from "react";
 import type * as Three from "three";
+import { buoy } from "./buoy";
+import { glslSea } from "./waves";
 
 const ABOVE = 110;
 const BELOW = 170;
 const HORIZON = 56;
 const DEPTH = 9000;
-
-const waves = [
-  { len: 540, amp: 7, deg: 8, speed: 0.9, phase: 0 },
-  { len: 310, amp: 4, deg: -32, speed: 1.25, phase: 1.7 },
-  { len: 180, amp: 2.2, deg: 22, speed: 1.7, phase: 3.1 },
-  { len: 110, amp: 1.2, deg: -56, speed: 2.2, phase: 4.6 },
-  { len: 760, amp: 5, deg: 162, speed: 0.7, phase: 0.8 },
-].map((w) => {
-  const r = (w.deg * Math.PI) / 180;
-  return { k: (2 * Math.PI) / w.len, a: w.amp, dx: Math.cos(r), dz: Math.sin(r), w: w.speed, p: w.phase };
-});
-
-export function sea(x: number, z: number, t: number) {
-  let h = 0;
-  for (const w of waves) h += w.a * Math.sin((w.dx * x + w.dz * z) * w.k - w.w * t + w.p);
-  return h;
-}
-
-export function seaGrad(x: number, z: number, t: number) {
-  let gx = 0;
-  let gz = 0;
-  for (const w of waves) {
-    const c = w.a * w.k * Math.cos((w.dx * x + w.dz * z) * w.k - w.w * t + w.p);
-    gx += c * w.dx;
-    gz += c * w.dz;
-  }
-  return [gx, gz] as const;
-}
-
-const n = (v: number) => v.toFixed(6);
-const phase = (w: (typeof waves)[number]) => `(dot(vec2(${n(w.dx)}, ${n(w.dz)}), p) * ${n(w.k)} - ${n(w.w)} * t + ${n(w.p)})`;
-const glslSea = `
-float sea(vec2 p, float t) {
-  float h = 0.0;
-  ${waves.map((w) => `h += ${n(w.a)} * sin(${phase(w)});`).join("\n  ")}
-  return h;
-}
-vec2 seaGrad(vec2 p, float t) {
-  vec2 g = vec2(0.0);
-  ${waves.map((w) => `g += vec2(${n(w.dx)}, ${n(w.dz)}) * ${n(w.a * w.k)} * cos(${phase(w)});`).join("\n  ")}
-  return g;
-}
-`;
 
 const surfaceVert = `
 uniform float uTime;
@@ -71,6 +30,7 @@ uniform vec3 uFog;
 uniform vec3 uWater;
 uniform vec3 uLight;
 uniform vec3 uLightDir;
+uniform vec4 uLamp;
 varying vec3 vP;
 ${glslSea}
 void main() {
@@ -90,6 +50,8 @@ void main() {
   vec3 col = mix(uWater * 1.12, sky, fres * 0.8);
   float s = max(dot(r, uLightDir), 0.0);
   col += uLight * (pow(s, 500.0) * 2.0 * near + pow(s, 40.0) * 0.3 * lod);
+  vec2 dl = vP.xz - uLamp.xy;
+  col += vec3(1.0, 0.86, 0.6) * uLamp.z * 0.35 * exp(-dot(dl, dl) / 3200.0);
   col = mix(col, uFog, smoothstep(600.0, uDepth * 0.75, dist));
   gl_FragColor = vec4(col, 1.0 - smoothstep(uDepth * 0.3, uDepth * 0.85, dist));
 }
@@ -114,6 +76,7 @@ uniform float uBelow;
 uniform vec3 uWater;
 uniform vec3 uGlow;
 uniform vec3 uLight;
+uniform vec4 uLamp;
 varying vec2 vP;
 ${glslSea}
 void main() {
@@ -123,6 +86,8 @@ void main() {
   float x = vP.x + d * 0.5;
   float r = sin(x * 0.019 + uTime * 0.35) + sin(x * 0.043 - uTime * 0.27 + 1.3) + sin(x * 0.011 + uTime * 0.19 + 2.1);
   col += uLight * 0.10 * pow(max(r / 3.0, 0.0), 2.0) * exp(-d / 90.0) * fade;
+  float lx = vP.x - uLamp.x;
+  col += vec3(1.0, 0.86, 0.6) * uLamp.z * 0.3 * exp(-lx * lx / 8100.0) * exp(-d / 45.0);
   col = mix(col, uGlow, 1.0 - smoothstep(0.6, 2.2, d));
   gl_FragColor = vec4(col, 1.0);
 }
@@ -134,14 +99,23 @@ function hex(css: CSSStyleDeclaration, name: string, fallback: string) {
   return [((v >> 16) & 255) / 255, ((v >> 8) & 255) / 255, (v & 255) / 255] as const;
 }
 
+export type SeaUniforms = Record<"uSky" | "uFog" | "uWater" | "uGlow" | "uLight" | "uLightDir", { value: Three.Vector3 }> & {
+  uLamp: { value: Three.Vector4 };
+};
+
 export type SeaScene = {
   T: typeof Three;
   scene: Three.Scene;
-  camera: Three.PerspectiveCamera;
+  u: SeaUniforms;
   night: boolean;
 };
 
-export type SeaAddon = (s: SeaScene) => { frame: (t: number) => void; theme: () => void; dispose: () => void };
+export type SeaAddon = (s: SeaScene) => {
+  frame: (t: number) => void;
+  theme: () => void;
+  resize: (w: number) => void;
+  dispose: () => void;
+};
 
 function surfaceGeometry(T: typeof Three, w: number, f: number) {
   const nx = 160;
@@ -183,7 +157,7 @@ function faceGeometry(T: typeof Three, w: number) {
   return g;
 }
 
-const addons: SeaAddon[] = [];
+const addons: SeaAddon[] = [buoy];
 
 function start(T: typeof Three, canvas: HTMLCanvasElement, line: HTMLElement) {
   let renderer: Three.WebGLRenderer;
@@ -206,6 +180,7 @@ function start(T: typeof Three, canvas: HTMLCanvasElement, line: HTMLElement) {
     uGlow: { value: new T.Vector3(0x4f / 255, 0xd1 / 255, 0xd9 / 255) },
     uLight: v3(),
     uLightDir: { value: new T.Vector3(0.35, 0.2, -1).normalize() },
+    uLamp: { value: new T.Vector4() },
   };
 
   const scene = new T.Scene();
@@ -216,7 +191,7 @@ function start(T: typeof Three, canvas: HTMLCanvasElement, line: HTMLElement) {
   face.frustumCulled = false;
   scene.add(face, surface);
 
-  const ctx: SeaScene = { T, scene, camera, night: false };
+  const ctx: SeaScene = { T, scene, u, night: false };
   const parts = addons.map((a) => a(ctx));
 
   const theme = () => {
@@ -245,6 +220,7 @@ function start(T: typeof Three, canvas: HTMLCanvasElement, line: HTMLElement) {
     face.geometry.dispose();
     surface.geometry = surfaceGeometry(T, w, f);
     face.geometry = faceGeometry(T, w);
+    parts.forEach((p) => p.resize(w));
   };
 
   const draw = (now: number) => {
