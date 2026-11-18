@@ -51,6 +51,7 @@ const en = {
     spoken: "Languages",
     spokenValue: "French (native), English (C1, TOEIC 950/990)",
   },
+  about: { title: "Off the clock", intro: "What I do away from a terminal." },
   joke: {
     caption: "I’ve held all three jobs.",
     lines: [
@@ -120,6 +121,7 @@ const fr: typeof en = {
     spoken: "Langues",
     spokenValue: "Français (natif), anglais (C1, TOEIC 950/990)",
   },
+  about: { title: "Hors du code", intro: "Ce que je fais loin d’un terminal." },
   joke: {
     caption: "J’ai occupé les trois postes.",
     lines: [

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { careerMix, education, impact, lean, projects, roles, site, skills, type L, type Locale, type SkillGroup } from "@/content/data";
+import { about, careerMix, education, impact, lean, projects, roles, site, skills, type L, type Locale, type SkillGroup } from "@/content/data";
 import { dictionaries, hasLocale } from "@/content/ui";
 import { CopyEmail, FocusFilter, HeaderTone, RevealObserver, ThemeToggle } from "@/components/client";
 import { LeanLabel, Mark, ProjectMedia, SplitBar, Swell, Tag } from "@/components/ui";
@@ -196,7 +196,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   <div>
                     <h3 className="stretch-100 text-[clamp(22px,2.2vw,28px)] font-semibold leading-tight tracking-[-0.02em]">
                       {tl(r.company)}
-                      {tl(r.role) && <span className="ml-3 text-[17px] font-normal tracking-normal text-mist">{tl(r.role)}</span>}
+                      {tl(r.role) &&
+                        (r.href ? (
+                          <a href={r.href} className={`${link} ml-3 text-[17px] font-normal tracking-normal text-mist decoration-glow hover:text-glow`}>
+                            {tl(r.role)}
+                          </a>
+                        ) : (
+                          <span className="ml-3 text-[17px] font-normal tracking-normal text-mist">{tl(r.role)}</span>
+                        ))}
                     </h3>
                     {r.bullets && (
                       <ul className="mt-4 max-w-[44em] space-y-2 text-foam/85">
@@ -297,6 +304,19 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 <h4 className="font-semibold">{t.skills.spoken}</h4>
                 <p className="mt-2 text-foam/85">{t.skills.spokenValue}</p>
               </div>
+            </div>
+          </section>
+
+          <section id="about" className={`${wrap} pb-28 pt-12`}>
+            <h2 className="stretch-88 text-[clamp(40px,6vw,76px)] font-bold leading-[0.95] tracking-[-0.035em]">{t.about.title}</h2>
+            <p className="mt-4 max-w-[34em] text-mist">{t.about.intro}</p>
+            <div className="mt-14 grid gap-x-12 border-t border-rule md:grid-cols-3">
+              {about.map((a) => (
+                <div key={a.id} id={a.id} className="border-b border-rule py-8 md:border-b-0">
+                  <h3 className="stretch-100 text-[28px] font-bold tracking-[-0.02em]">{tl(a.title)}</h3>
+                  <p className="mt-3 text-foam/85">{tl(a.text)}</p>
+                </div>
+              ))}
             </div>
           </section>
 
