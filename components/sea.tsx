@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import type * as Three from "three";
 import { buoy } from "./buoy";
+import { fish } from "./fish";
 import { glslSea } from "./waves";
 
 const ABOVE = 110;
@@ -157,7 +158,7 @@ function faceGeometry(T: typeof Three, w: number) {
   return g;
 }
 
-const addons: SeaAddon[] = [buoy];
+const addons: SeaAddon[] = [buoy, fish];
 
 function start(T: typeof Three, canvas: HTMLCanvasElement, line: HTMLElement) {
   let renderer: Three.WebGLRenderer;
