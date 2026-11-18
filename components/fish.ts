@@ -1,7 +1,7 @@
 import type * as Three from "three";
 import type { SeaAddon } from "./sea";
 
-const GATE = "(min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference)";
+const GATE = "(prefers-reduced-motion: no-preference)";
 const COUNT = 22;
 const DELAY = 6;
 const CROSS = 16;
@@ -107,18 +107,19 @@ export const fish: SeaAddon = ({ T, scene, u }) => {
         return;
       }
       school.visible = true;
-      const reach = w / 2 + 220;
+      const fit = Math.min(1, Math.max(0.6, w / 1200));
+      const reach = w / 2 + 220 * fit;
       const cx = dir * (-reach + 2 * reach * k);
       const cy = -78 + 12 * Math.sin(k * Math.PI * 2);
       for (let i = 0; i < COUNT; i++) {
         const s = slots[i];
         const lag = (s.pace - 1) * 2 * reach * k;
-        const x = cx + dir * (s.x + lag) + 8 * Math.sin(t * 0.7 + s.seed);
-        const y = cy + s.y + 5 * Math.sin(t * 0.9 + s.seed * 1.7);
+        const x = cx + dir * (s.x * fit + lag) + 8 * Math.sin(t * 0.7 + s.seed);
+        const y = cy + s.y * fit + 5 * Math.sin(t * 0.9 + s.seed * 1.7);
         const tilt = 0.12 * Math.cos(t * 0.9 + s.seed * 1.7);
         pos.set(x, y, 20);
         q.setFromAxisAngle(axis, dir * tilt);
-        scl.set(s.size * dir, s.size * 0.9, 1);
+        scl.set(s.size * fit * dir, s.size * fit * 0.9, 1);
         school.setMatrixAt(i, m.compose(pos, q, scl));
       }
       school.instanceMatrix.needsUpdate = true;
