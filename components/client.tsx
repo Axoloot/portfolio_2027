@@ -138,3 +138,48 @@ export function FocusFilter({ labels }: { labels: { label: string; all: string; 
     </div>
   );
 }
+
+const WIP_KEY = "wip-hidden";
+
+function subscribeWip(cb: () => void) {
+  addEventListener("storage", cb);
+  addEventListener(WIP_KEY, cb);
+  return () => {
+    removeEventListener("storage", cb);
+    removeEventListener(WIP_KEY, cb);
+  };
+}
+const readWip = () => {
+  try {
+    return localStorage.getItem(WIP_KEY) === "1";
+  } catch {
+    return false;
+  }
+};
+
+export function WipNote({ text, hide }: { text: string; hide: string }) {
+  const hidden = useSyncExternalStore(subscribeWip, readWip, () => true);
+  if (hidden) return null;
+  return (
+    <div role="note" className="fixed bottom-4 right-4 z-40 flex max-w-[calc(100vw-32px)] items-center gap-3 rounded-full bg-ink/90 py-2 pl-4 pr-2 text-[13px] leading-snug text-surface shadow-lg backdrop-blur">
+      <span className="size-1.5 shrink-0 rounded-full bg-sun" />
+      <span>{text}</span>
+      <button
+        type="button"
+        aria-label={hide}
+        title={hide}
+        onClick={() => {
+          try {
+            localStorage.setItem(WIP_KEY, "1");
+          } catch {}
+          dispatchEvent(new Event(WIP_KEY));
+        }}
+        className="grid size-6 shrink-0 place-items-center rounded-full opacity-70 transition-opacity hover:opacity-100"
+      >
+        <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden>
+          <path d="M1 1l8 8M9 1l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      </button>
+    </div>
+  );
+}

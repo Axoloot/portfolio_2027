@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { careerMix, education, impact, lean, projects, roles, site, skills, type L, type Locale, type SkillGroup } from "@/content/data";
 import { dictionaries, hasLocale } from "@/content/ui";
-import { CopyEmail, FocusFilter, HeaderTone, RevealObserver, ThemeToggle } from "@/components/client";
+import { CopyEmail, FocusFilter, HeaderTone, RevealObserver, ThemeToggle, WipNote } from "@/components/client";
 import { LeanLabel, Mark, ProjectMedia, SplitBar, Swell, Tag } from "@/components/ui";
 import { Sea } from "@/components/sea";
 import { Gulls } from "@/components/gulls";
@@ -344,6 +344,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </div>
       </main>
 
+      <WipNote text={t.wip.text} hide={t.wip.hide} />
       <RevealObserver />
       <HeaderTone />
     </>
