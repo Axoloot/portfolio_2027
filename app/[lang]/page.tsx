@@ -6,6 +6,7 @@ import { CopyEmail, FocusFilter, HeaderTone, RevealObserver, ThemeToggle } from 
 import { LeanLabel, Mark, ProjectMedia, SplitBar, Swell, Tag } from "@/components/ui";
 import { Sea } from "@/components/sea";
 import { Gulls } from "@/components/gulls";
+import { Creatures } from "@/components/creatures";
 
 const wrap = "mx-auto w-full max-w-[1200px] px-[clamp(16px,4vw,48px)]";
 const link = "underline decoration-1 underline-offset-[5px] transition-colors";
@@ -140,7 +141,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </div>
         </div>
 
-        <div className="bg-[linear-gradient(to_bottom,var(--color-shallow)_0,var(--color-deep)_900px,var(--color-abyss)_45%,var(--color-trench)_100%)] text-foam">
+        <div className="relative isolate bg-[linear-gradient(to_bottom,var(--color-shallow)_0,var(--color-deep)_900px,var(--color-abyss)_45%,var(--color-trench)_100%)] text-foam">
+          <Creatures />
           <section id="experience" className={`${wrap} pb-28 pt-24`}>
             <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>
