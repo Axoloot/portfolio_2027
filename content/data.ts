@@ -25,6 +25,7 @@ export type Role = {
   bullets?: { en: string[]; fr: string[] };
   tags?: string[];
   minor?: boolean;
+  href?: string;
 };
 
 export const roles: Role[] = [
@@ -88,6 +89,7 @@ export const roles: Role[] = [
     when: { en: "Apr 2024–Mar 2025", fr: "Avr. 2024–mars 2025" },
     focus: null,
     minor: true,
+    href: "#diving",
   },
   {
     company: { en: "Pitchy", fr: "Pitchy" },
@@ -223,6 +225,27 @@ export function lean(f: Focus | null): "dev" | "ops" | "both" | null {
   if (f.ops >= 60) return "ops";
   return "both";
 }
+
+export const about: { id: string; title: L; text: L }[] = [
+  {
+    id: "diving",
+    title: { en: "Diving", fr: "Plongée" },
+    text: {
+      en: "I spent most of my 2024–2025 sabbatical diving. The sea on this site comes from there.",
+      fr: "J’ai passé l’essentiel de mon année sabbatique 2024–2025 à plonger. La mer de ce site vient de là.",
+    },
+  },
+  {
+    id: "printing",
+    title: { en: "3D printing", fr: "Impression 3D" },
+    text: { en: "I have a 3D printer at home.", fr: "J’ai une imprimante 3D à la maison." },
+  },
+  {
+    id: "motorbike",
+    title: { en: "Motorbike", fr: "Moto" },
+    text: { en: "I ride a motorbike.", fr: "Je roule à moto." },
+  },
+];
 
 export const education = [
   {
