@@ -67,7 +67,7 @@ const en = {
     email: "Write to me",
   },
   footer: "Built with Next.js, hosted on Vercel.",
-  wip: { text: "Still in progress: some content isn’t final yet.", hide: "Hide this note" },
+  wip: { label: "WIP", text: "Still in progress: some content isn’t final yet." },
 };
 
 const fr: typeof en = {
@@ -137,7 +137,7 @@ const fr: typeof en = {
     email: "M’écrire",
   },
   footer: "Construit avec Next.js, hébergé sur Vercel.",
-  wip: { text: "En cours : certains contenus ne sont pas encore finalisés.", hide: "Masquer cette note" },
+  wip: { label: "WIP", text: "En cours : certains contenus ne sont pas encore finalisés." },
 };
 
 export const dictionaries = { en, fr };

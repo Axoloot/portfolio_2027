@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { careerMix, education, impact, lean, projects, roles, site, skills, type L, type Locale, type SkillGroup } from "@/content/data";
 import { dictionaries, hasLocale } from "@/content/ui";
-import { CopyEmail, FocusFilter, HeaderTone, RevealObserver, ThemeToggle, WipNote } from "@/components/client";
+import { CopyEmail, FocusFilter, HeaderTone, RevealObserver, ThemeToggle } from "@/components/client";
 import { LeanLabel, Mark, ProjectMedia, SplitBar, Swell, Tag } from "@/components/ui";
 import { Sea } from "@/components/sea";
 import { Gulls } from "@/components/gulls";
@@ -23,6 +23,13 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
   return (
     <>
+      <div role="note" title={t.wip.text} style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }} className="pointer-events-auto fixed left-0 top-0 z-[60] size-10 bg-sun text-[#0b2230] sm:size-16">
+        <span aria-hidden className="absolute left-[30%] top-[30%] -translate-x-1/2 -translate-y-1/2 -rotate-45 text-[9px] font-bold tracking-wide sm:text-[12px]">
+          {t.wip.label}
+        </span>
+        <span className="sr-only">{t.wip.text}</span>
+      </div>
+
       <a href="#main" className="absolute -left-[9999px] top-2 z-[100] rounded bg-sun px-3 py-2 text-ink focus:left-2">
         {t.nav.skip}
       </a>
@@ -344,7 +351,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </div>
       </main>
 
-      <WipNote text={t.wip.text} hide={t.wip.hide} />
       <RevealObserver />
       <HeaderTone />
     </>
