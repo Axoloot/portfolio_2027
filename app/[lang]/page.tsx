@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { careerMix, education, impact, lean, projects, roles, site, skills, type L, type Locale, type SkillGroup } from "@/content/data";
 import { dictionaries, hasLocale } from "@/content/ui";
 import { CopyEmail, FocusFilter, HeaderTone, RevealObserver, ThemeToggle } from "@/components/client";
-import { LeanLabel, Mark, ProjectMedia, SplitBar, Swell, Tag } from "@/components/ui";
+import { Diver, LeanLabel, Mark, ProjectMedia, SplitBar, Swell, Tag } from "@/components/ui";
 import { Sea } from "@/components/sea";
 
 const wrap = "mx-auto w-full max-w-[1200px] px-[clamp(16px,4vw,48px)]";
@@ -177,8 +177,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 <li
                   key={r.start + i}
                   data-lean={lean(r.focus) ?? "none"}
-                  className="grid gap-3 border-b border-rule py-9 transition-opacity duration-300 md:grid-cols-[220px_1fr] md:gap-10"
+                  className={`grid gap-3 border-b border-rule py-9 transition-opacity duration-300 md:grid-cols-[220px_1fr] md:gap-10 ${r.dive ? "dive rv relative isolate overflow-hidden" : ""}`}
                 >
+                  {r.dive && <Diver />}
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-2 md:flex-col md:items-start">
                     <span className="text-[15px] tabular-nums text-mist">{tl(r.when)}</span>
                     {r.focus && !r.minor && (

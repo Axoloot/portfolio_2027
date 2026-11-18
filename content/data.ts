@@ -25,6 +25,7 @@ export type Role = {
   bullets?: { en: string[]; fr: string[] };
   tags?: string[];
   minor?: boolean;
+  dive?: boolean;
 };
 
 export const roles: Role[] = [
@@ -88,6 +89,7 @@ export const roles: Role[] = [
     when: { en: "Apr 2024–Mar 2025", fr: "Avr. 2024–mars 2025" },
     focus: null,
     minor: true,
+    dive: true,
   },
   {
     company: { en: "Pitchy", fr: "Pitchy" },
