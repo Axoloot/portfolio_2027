@@ -304,29 +304,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "wechoose",
-    title: { en: "WeChoose", fr: "WeChoose" },
-    kind: { en: "Mobile app", fr: "App mobile" },
-    when: "2025–2026",
-    summary: {
-      en: "Interactive stories with generative narration: the reader makes the choices, an LLM writes what happens next.",
-      fr: "Des histoires interactives à narration générative : le lecteur fait les choix, un LLM écrit la suite.",
-    },
-    bullets: {
-      en: [
-        "Expo / React Native app on a serverless AWS backend, deployed with AWS CDK.",
-        "Prototyped on the OpenAI API, then moved generation to AWS Bedrock to cut model costs.",
-      ],
-      fr: [
-        "App Expo / React Native sur un back-end AWS serverless, déployé avec AWS CDK.",
-        "Prototype sur l’API OpenAI, puis génération migrée vers AWS Bedrock pour réduire les coûts.",
-      ],
-    },
-    tags: ["Expo", "React Native", "AWS CDK", "Cognito", "Bedrock"],
-    media: [],
-    links: [],
-  },
-  {
     slug: "fundy",
     title: { en: "Fundy", fr: "Fundy" },
     kind: { en: "Crowdfunding app, EPITECH EIP", fr: "App de crowdfunding, EIP EPITECH" },
@@ -349,6 +326,29 @@ export const projects: Project[] = [
       { label: { en: "Live demo", fr: "Démo en ligne" }, href: "https://fundy.cyrildelajudie.fr/" },
       { label: { en: "Source on GitHub", fr: "Code sur GitHub" }, href: "https://github.com/Axoloot/FundyEIP" },
     ],
+  },
+  {
+    slug: "wechoose",
+    title: { en: "WeChoose", fr: "WeChoose" },
+    kind: { en: "Mobile app", fr: "App mobile" },
+    when: "2025–2026",
+    summary: {
+      en: "Interactive stories with generative narration: the reader makes the choices, an LLM writes what happens next.",
+      fr: "Des histoires interactives à narration générative : le lecteur fait les choix, un LLM écrit la suite.",
+    },
+    bullets: {
+      en: [
+        "Expo / React Native app on a serverless AWS backend, deployed with AWS CDK.",
+        "Prototyped on the OpenAI API, then moved generation to AWS Bedrock to cut model costs.",
+      ],
+      fr: [
+        "App Expo / React Native sur un back-end AWS serverless, déployé avec AWS CDK.",
+        "Prototype sur l’API OpenAI, puis génération migrée vers AWS Bedrock pour réduire les coûts.",
+      ],
+    },
+    tags: ["Expo", "React Native", "AWS CDK", "Cognito", "Bedrock"],
+    media: [],
+    links: [],
   },
   {
     slug: "flipper",

@@ -67,6 +67,7 @@ const en = {
     email: "Write to me",
   },
   footer: "Built with Next.js, hosted on Vercel.",
+  old: "2024 portfolio",
   wip: { label: "WIP", text: "Still in progress: some content isn’t final yet." },
 };
 
@@ -137,6 +138,7 @@ const fr: typeof en = {
     email: "M’écrire",
   },
   footer: "Construit avec Next.js, hébergé sur Vercel.",
+  old: "Portfolio 2024",
   wip: { label: "WIP", text: "En cours : certains contenus ne sont pas encore finalisés." },
 };
 

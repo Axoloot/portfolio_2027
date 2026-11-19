@@ -345,7 +345,10 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <span className="flex items-center gap-2.5">
                 <Mark size={16} /> © 2026 {site.name}
               </span>
-              <span>{t.footer}</span>
+              <span className="flex gap-6">
+                <a href="/old" className={`${link} decoration-rule-2 hover:decoration-foam`}>{t.old}</a>
+                <span>{t.footer}</span>
+              </span>
             </footer>
           </section>
         </div>
