@@ -5,7 +5,7 @@ import { dictionaries, hasLocale, locales } from "@/content/ui";
 import { site } from "@/content/data";
 import "./globals.css";
 
-const archivo = Archivo({ variable: "--font-archivo", subsets: ["latin", "latin-ext"], axes: ["wdth"] });
+const archivo = Archivo({ variable: "--font-archivo", subsets: ["latin"], display: "swap", axes: ["wdth"] });
 
 const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme="light"}})()`;
 

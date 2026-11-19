@@ -1,4 +1,4 @@
-import type * as Three from "three";
+import type { ThreeLib } from "./load-three";
 import type { SeaAddon } from "./sea";
 
 const GATE = "(prefers-reduced-motion: no-preference)";
@@ -31,7 +31,7 @@ void main() {
 }
 `;
 
-function body(T: typeof Three) {
+function body(T: ThreeLib) {
   const s = new T.Shape();
   s.moveTo(1, 0);
   s.bezierCurveTo(0.8, 0.34, 0.1, 0.42, -0.45, 0.14);

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import type * as Three from "three";
+import { loadThree, type ThreeLib } from "./load-three";
 import { jellies } from "./jelly";
 import { manta } from "./manta";
 
@@ -10,7 +11,7 @@ const GATE = "(prefers-reduced-motion: no-preference)";
 export type View = { w: number; h: number; top: number; k: number };
 
 export type Creature = (ctx: {
-  T: typeof Three;
+  T: ThreeLib;
   scene: Three.Scene;
   blend: Partial<Three.ShaderMaterialParameters>;
   color: (name: string, fallback: string) => readonly [number, number, number];
@@ -29,7 +30,7 @@ function color(name: string, fallback: string) {
   return [((v >> 16) & 255) / 255, ((v >> 8) & 255) / 255, (v & 255) / 255] as const;
 }
 
-function start(T: typeof Three, canvas: HTMLCanvasElement, layer: HTMLElement) {
+function start(T: ThreeLib, canvas: HTMLCanvasElement, layer: HTMLElement) {
   let renderer: Three.WebGLRenderer;
   try {
     renderer = new T.WebGLRenderer({ canvas, alpha: true, antialias: true, premultipliedAlpha: true, powerPreference: "low-power" });
@@ -137,7 +138,7 @@ export function Creatures() {
     if (!canvas || !layer || !matchMedia(GATE).matches) return;
     let stop = () => {};
     let dead = false;
-    import("three")
+    loadThree()
       .then((T) => {
         if (!dead) stop = start(T, canvas, layer);
       })
