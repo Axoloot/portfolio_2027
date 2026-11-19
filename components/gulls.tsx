@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import type * as Three from "three";
+import { loadThree, type ThreeLib } from "./load-three";
 
 const GATE = "(prefers-reduced-motion: no-preference)";
 const HALF = 18;
@@ -39,7 +40,7 @@ void main() {
 }
 `;
 
-function geometry(T: typeof Three) {
+function geometry(T: ThreeLib) {
   const pos: number[] = [];
   const span: number[] = [];
   const idx: number[] = [];
@@ -69,7 +70,7 @@ function geometry(T: typeof Three) {
   return g;
 }
 
-function start(T: typeof Three, canvas: HTMLCanvasElement) {
+function start(T: ThreeLib, canvas: HTMLCanvasElement) {
   let renderer: Three.WebGLRenderer;
   try {
     renderer = new T.WebGLRenderer({ canvas, alpha: true, antialias: true, premultipliedAlpha: true, powerPreference: "low-power" });
@@ -186,7 +187,7 @@ export function Gulls() {
     if (!canvas || !matchMedia(GATE).matches) return;
     let stop = () => {};
     let dead = false;
-    import("three")
+    loadThree()
       .then((T) => {
         if (!dead) stop = start(T, canvas);
       })

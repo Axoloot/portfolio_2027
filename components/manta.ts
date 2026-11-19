@@ -1,4 +1,4 @@
-import type * as Three from "three";
+import type { ThreeLib } from "./load-three";
 import type { Creature } from "./creatures";
 
 const CROSS = 24;
@@ -40,7 +40,7 @@ void main() {
 }
 `;
 
-function geometry(T: typeof Three) {
+function geometry(T: ThreeLib) {
   const pos: number[] = [];
   const span: number[] = [];
   const edge: number[] = [];

@@ -1,4 +1,4 @@
-import type * as Three from "three";
+import type { ThreeLib } from "./load-three";
 import type { Creature } from "./creatures";
 
 const PARALLAX = 0.85;
@@ -62,7 +62,7 @@ void main() {
 }
 `;
 
-function geometry(T: typeof Three) {
+function geometry(T: ThreeLib) {
   const pos: number[] = [];
   const kind: number[] = [];
   const along: number[] = [];

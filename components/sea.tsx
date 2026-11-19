@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import type * as Three from "three";
+import { loadThree, type ThreeLib } from "./load-three";
 import { buoy } from "./buoy";
 import { fish } from "./fish";
 import { glslSea } from "./waves";
@@ -105,7 +106,7 @@ export type SeaUniforms = Record<"uSky" | "uFog" | "uWater" | "uGlow" | "uLight"
 };
 
 export type SeaScene = {
-  T: typeof Three;
+  T: ThreeLib;
   scene: Three.Scene;
   u: SeaUniforms;
   night: boolean;
@@ -118,7 +119,7 @@ export type SeaAddon = (s: SeaScene) => {
   dispose: () => void;
 };
 
-function surfaceGeometry(T: typeof Three, w: number, f: number) {
+function surfaceGeometry(T: ThreeLib, w: number, f: number) {
   const nx = 160;
   const nz = 120;
   const pos = new Float32Array((nx + 1) * (nz + 1) * 3);
@@ -143,7 +144,7 @@ function surfaceGeometry(T: typeof Three, w: number, f: number) {
   return g;
 }
 
-function faceGeometry(T: typeof Three, w: number) {
+function faceGeometry(T: ThreeLib, w: number) {
   const nx = 480;
   const pos = new Float32Array((nx + 1) * 2 * 3);
   const idx: number[] = [];
@@ -160,7 +161,7 @@ function faceGeometry(T: typeof Three, w: number) {
 
 const addons: SeaAddon[] = [buoy, fish];
 
-function start(T: typeof Three, canvas: HTMLCanvasElement, line: HTMLElement) {
+function start(T: ThreeLib, canvas: HTMLCanvasElement, line: HTMLElement) {
   let renderer: Three.WebGLRenderer;
   try {
     renderer = new T.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "low-power" });
@@ -300,7 +301,7 @@ export function Sea() {
     if (!canvas || !line || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let stop = () => {};
     let dead = false;
-    import("three")
+    loadThree()
       .then((T) => {
         if (!dead) stop = start(T, canvas, line);
       })
