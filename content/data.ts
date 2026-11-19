@@ -72,8 +72,8 @@ export const roles: Role[] = [
   {
     company: { en: "Sézame", fr: "Sézame" },
     role: { en: "DevOps & Full Stack Engineer", fr: "Ingénieur DevOps & Full Stack" },
-    start: "2025-04", end: "2025-12",
-    when: { en: "Apr–Dec 2025", fr: "Avr.–déc. 2025" },
+    start: "2025-04", end: "2026-01",
+    when: { en: "Apr 2025–Jan 2026", fr: "Avr. 2025–janv. 2026" },
     focus: { dev: 55, ops: 45 },
     kind: { en: "Hotel services marketplace, 15–20 people", fr: "Marketplace de services hôteliers, 15 à 20 personnes" },
     bullets: {
