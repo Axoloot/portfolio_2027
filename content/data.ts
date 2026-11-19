@@ -37,15 +37,15 @@ export const roles: Role[] = [
     bullets: {
       en: [
         "Infiny, a recruitment platform, runs its CV-parsing LLMs on Azure and the rest of its backend on AWS. I linked the two clouds with a site-to-site IPsec tunnel (VPN Gateway to Virtual Private Gateway), written in Terraform.",
-        "Moved Infiny’s DNS off OVH with no downtime, and cut unused resources from the Terraform code.",
+        "Planned a zero-downtime DNS cutover on OVH, and cut unused resources from the Terraform code.",
         "Designed a hierarchical job data model on France Travail’s ROME reference.",
-        "Wrote my own boilerplates (Node.js/TypeScript, Next.js, AWS CDK with projen) to start client projects in hours.",
+        "Wrote my own boilerplates (Node.js/TypeScript, Next.js, AWS CDK with projen) for client and personal projects.",
       ],
       fr: [
         "Infiny, plateforme de recrutement, analyse les CV avec des LLM sur Azure et fait tourner le reste du backend sur AWS. J’ai relié les deux clouds par un tunnel IPsec site-à-site (VPN Gateway vers Virtual Private Gateway), écrit en Terraform.",
-        "Bascule DNS d’Infiny depuis OVH sans interruption, et nettoyage des ressources inutilisées dans le code Terraform.",
+        "Bascule DNS planifiée sur OVH sans interruption de service, et nettoyage des ressources inutilisées dans le code Terraform.",
         "Schéma de données métiers hiérarchique construit sur le référentiel ROME de France Travail.",
-        "Boilerplates maison (Node.js/TypeScript, Next.js, AWS CDK avec projen) pour lancer un projet client en quelques heures.",
+        "Boilerplates maison (Node.js/TypeScript, Next.js, AWS CDK avec projen) pour les projets clients et personnels.",
       ],
     },
     tags: ["Terraform", "Azure", "AWS", "IPsec", "DNS", "AWS CDK", "projen"],
@@ -75,21 +75,21 @@ export const roles: Role[] = [
     start: "2025-04", end: "2026-01",
     when: { en: "Apr 2025–Jan 2026", fr: "Avr. 2025–janv. 2026" },
     focus: { dev: 55, ops: 45 },
-    kind: { en: "Hotel services marketplace, 15–20 people", fr: "Marketplace de services hôteliers, 15 à 20 personnes" },
+    kind: { en: "Hotel services, Staycation-style, 15–20 people", fr: "Services hôteliers façon Staycation, 15 à 20 salariés" },
     bullets: {
       en: [
         "Moved time-slot product search from Algolia to Typesense and cut search costs by ~75%.",
         "Built standalone event-driven services on AWS: Lambda, EventBridge, SQS/SNS and single-table DynamoDB (DynamoDB Toolbox).",
         "Rebuilt the search page (V2) in Next.js and Tailwind, on Hono APIs deployed with AWS CDK.",
-        "Shipped automatic Google Shopping listings and Brevo transactional emails.",
-        "Wired production errors to Slack alerts and opened the fixing PRs myself.",
+        "Shipped automatic Google Shopping listings and an email service on Brevo.",
+        "Wired production errors to Slack alerts and opened fix PRs when needed.",
       ],
       fr: [
         "Migration de la recherche par créneaux d’Algolia vers Typesense : ~75 % de coûts de recherche en moins.",
         "Services événementiels autonomes sur AWS : Lambda, EventBridge, SQS/SNS et DynamoDB single-table (DynamoDB Toolbox).",
         "Refonte de la page de recherche (V2) en Next.js et Tailwind, sur des API Hono déployées en AWS CDK.",
-        "Référencement automatique sur Google Shopping et emails transactionnels Brevo.",
-        "Erreurs de production branchées sur des alertes Slack, et PR correctives ouvertes dans la foulée.",
+        "Référencement automatique sur Google Shopping et service d’emailing sur Brevo.",
+        "Erreurs de production branchées sur des alertes Slack, et PR correctives ouvertes au besoin.",
       ],
     },
     tags: ["Typesense", "Next.js", "Hono", "Lambda", "EventBridge", "DynamoDB", "AWS CDK", "Kinesis", "Athena"],
@@ -141,13 +141,13 @@ export const roles: Role[] = [
     focus: { dev: 50, ops: 50 },
     bullets: {
       en: [
-        "Built a one-to-one live shopping platform, a web FaceTime for luxury sales, at Hermès’s request.",
-        "Owned the full cycle: prototype, release, hosting, Docker microservices on GKE, CI/CD and on-call during live events.",
+        "Built a one-to-one live shopping platform, a web FaceTime, at Hermès’s request.",
+        "Owned the full cycle: prototype, release, hosting, Docker microservices on GKE, CI/CD and SRE.",
         "Tracked a bug that appeared with a new iOS release down to a race condition in a JavaScript class.",
       ],
       fr: [
-        "Plateforme de live shopping en tête-à-tête, un FaceTime web pour la vente de luxe, construite à la demande d’Hermès.",
-        "Cycle complet : prototype, mise en production, hébergement, microservices Docker sur GKE, CI/CD et astreinte pendant les lives.",
+        "Plateforme de live shopping en tête-à-tête, un FaceTime web, construite à la demande d’Hermès.",
+        "Cycle complet : prototype, mise en production, hébergement, microservices Docker sur GKE, CI/CD et SRE.",
         "Bug apparu avec une nouvelle version d’iOS, remonté jusqu’à une race condition dans une classe JavaScript.",
       ],
     },
@@ -159,17 +159,17 @@ export const roles: Role[] = [
     start: "2021-04", end: "2021-08",
     when: { en: "Apr–Aug 2021", fr: "Avr.–août 2021" },
     focus: { dev: 70, ops: 30 },
-    kind: { en: "White-label live shopping, 4,500 viewers per Carrefour live", fr: "Live shopping en marque blanche, 4 500 spectateurs par live Carrefour" },
+    kind: { en: "White-label live shopping; Carrefour lives averaged 4,500 viewers", fr: "Live shopping en marque blanche ; 4 500 spectateurs en moyenne par live Carrefour" },
     bullets: {
       en: [
         "Automated replays, recorded by hand in OBS until then: I drove recording through the Vonage (WebRTC) and Wowza (HLS) APIs and replayed chat, polls and product clicks.",
-        "Built the self-service offer: brands pick one of 3 plans and pay through Stripe, with no card data stored on our side.",
+        "Built the self-service offer: customers subscribe to one of 3 plans to run their own live shopping, paid through Stripe with no card data stored on our side.",
         "Cut live latency by tuning the HLS pipeline, and raised the Lighthouse score with webpack and a CDN.",
         "Deployed microservices on GKE with Helm charts, in a Scrum team with Jira.",
       ],
       fr: [
         "Replays automatisés, enregistrés à la main dans OBS jusque-là : pilotage de l’enregistrement via les API Vonage (WebRTC) et Wowza (HLS), replay du chat, des sondages et des clics produits.",
-        "Offre self-service : les marques choisissent l’un des 3 abonnements et paient via Stripe, sans stocker de données bancaires.",
+        "Offre self-service : inscription à l’un des 3 abonnements pour lancer son propre live shopping, paiement via Stripe sans stocker de données bancaires.",
         "Latence des lives réduite en optimisant le flux HLS, score Lighthouse relevé avec webpack et un CDN.",
         "Microservices déployés sur GKE avec des charts Helm, en équipe Scrum avec Jira.",
       ],
@@ -205,7 +205,7 @@ export const roles: Role[] = [
     start: "2019-07", end: "2019-12",
     when: { en: "Jul–Dec 2019", fr: "Juil.–déc. 2019" },
     focus: { dev: 80, ops: 20 },
-    kind: { en: "Live quiz app, 350,000+ downloads, 20,000+ daily players", fr: "Quiz en direct, 350 000+ téléchargements, 20 000+ joueurs par jour" },
+    kind: { en: "Live quiz app; 450,000+ downloads and 20,000+ games a day in 2019", fr: "Quiz en direct ; 450 000+ téléchargements et 20 000+ parties par jour en 2019" },
     bullets: {
       en: [
         "Worked across the React Native app, the Node.js game server and the React back office, on GKE.",
@@ -372,7 +372,7 @@ export const skills: { dev: SkillGroup[]; ops: SkillGroup[]; also: SkillGroup[] 
     {
       title: { en: "Languages", fr: "Langages" },
       lead: ["TypeScript", "JavaScript", "Python"], other: ["C", "Bash", "Go", "Lua"],
-      proof: { en: "TypeScript on every project since 2019; Python for scripting and ML.", fr: "TypeScript sur tous les projets depuis 2019 ; Python pour le scripting et le ML." },
+      proof: { en: "TypeScript on every recent project; Python for scripting and ML.", fr: "TypeScript sur tous les projets récents ; Python pour le scripting et le ML." },
     },
     {
       title: { en: "Frontend & mobile", fr: "Frontend & mobile" },
@@ -392,7 +392,7 @@ export const skills: { dev: SkillGroup[]; ops: SkillGroup[]; also: SkillGroup[] 
     {
       title: { en: "Video & real time", fr: "Vidéo & temps réel" },
       lead: ["HLS", "FFmpeg"], other: ["Vonage (WebRTC)", "Wowza", "After Effects"],
-      proof: { en: "Lives for 4,500 viewers at Carrefour, automated replays, a macOS render farm at Pitchy.", fr: "Lives à 4 500 spectateurs chez Carrefour, replays automatisés, ferme de rendu macOS chez Pitchy." },
+      proof: { en: "Live shopping for Carrefour and Hermès, automated replays, macOS rendering at Pitchy.", fr: "Live shopping pour Carrefour et Hermès, replays automatisés, rendu macOS chez Pitchy." },
     },
   ],
   ops: [
@@ -413,8 +413,8 @@ export const skills: { dev: SkillGroup[]; ops: SkillGroup[]; also: SkillGroup[] 
     },
     {
       title: { en: "SRE & observability", fr: "SRE & observabilité" },
-      lead: ["Linux & Bash", "CloudWatch", "Datadog"], other: ["Honeycomb", "Mixpanel", "Slack alerting", "On-call"],
-      proof: { en: "On-call during live events at RedPill; incident tracing at Pitchy; Slack alerts at Sézame.", fr: "Astreinte pendant les lives chez RedPill ; analyse d’incidents chez Pitchy ; alertes Slack chez Sézame." },
+      lead: ["Linux & Bash", "CloudWatch", "Datadog"], other: ["Honeycomb", "Mixpanel", "Slack alerting"],
+      proof: { en: "Incident tracing at Pitchy, Slack alerts on production errors at Sézame.", fr: "Analyse d’incidents chez Pitchy, alertes Slack sur les erreurs de production chez Sézame." },
     },
     {
       title: { en: "Network", fr: "Réseau" },
@@ -440,5 +440,4 @@ export const impact = [
   { delta: "−75%", name: { en: "search costs at Sézame", fr: "de coûts de recherche chez Sézame" }, how: { en: "I moved product search from Algolia to Typesense.", fr: "J’ai migré la recherche d’Algolia vers Typesense." } },
   { delta: "−40%", name: { en: "video generation time at Pitchy", fr: "de temps de génération vidéo chez Pitchy" }, how: { en: "I moved rendering from Windows Server to headless macOS images built with Packer.", fr: "J’ai passé le rendu de Windows Server à des images macOS headless construites avec Packer." } },
   { delta: "−22%", name: { en: "on Pitchy’s AWS bill", fr: "sur la facture AWS de Pitchy" }, how: { en: "Autoscaling, right-sizing and on-demand services.", fr: "Autoscaling, bon dimensionnement et services à la demande." } },
-  { delta: "4.5k", name: { en: "viewers per Carrefour live", fr: "spectateurs par live Carrefour" }, how: { en: "On the live shopping platform where I automated replays and built Stripe self-service.", fr: "Sur la plateforme de live shopping où j’ai automatisé les replays et le self-service Stripe." } },
 ];
