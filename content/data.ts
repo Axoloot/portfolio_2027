@@ -98,8 +98,8 @@ export const roles: Role[] = [
     company: { en: "Sabbatical year", fr: "Année sabbatique" },
     role: { en: "Travel and diving", fr: "Voyages et plongée" },
     bullets: {
-      en: ["Croatia, Montenegro and Hungary, then three months in New Caledonia. Scuba diving, plus motorbike and car licences."],
-      fr: ["Croatie, Monténégro et Hongrie, puis trois mois en Nouvelle-Calédonie. Plongée sous-marine, permis moto et voiture."],
+      en: ["I took a year to travel: Croatia, Montenegro and Hungary, then three months in New Caledonia. I used it to get my motorbike and car licences and to train in scuba diving."],
+      fr: ["J’ai pris un an pour voyager : la Croatie, le Monténégro et la Hongrie, puis trois mois en Nouvelle-Calédonie. J’en ai profité pour passer mes permis moto et voiture et me former à la plongée sous-marine."],
     },
     start: "2024-04", end: "2025-03",
     when: { en: "Apr 2024–Mar 2025", fr: "Avr. 2024–mars 2025" },
