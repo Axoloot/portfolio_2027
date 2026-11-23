@@ -7,8 +7,6 @@ export const site = {
   email: "cyril_de_lajudie@hotmail.fr",
   url: "https://cyrildelajudie.fr",
   cv: "/cv-fr.pdf",
-  // Page images shown on /[lang]/cv. When the PDF changes, regenerate them:
-  // pdftoppm -jpeg -jpegopt quality=85 -r 150 public/cv-fr.pdf public/cv/page
   cvPages: [{ src: "/cv/page-1.jpg", width: 1242, height: 1755 }],
   links: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/cyrildelajudie" },
@@ -16,7 +14,7 @@ export const site = {
   ],
 };
 
-export type Role = {
+type Role = {
   company: L;
   role: L;
   start: string;
@@ -295,7 +293,7 @@ export const education = [
   },
 ];
 
-export type Media =
+type Media =
   | { type: "image"; src: string; alt: L; width: number; height: number }
   | { type: "video"; src: string; poster?: string; alt: L };
 
@@ -447,8 +445,6 @@ export const impact = [
   { delta: "−22%", name: { en: "on Pitchy’s AWS bill", fr: "sur la facture AWS de Pitchy" }, how: { en: "Autoscaling, right-sizing and on-demand services.", fr: "Autoscaling, bon dimensionnement et services à la demande." } },
 ];
 
-// Manual processes I turned into tools. Before/after come from the master DC.
-// `gain` stays empty until a measured figure lands in the DC; the card hides the line when it is missing.
 export type Automation = { where: L; before: L; after: L; runs: L; gain?: L };
 
 export const automations: Automation[] = [
@@ -502,7 +498,6 @@ export const automations: Automation[] = [
   },
 ];
 
-// About me. From the master DC and Axo’s own answers.
 export const about: { id: string; title: L; text: L }[] = [
   {
     id: "work",
@@ -527,7 +522,6 @@ export const about: { id: string; title: L; text: L }[] = [
       en: "Electronics gives software a concrete, physical side. My 3D-printer lab at PoC Innovation is in the Lab section.",
       fr: "L’électronique donne au logiciel une couche concrète, physique. Mon labo d’impression 3D à PoC Innovation est dans la section Labo.",
     },
-    // Axo may add a separate hobby/electronics portfolio later.
   },
   {
     id: "printing",

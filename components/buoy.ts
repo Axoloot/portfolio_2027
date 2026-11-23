@@ -1,4 +1,4 @@
-import type * as Three from "three";
+import type { T3 } from "./gl";
 import type { SeaAddon } from "./sea";
 import { glslSea, sea, seaGrad } from "./waves";
 
@@ -69,7 +69,7 @@ void main() {
 
 const rgb = (h: number) => [((h >> 16) & 255) / 255, ((h >> 8) & 255) / 255, (h & 255) / 255] as const;
 
-function haloTexture(T: typeof Three) {
+function haloTexture(T: T3) {
   const c = document.createElement("canvas");
   c.width = c.height = 64;
   const g = c.getContext("2d")!;

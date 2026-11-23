@@ -1,7 +1,6 @@
-import type * as Three from "three";
+import { cssColor, motionOk, type T3 } from "./gl";
 import type { SeaAddon } from "./sea";
 
-const GATE = "(prefers-reduced-motion: no-preference)";
 const COUNT = 22;
 const DELAY = 6;
 const CROSS = 16;
@@ -31,7 +30,7 @@ void main() {
 }
 `;
 
-function body(T: typeof Three) {
+function body(T: T3) {
   const s = new T.Shape();
   s.moveTo(1, 0);
   s.bezierCurveTo(0.8, 0.34, 0.1, 0.42, -0.45, 0.14);
@@ -45,7 +44,7 @@ function body(T: typeof Three) {
 
 export const fish: SeaAddon = ({ T, scene, u }) => {
   const idle = { frame() {}, theme() {}, resize() {}, dispose() {} };
-  if (!matchMedia(GATE).matches) return idle;
+  if (!motionOk()) return idle;
 
   const geo = body(T);
   const phases = new Float32Array(COUNT).map(() => Math.random() * Math.PI * 2);
@@ -92,9 +91,7 @@ export const fish: SeaAddon = ({ T, scene, u }) => {
       w = width;
     },
     theme() {
-      const s = getComputedStyle(document.documentElement).getPropertyValue("--c-trench").trim() || "#061a26";
-      const v = parseInt(s.slice(1), 16);
-      fu.uShade.value.set(((v >> 16) & 255) / 255, ((v >> 8) & 255) / 255, (v & 255) / 255);
+      fu.uShade.value.set(...cssColor("--c-trench", "#061a26"));
     },
     frame(t) {
       if (done) return;

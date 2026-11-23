@@ -3,8 +3,6 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
-  // /old serves the 2024 portfolio: a static single-page app built with base path /old,
-  // stored in public/portfolio-2024 (a public/old folder would shadow the /old route).
   async rewrites() {
     return {
       beforeFiles: [

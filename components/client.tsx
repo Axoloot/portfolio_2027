@@ -47,8 +47,6 @@ export function HeaderTone() {
 
 type Theme = "light" | "dark";
 
-// The root layout lives under [lang], so switching language rebuilds <html>
-// and drops the data-theme set by the head script. Re-apply the saved theme.
 export function ThemeSync({ lang }: { lang: string }) {
   useLayoutEffect(() => {
     const el = document.documentElement;
