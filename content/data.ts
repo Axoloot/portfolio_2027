@@ -516,8 +516,8 @@ export const about: { id: string; title: L; text: L }[] = [
     id: "work",
     title: { en: "How I work", fr: "Ma façon de travailler" },
     text: {
-      en: "I build for the people who use the tool, and I ship changes without stopping their work. At Pitchy I rolled out a new local dev tool without blocking any team. I also like explaining: I taught electronics courses at Epitech.",
-      fr: "Je construis pour les gens qui utilisent l’outil, et je livre sans arrêter leur travail. Chez Pitchy, j’ai déployé un nouvel outil de développement local sans bloquer les équipes. J’aime aussi expliquer : j’ai donné des cours d’électronique à Epitech.",
+      en: "At Pitchy I rolled out a new local dev tool without blocking any team. I also taught electronics courses at Epitech.",
+      fr: "Chez Pitchy, j’ai déployé un nouvel outil de développement local sans bloquer les équipes. J’ai aussi donné des cours d’électronique à Epitech.",
     },
     // TODO(Axo): your own soft skills, in your words. One concrete example each.
   },
@@ -525,19 +525,18 @@ export const about: { id: string; title: L; text: L }[] = [
     id: "electronics",
     title: { en: "Electronics", fr: "Électronique" },
     text: {
-      en: "I ran the electronics side of PoC Innovation, a student association, then served as its treasurer and vice-president. Today I’m writing an embedded app for the Flipper Zero.",
-      fr: "J’ai été responsable électronique de PoC Innovation, une association étudiante, puis trésorier et vice-président. Aujourd’hui je développe une application embarquée pour le Flipper Zero.",
+      en: "Electronics has always pulled me in: it gives software a concrete, physical side. At PoC Innovation, a student association, I was head of electronics, then treasurer and vice-president.",
+      fr: "L’électronique m’a toujours attiré : elle donne au logiciel une couche concrète, physique. À PoC Innovation, une association étudiante, j’ai été responsable électronique, puis trésorier et vice-président.",
     },
-    // TODO(Axo): current electronics projects (boards, sensors, what you build).
+    // Axo may add a separate hobby/electronics portfolio later.
   },
   {
     id: "printing",
     title: { en: "3D printing", fr: "Impression 3D" },
     text: {
-      en: "I own a 3D printer.",
-      fr: "J’ai une imprimante 3D.",
+      en: "I use my 3D printer for side projects and for small improvements around the house.",
+      fr: "Mon imprimante 3D me sert pour mes projets perso et pour améliorer le quotidien à la maison.",
     },
-    // TODO(Axo): which printer, what you print or design, any part that solved a real problem.
   },
   {
     id: "diving",
