@@ -60,7 +60,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
               "@context": "https://schema.org",
               "@type": "Person",
               name: site.name,
-              jobTitle: "Full Stack Developer & DevOps Engineer",
+              jobTitle: "Automation & Infrastructure Engineer",
               address: { "@type": "PostalAddress", addressLocality: "Paris", addressCountry: "FR" },
               url: site.url,
               sameAs: site.links.map((l) => l.href),

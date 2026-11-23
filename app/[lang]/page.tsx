@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { careerMix, education, impact, lean, projects, roles, site, skills, type L, type Locale, type SkillGroup } from "@/content/data";
+import { about, automations, careerMix, education, impact, lean, projects, roles, site, skills, type L, type Locale, type SkillGroup } from "@/content/data";
 import { dictionaries, hasLocale } from "@/content/ui";
 import { CopyEmail, FocusFilter, HeaderTone, RevealObserver, ThemeToggle } from "@/components/client";
 import { LeanLabel, Mark, ProjectMedia, SplitBar, Swell, Tag } from "@/components/ui";
@@ -19,7 +19,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   const mix = careerMix();
   const other: Locale = lang === "en" ? "fr" : "en";
   const tl = (x: L) => x[lang];
-  const chart = [...roles].filter((r) => r.focus && !r.minor).reverse();
 
   return (
     <>
@@ -44,7 +43,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             {site.name}
           </a>
           <nav aria-label="Sections" className="ml-auto hidden gap-7 text-[15px] md:flex">
-            {(["experience", "projects", "skills", "contact"] as const).map((k) => (
+            {(["automation", "experience", "skills", "about", "contact"] as const).map((k) => (
               <a key={k} href={`#${k}`} className="opacity-65 transition-opacity hover:opacity-100">
                 {t.nav[k]}
               </a>
@@ -55,9 +54,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <Link href={`/${other}`} hrefLang={other} lang={other} className="opacity-65 transition-opacity hover:opacity-100">
               {other === "fr" ? "Français" : "English"}
             </Link>
-            <a href={site.cv} download="Cyril-de-Lajudie-CV.pdf" className="rounded-full border border-current/25 px-3.5 py-1.5 transition-colors hover:border-current">
+            <Link href={`/${lang}/cv`} className="rounded-full border border-current/25 px-3.5 py-1.5 transition-colors hover:border-current">
               {t.nav.cv}
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -87,13 +86,12 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   <a href={`mailto:${site.email}`} className="inline-flex h-12 items-center rounded-full bg-ink px-6 text-[15px] font-medium text-surface transition-colors hover:bg-shallow">
                     {t.hero.email}
                   </a>
-                  <a
-                    href={site.cv}
-                    download="Cyril-de-Lajudie-CV.pdf"
+                  <Link
+                    href={`/${lang}/cv`}
                     className="inline-flex h-12 items-center rounded-full border border-ink/20 px-6 text-[15px] font-medium transition-colors hover:border-ink"
                   >
                     {t.hero.cv}
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -117,11 +115,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           </div>
 
           <div className="relative z-10">
-            <div className={`${wrap} grid items-end gap-x-10 gap-y-3 pb-5 pt-10 md:grid-cols-[auto_1fr]`}>
-              <p className="stretch-125 flex items-baseline gap-4 text-[clamp(64px,11vw,148px)] font-bold leading-[0.8] tracking-[-0.045em] tabular-nums">
-                {mix.dev}%<span className="stretch-100 text-[clamp(22px,2.4vw,30px)] font-semibold tracking-tight text-sun-ink">{t.waterline.devTitle}</span>
+            <div className={`${wrap} flex flex-wrap items-baseline gap-x-6 gap-y-1 pb-3 pt-4`}>
+              <p className="stretch-112 flex items-baseline gap-2 text-[clamp(28px,3.2vw,40px)] font-bold leading-none tracking-[-0.03em] tabular-nums">
+                {mix.dev}%<span className="stretch-100 text-[17px] font-semibold tracking-tight text-sun-ink">{t.waterline.devTitle}</span>
               </p>
-              <p className="max-w-[24em] pb-2 text-ink-soft">{t.waterline.devText}</p>
+              <p className="text-[15px] text-ink-soft">{t.waterline.devText}</p>
             </div>
           </div>
           <div id="waterline" className="relative h-12" aria-hidden>
@@ -137,20 +135,44 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           </div>
         </div>
         <div className="bg-shallow text-foam" role="group" aria-label={t.waterline.label}>
-            <div className={`${wrap} relative z-10 grid items-start gap-x-10 gap-y-3 pb-10 pt-4 md:grid-cols-[auto_1fr]`}>
-              <p className="stretch-125 flex items-baseline gap-4 text-[clamp(64px,11vw,148px)] font-bold leading-[0.8] tracking-[-0.045em] tabular-nums text-glow">
-                {mix.ops}%<span className="stretch-100 text-[clamp(22px,2.4vw,30px)] font-semibold tracking-tight">{t.waterline.opsTitle}</span>
+            <div className={`${wrap} relative z-10 flex flex-wrap items-baseline gap-x-6 gap-y-1 pb-6 pt-2`}>
+              <p className="stretch-112 flex items-baseline gap-2 text-[clamp(28px,3.2vw,40px)] font-bold leading-none tracking-[-0.03em] tabular-nums text-glow">
+                {mix.ops}%<span className="stretch-100 text-[17px] font-semibold tracking-tight">{t.waterline.opsTitle}</span>
               </p>
-              <div className="max-w-[24em] pt-3">
-                <p className="text-foam/85">{t.waterline.opsText}</p>
-                <p className="mt-3 text-sm text-mist">{t.waterline.label}</p>
-              </div>
+              <p className="text-[15px] text-foam/85">{t.waterline.opsText}</p>
+              <p className="w-full text-sm text-mist">{t.waterline.label}</p>
             </div>
         </div>
 
         <div className="relative isolate bg-[linear-gradient(to_bottom,var(--color-shallow)_0,var(--color-deep)_900px,var(--color-abyss)_45%,var(--color-trench)_100%)] text-foam">
           <Creatures />
-          <section id="experience" className={`${wrap} pb-28 pt-24`}>
+          <section id="automation" className={`${wrap} pb-16 pt-20`}>
+            <h2 className="stretch-112 text-[clamp(40px,6vw,76px)] font-bold leading-[0.95] tracking-[-0.035em]">{t.automation.title}</h2>
+            <p className="mt-4 max-w-[34em] text-mist">{t.automation.intro}</p>
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              {automations.map((a) => (
+                <article key={a.where.en} className="rv flex flex-col rounded-lg border border-rule bg-deep/40 p-6">
+                  <h3 className="font-semibold">{tl(a.where)}</h3>
+                  <dl className="mt-5 space-y-4 text-[15px] leading-snug">
+                    <div>
+                      <dt className="text-sm text-dim">{t.automation.before}</dt>
+                      <dd className="mt-1 text-mist">{tl(a.before)}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-sm text-sun">{t.automation.after}</dt>
+                      <dd className="mt-1 text-foam">{tl(a.after)}</dd>
+                    </div>
+                    {a.gain && <dd className="stretch-112 text-[24px] font-semibold tracking-[-0.02em] text-sun">{tl(a.gain)}</dd>}
+                  </dl>
+                  <p className="mt-auto pt-6 text-sm text-dim">
+                    {t.automation.runs}: <span className="text-mist">{tl(a.runs)}</span>
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="experience" className={`${wrap} pb-28 pt-16`}>
             <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>
                 <h2 className="stretch-112 text-[clamp(40px,6vw,76px)] font-bold leading-[0.95] tracking-[-0.035em]">{t.experience.title}</h2>
@@ -159,31 +181,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <FocusFilter labels={{ label: t.experience.filterLabel, all: t.experience.all, dev: t.experience.dev, ops: t.experience.ops }} />
             </div>
 
-            <figure className="rv mt-14">
-              <div className="relative grid gap-2" style={{ gridTemplateColumns: `repeat(${chart.length}, minmax(0,1fr))` }}>
-                <span className="absolute inset-x-0 top-24 h-px bg-foam/40" aria-hidden />
-                {chart.map((r, i) => (
-                  <div
-                    key={r.start}
-                    data-lean={lean(r.focus)}
-                    className="transition-opacity duration-300"
-                    title={`${tl(r.company)}: ${r.focus!.dev}% dev, ${r.focus!.ops}% DevOps`}
-                  >
-                    <div className="flex h-24 items-end">
-                      <span className="rise w-full rounded-t-sm bg-sun" style={{ height: `${r.focus!.dev}%`, transitionDelay: `${i * 70}ms` }} />
-                    </div>
-                    <div className="flex h-24 items-start">
-                      <span className="sink w-full rounded-b-sm bg-glow" style={{ height: `${r.focus!.ops}%`, transitionDelay: `${i * 70 + 120}ms` }} />
-                    </div>
-                    <p className="mt-3 truncate text-sm font-medium">{tl(r.company)}</p>
-                    <p className="text-[13px] tabular-nums text-dim">{r.start.slice(0, 4)}</p>
-                  </div>
-                ))}
-              </div>
-              <figcaption className="mt-5 text-sm text-dim">{t.experience.chart}</figcaption>
-            </figure>
 
-            <ol className="mt-20 border-t border-rule">
+            <ol className="mt-14 border-t border-rule">
               {roles.map((r, i) => (
                 <li
                   key={r.start + i}
@@ -203,7 +202,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   <div>
                     <h3 className="stretch-100 text-[clamp(22px,2.2vw,28px)] font-semibold leading-tight tracking-[-0.02em]">
                       {tl(r.company)}
-                      {tl(r.role) && <span className="ml-3 text-[17px] font-normal tracking-normal text-mist">{tl(r.role)}</span>}
+                      {tl(r.role) &&
+                        (r.href ? (
+                          <a href={r.href} className={`${link} ml-3 text-[17px] font-normal tracking-normal text-mist decoration-glow hover:text-glow`}>
+                            {tl(r.role)}
+                          </a>
+                        ) : (
+                          <span className="ml-3 text-[17px] font-normal tracking-normal text-mist">{tl(r.role)}</span>
+                        ))}
                     </h3>
                     {r.bullets && (
                       <ul className="mt-4 max-w-[44em] space-y-2 text-foam/85">
@@ -236,9 +242,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               ))}
             </div>
             <p className="mt-12 md:ml-[260px]">
-              <a href={site.cv} download="Cyril-de-Lajudie-CV.pdf" className={`${link} decoration-sun hover:text-sun`}>
+              <Link href={`/${lang}/cv`} className={`${link} decoration-sun hover:text-sun`}>
                 {t.experience.resume}
-              </a>
+              </Link>
             </p>
           </section>
 
@@ -291,19 +297,28 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           <section id="skills" className={`${wrap} pb-28 pt-12`}>
             <h2 className="stretch-88 text-[clamp(40px,6vw,76px)] font-bold leading-[0.95] tracking-[-0.035em]">{t.skills.title}</h2>
             <p className="mt-4 max-w-[34em] text-mist">{t.skills.intro}</p>
-            <div className="mt-14 grid gap-14 lg:grid-cols-2 lg:gap-20">
-              <SkillColumn title={t.skills.dev} sub={t.skills.devSub} tone="sun" groups={skills.dev} lang={lang} />
-              <SkillColumn title={t.skills.ops} sub={t.skills.opsSub} tone="glow" groups={skills.ops} lang={lang} />
-            </div>
-            <h3 className="mt-20 text-[15px] text-mist">{t.skills.also}</h3>
-            <div className="mt-2 grid gap-x-20 border-t border-rule md:grid-cols-3">
-              {skills.also.map((g) => (
-                <SkillRow key={g.title.en} g={g} lang={lang} lead="text-foam" />
-              ))}
-              <div className="border-b border-rule py-6">
-                <h4 className="font-semibold">{t.skills.spoken}</h4>
-                <p className="mt-2 text-foam/85">{t.skills.spokenValue}</p>
+            <div className="mt-14 grid gap-14 lg:grid-cols-3 lg:gap-12">
+              <SkillColumn title={t.skills.automate} sub={t.skills.automateSub} tone="sun" groups={skills.automate} lang={lang} />
+              <SkillColumn title={t.skills.host} sub={t.skills.hostSub} tone="glow" groups={skills.host} lang={lang} />
+              <div>
+                <SkillColumn title={t.skills.secure} sub={t.skills.secureSub} tone="foam" groups={skills.secure} lang={lang} />
+                <div className="border-b border-rule py-6">
+                  <h4 className="font-semibold">{t.skills.spoken}</h4>
+                  <p className="mt-2 text-foam/85">{t.skills.spokenValue}</p>
+                </div>
               </div>
+            </div>
+          </section>
+
+          <section id="about" className={`${wrap} pb-20 pt-12`}>
+            <h2 className="stretch-100 text-[clamp(40px,6vw,76px)] font-bold leading-[0.95] tracking-[-0.035em]">{t.about.title}</h2>
+            <div className="mt-12 grid gap-x-20 border-t border-rule md:grid-cols-2">
+              {about.map((a) => (
+                <div key={a.id} id={a.id} className="scroll-mt-20 border-b border-rule py-6">
+                  <h3 className="font-semibold">{tl(a.title)}</h3>
+                  <p className="mt-2 max-w-[34em] whitespace-pre-line text-foam/85">{tl(a.text)}</p>
+                </div>
+              ))}
             </div>
           </section>
 
@@ -330,9 +345,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </a>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <CopyEmail email={site.email} label={t.contact.copy} done={t.contact.copied} />
-              <a href={site.cv} download="Cyril-de-Lajudie-CV.pdf" className="inline-flex h-12 items-center rounded-full border border-rule-2 px-5 text-[15px] transition-colors hover:border-foam/40">
+              <Link href={`/${lang}/cv`} className="inline-flex h-12 items-center rounded-full border border-rule-2 px-5 text-[15px] transition-colors hover:border-foam/40">
                 {t.hero.cv}
-              </a>
+              </Link>
             </div>
             <p className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
               {site.links.map((l) => (
@@ -360,16 +375,20 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   );
 }
 
-function SkillColumn({ title, sub, tone, groups, lang }: { title: string; sub: string; tone: "sun" | "glow"; groups: SkillGroup[]; lang: Locale }) {
+function SkillColumn({ title, sub, tone, groups, lang }: { title: string; sub: string; tone: "sun" | "glow" | "foam"; groups: SkillGroup[]; lang: Locale }) {
+  const dot = { sun: "bg-sun", glow: "bg-glow", foam: "bg-foam" }[tone];
+  const lead = { sun: "text-sun", glow: "text-glow", foam: "text-foam" }[tone];
   return (
     <div>
-      <div className="flex items-baseline gap-3 border-b border-rule pb-4">
-        <span className={`size-2.5 rounded-full ${tone === "sun" ? "bg-sun" : "bg-glow"}`} />
-        <h3 className="stretch-112 text-[28px] font-bold tracking-[-0.02em]">{title}</h3>
-        <span className="text-mist">{sub}</span>
+      <div className="border-b border-rule pb-4">
+        <div className="flex items-baseline gap-3">
+          <span className={`size-2.5 rounded-full ${dot}`} />
+          <h3 className="stretch-112 text-[28px] font-bold tracking-[-0.02em]">{title}</h3>
+        </div>
+        <p className="mt-1 text-[15px] text-mist">{sub}</p>
       </div>
       {groups.map((g) => (
-        <SkillRow key={g.title.en} g={g} lang={lang} lead={tone === "sun" ? "text-sun" : "text-glow"} />
+        <SkillRow key={g.title.en} g={g} lang={lang} lead={lead} />
       ))}
     </div>
   );
