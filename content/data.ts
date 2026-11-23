@@ -9,7 +9,7 @@ export const site = {
   cv: "/cv-fr.pdf",
   // Page images shown on /[lang]/cv. When the PDF changes, regenerate them:
   // pdftoppm -jpeg -jpegopt quality=85 -r 150 public/cv-fr.pdf public/cv/page
-  cvPages: [{ src: "/cv/page-1.jpg", width: 1240, height: 1754 }],
+  cvPages: [{ src: "/cv/page-1.jpg", width: 1242, height: 1755 }],
   links: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/cyrildelajudie" },
     { label: "GitHub", href: "https://github.com/Axoloot" },
