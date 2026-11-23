@@ -312,17 +312,27 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "printer-lab",
-    title: { en: "3D-printer lab", fr: "Labo d’impression 3D" },
-    kind: { en: "PoC Innovation, Epitech", fr: "PoC Innovation, Epitech" },
-    when: "2018–2021",
+    slug: "hub-health",
+    title: { en: "HUB-Health", fr: "HUB-Health" },
+    kind: { en: "AI-assisted diagnosis hub, team of three", fr: "Hub de diagnostic assisté par IA, équipe de trois" },
+    when: "2023, revived 2026",
     summary: {
-      en: "Three networked 3D printers on OctoPrint for PoC Innovation, monitored with Prometheus and Grafana.",
-      fr: "Trois imprimantes 3D en réseau sous OctoPrint pour PoC Innovation, supervisées avec Prometheus et Grafana.",
+      en: "A doctor manages their patients and runs four screening models: heart disease, breast cancer, fetal health and pneumonia on chest X-rays. Each prediction is saved to the patient’s record.",
+      fr: "Le médecin gère ses patients et lance quatre modèles de dépistage : cardiopathie, cancer du sein, santé fœtale et pneumonie sur radio thoracique. Chaque prédiction s’enregistre dans le dossier du patient.",
     },
-    tags: ["OctoPrint", "Prometheus", "Grafana", "Jenkins"],
+    bullets: {
+      en: [
+        "I built the web app in 2023. In 2026 I merged the two repos into a monorepo and moved inference into the browser with TensorFlow.js: measurements and X-rays never leave the doctor’s machine, and the server runs no ML.",
+        "Secured API, one-click demo reset every night by Vercel Cron, GitHub Actions CI. Demo project, not a medical device.",
+      ],
+      fr: [
+        "J’ai construit l’app web en 2023. En 2026, j’ai regroupé les deux dépôts en monorepo et déplacé l’inférence dans le navigateur avec TensorFlow.js : les mesures et les radios ne quittent plus le poste du médecin, et le serveur ne fait tourner aucun modèle.",
+        "API sécurisée, démo en un clic remise à zéro chaque nuit par Vercel Cron, CI GitHub Actions. Projet de démonstration, pas un dispositif médical.",
+      ],
+    },
+    tags: ["Next.js", "TensorFlow.js", "Keras", "MongoDB", "NextAuth", "Vercel Cron"],
     media: [],
-    links: [],
+    links: [{ label: { en: "Source on GitHub", fr: "Code sur GitHub" }, href: "https://github.com/Axoloot/hub-health-ai-diagnosis" }],
   },
   {
     slug: "fundy",
@@ -519,8 +529,8 @@ export const about: { id: string; title: L; text: L }[] = [
     id: "electronics",
     title: { en: "Electronics", fr: "Électronique" },
     text: {
-      en: "Electronics gives software a concrete, physical side. My 3D-printer lab at PoC Innovation is in the Lab section.",
-      fr: "L’électronique donne au logiciel une couche concrète, physique. Mon labo d’impression 3D à PoC Innovation est dans la section Labo.",
+      en: "Electronics gives software a concrete, physical side. At PoC Innovation I ran a lab of three networked 3D printers on OctoPrint, monitored with Prometheus and Grafana.",
+      fr: "L’électronique donne au logiciel une couche concrète, physique. À PoC Innovation, j’ai monté un labo de trois imprimantes 3D en réseau sous OctoPrint, supervisées avec Prometheus et Grafana.",
     },
   },
   {
