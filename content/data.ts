@@ -25,6 +25,7 @@ export type Role = {
   bullets?: { en: string[]; fr: string[] };
   tags?: string[];
   minor?: boolean;
+  href?: string;
 };
 
 export const roles: Role[] = [
@@ -105,6 +106,7 @@ export const roles: Role[] = [
     when: { en: "Apr 2024–Mar 2025", fr: "Avr. 2024–mars 2025" },
     focus: null,
     minor: true,
+    href: "#diving",
   },
   {
     company: { en: "Pitchy", fr: "Pitchy" },
@@ -497,8 +499,9 @@ export const automations: Automation[] = [
 ];
 
 // About me. Drafted from the master DC; lines marked TODO wait on Axo.
-export const about: { title: L; text: L }[] = [
+export const about: { id: string; title: L; text: L }[] = [
   {
+    id: "work",
     title: { en: "How I work", fr: "Ma façon de travailler" },
     text: {
       en: "I build for the people who use the tool, and I ship changes without stopping their work. At Pitchy I rolled out a new local dev tool without blocking any team. I also like explaining: I taught electronics courses at Epitech.",
@@ -507,6 +510,7 @@ export const about: { title: L; text: L }[] = [
     // TODO(Axo): your own soft skills, in your words. One concrete example each.
   },
   {
+    id: "electronics",
     title: { en: "Electronics", fr: "Électronique" },
     text: {
       en: "I ran the electronics side of PoC Innovation, a student association, then served as its treasurer and vice-president. Today I’m writing an embedded app for the Flipper Zero.",
@@ -515,6 +519,7 @@ export const about: { title: L; text: L }[] = [
     // TODO(Axo): current electronics projects (boards, sensors, what you build).
   },
   {
+    id: "printing",
     title: { en: "3D printing", fr: "Impression 3D" },
     text: {
       en: "I own a 3D printer.",
@@ -523,10 +528,16 @@ export const about: { title: L; text: L }[] = [
     // TODO(Axo): which printer, what you print or design, any part that solved a real problem.
   },
   {
+    id: "diving",
     title: { en: "Under water", fr: "Sous l’eau" },
     text: {
       en: "I trained in scuba diving during my sabbatical year.",
       fr: "Je me suis formé à la plongée sous-marine pendant mon année sabbatique.",
     },
+  },
+  {
+    id: "motorbike",
+    title: { en: "Motorbike", fr: "Moto" },
+    text: { en: "I ride a motorbike.", fr: "Je roule à moto." },
   },
 ];

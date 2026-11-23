@@ -203,7 +203,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   <div>
                     <h3 className="stretch-100 text-[clamp(22px,2.2vw,28px)] font-semibold leading-tight tracking-[-0.02em]">
                       {tl(r.company)}
-                      {tl(r.role) && <span className="ml-3 text-[17px] font-normal tracking-normal text-mist">{tl(r.role)}</span>}
+                      {tl(r.role) &&
+                        (r.href ? (
+                          <a href={r.href} className={`${link} ml-3 text-[17px] font-normal tracking-normal text-mist decoration-glow hover:text-glow`}>
+                            {tl(r.role)}
+                          </a>
+                        ) : (
+                          <span className="ml-3 text-[17px] font-normal tracking-normal text-mist">{tl(r.role)}</span>
+                        ))}
                     </h3>
                     {r.bullets && (
                       <ul className="mt-4 max-w-[44em] space-y-2 text-foam/85">
@@ -311,7 +318,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <h2 className="stretch-100 text-[clamp(40px,6vw,76px)] font-bold leading-[0.95] tracking-[-0.035em]">{t.about.title}</h2>
             <div className="mt-12 grid gap-x-20 border-t border-rule md:grid-cols-2">
               {about.map((a) => (
-                <div key={a.title.en} className="border-b border-rule py-6">
+                <div key={a.id} id={a.id} className="scroll-mt-20 border-b border-rule py-6">
                   <h3 className="font-semibold">{tl(a.title)}</h3>
                   <p className="mt-2 max-w-[34em] text-foam/85">{tl(a.text)}</p>
                 </div>
