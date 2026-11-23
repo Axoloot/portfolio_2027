@@ -323,16 +323,19 @@ export const projects: Project[] = [
     bullets: {
       en: [
         "I built the web app in 2023. In 2026 I merged the two repos into a monorepo and moved inference into the browser with TensorFlow.js: measurements and X-rays never leave the doctor’s machine, and the server runs no ML.",
-        "Secured API, one-click demo reset every night by Vercel Cron, GitHub Actions CI. Demo project, not a medical device.",
+        "Secured API, one-click demo reset every night by Vercel Cron, GitHub Actions CI. Demo project, not a medical device: the live demo uses fictional patients, no account needed.",
       ],
       fr: [
         "J’ai construit l’app web en 2023. En 2026, j’ai regroupé les deux dépôts en monorepo et déplacé l’inférence dans le navigateur avec TensorFlow.js : les mesures et les radios ne quittent plus le poste du médecin, et le serveur ne fait tourner aucun modèle.",
-        "API sécurisée, démo en un clic remise à zéro chaque nuit par Vercel Cron, CI GitHub Actions. Projet de démonstration, pas un dispositif médical.",
+        "API sécurisée, démo en un clic remise à zéro chaque nuit par Vercel Cron, CI GitHub Actions. Projet de démonstration, pas un dispositif médical : la démo en ligne utilise des patients fictifs, sans compte.",
       ],
     },
     tags: ["Next.js", "TensorFlow.js", "Keras", "MongoDB", "NextAuth", "Vercel Cron"],
     media: [],
-    links: [{ label: { en: "Source on GitHub", fr: "Code sur GitHub" }, href: "https://github.com/Axoloot/hub-health-ai-diagnosis" }],
+    links: [
+      { label: { en: "Live demo", fr: "Démo en ligne" }, href: "https://hub-health-ai-diagnosis.vercel.app/" },
+      { label: { en: "Source on GitHub", fr: "Code sur GitHub" }, href: "https://github.com/Axoloot/hub-health-ai-diagnosis" },
+    ],
   },
   {
     slug: "fundy",
