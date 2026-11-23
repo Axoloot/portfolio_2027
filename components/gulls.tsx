@@ -1,9 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import type * as Three from "three";
+import { renderer as makeRenderer, useGL, watch, type T3 } from "./gl";
 
-const GATE = "(prefers-reduced-motion: no-preference)";
 const HALF = 18;
 
 const flock = [
@@ -39,7 +37,7 @@ void main() {
 }
 `;
 
-function geometry(T: typeof Three) {
+function geometry(T: T3) {
   const pos: number[] = [];
   const span: number[] = [];
   const idx: number[] = [];
@@ -69,15 +67,9 @@ function geometry(T: typeof Three) {
   return g;
 }
 
-function start(T: typeof Three, canvas: HTMLCanvasElement) {
-  let renderer: Three.WebGLRenderer;
-  try {
-    renderer = new T.WebGLRenderer({ canvas, alpha: true, antialias: true, premultipliedAlpha: true, powerPreference: "low-power" });
-  } catch {
-    return () => {};
-  }
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
-  renderer.setClearColor(0x000000, 0);
+function start(T: T3, canvas: HTMLCanvasElement) {
+  const renderer = makeRenderer(T, canvas);
+  if (!renderer) return () => {};
 
   const scene = new T.Scene();
   const camera = new T.PerspectiveCamera(30, 1, 10, 6000);
@@ -154,25 +146,20 @@ function start(T: typeof Three, canvas: HTMLCanvasElement) {
   };
   const sync = () => (visible && day() && !document.hidden ? play() : halt());
 
-  const io = new IntersectionObserver(([e]) => {
-    visible = e.isIntersecting;
-    sync();
-  });
-  const ro = new ResizeObserver(resize);
-  const mo = new MutationObserver(sync);
-
   resize();
-  io.observe(canvas);
-  ro.observe(canvas);
-  mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-  document.addEventListener("visibilitychange", sync);
+  const unwatch = watch(canvas, {
+    visible: (v) => {
+      visible = v;
+      sync();
+    },
+    resize,
+    theme: sync,
+    tab: sync,
+  });
 
   return () => {
     halt();
-    io.disconnect();
-    ro.disconnect();
-    mo.disconnect();
-    document.removeEventListener("visibilitychange", sync);
+    unwatch();
     birds.forEach((g) => g.mat.dispose());
     geo.dispose();
     renderer.dispose();
@@ -180,21 +167,6 @@ function start(T: typeof Three, canvas: HTMLCanvasElement) {
 }
 
 export function Gulls() {
-  const ref = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = ref.current;
-    if (!canvas || !matchMedia(GATE).matches) return;
-    let stop = () => {};
-    let dead = false;
-    import("three")
-      .then((T) => {
-        if (!dead) stop = start(T, canvas);
-      })
-      .catch(() => {});
-    return () => {
-      dead = true;
-      stop();
-    };
-  }, []);
+  const ref = useGL(start);
   return <canvas ref={ref} aria-hidden className="pointer-events-none absolute inset-0 h-full w-full" />;
 }
