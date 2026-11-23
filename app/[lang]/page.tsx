@@ -149,7 +149,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           <section id="automation" className={`${wrap} pb-16 pt-20`}>
             <h2 className="stretch-112 text-[clamp(40px,6vw,76px)] font-bold leading-[0.95] tracking-[-0.035em]">{t.automation.title}</h2>
             <p className="mt-4 max-w-[34em] text-mist">{t.automation.intro}</p>
-            <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
               {automations.map((a) => (
                 <article key={a.where.en} className="rv flex flex-col rounded-lg border border-rule bg-deep/40 p-6">
                   <h3 className="font-semibold">{tl(a.where)}</h3>
