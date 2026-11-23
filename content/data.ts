@@ -63,11 +63,11 @@ export const roles: Role[] = [
     kind: { en: "Security", fr: "Sécurité" },
     bullets: {
       en: [
-        "Hunting web and API vulnerabilities on public and private programs: 3 valid reports so far, 1 of them high severity.",
+        "Hunting web and API vulnerabilities on public and private YesWeHack programs: 3 valid reports so far, 1 of them high severity.",
         "My recon and fuzzing chain: subfinder, httpx, ffuf and nuclei, then manual testing in Caido and Burp Suite, with AI assistance.",
       ],
       fr: [
-        "Recherche de vulnérabilités web et API sur des programmes publics et privés : 3 rapports valides à ce jour, dont 1 de sévérité élevée.",
+        "Recherche de vulnérabilités web et API sur des programmes publics et privés de YesWeHack : 3 rapports valides à ce jour, dont 1 de sévérité élevée.",
         "Chaîne de reconnaissance et de fuzzing : subfinder, httpx, ffuf et nuclei, puis tests manuels dans Caido et Burp Suite, assistés par IA.",
       ],
     },
