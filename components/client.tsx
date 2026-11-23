@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useLayoutEffect, useState, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 
 export function RevealObserver() {
@@ -46,6 +46,21 @@ export function HeaderTone() {
 }
 
 type Theme = "light" | "dark";
+
+// The root layout lives under [lang], so switching language rebuilds <html>
+// and drops the data-theme set by the head script. Re-apply the saved theme.
+export function ThemeSync({ lang }: { lang: string }) {
+  useLayoutEffect(() => {
+    const el = document.documentElement;
+    let t: string | null = null;
+    try {
+      t = localStorage.getItem("theme");
+    } catch {}
+    if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    if (el.dataset.theme !== t) el.dataset.theme = t;
+  }, [lang]);
+  return null;
+}
 
 function subscribeTheme(cb: () => void) {
   const mo = new MutationObserver(cb);
