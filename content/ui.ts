@@ -4,13 +4,13 @@ const en = {
   meta: {
     title: "Cyril de Lajudie, I automate your manual processes",
     description:
-      "Paris-based developer and DevOps engineer. I turn manual processes into tools and host them on your cloud or your own servers. Available for a permanent role.",
+      "Paris-based automation & infrastructure engineer. I turn manual processes into tools and host them on your cloud or your own servers. Available for a permanent role.",
   },
   nav: { automation: "Automation", experience: "What I shipped", projects: "Lab", skills: "Tools",  about: "About", contact: "Contact", skip: "Skip to content", cv: "CV", toDark: "Switch to night", toLight: "Switch to day" },
   status: "Available now for a permanent role in Paris",
   hero: {
     role: "I automate your manual processes and host them where your data has to live.",
-    lede: "Developer and DevOps engineer. I write the tool, then run it on your cloud or on your own servers. Ten years of shipped code, four of them in production teams.",
+    lede: "Automation & infrastructure engineer. I write the tool, then run it on your cloud or on your own servers. Ten years of shipped code, four of them in production teams.",
     email: "Email me",
     cv: "See my CV",
   },
@@ -90,13 +90,13 @@ const fr: typeof en = {
   meta: {
     title: "Cyril de Lajudie, j’automatise vos process manuels",
     description:
-      "Développeur et ingénieur DevOps à Paris. Je transforme vos process manuels en outils, hébergés sur votre cloud ou sur vos propres serveurs. Disponible pour un CDI.",
+      "Ingénieur automatisation & infrastructure à Paris. Je transforme vos process manuels en outils, hébergés sur votre cloud ou sur vos propres serveurs. Disponible pour un CDI.",
   },
   nav: { automation: "Automatisation", experience: "Ce que j’ai livré", projects: "Labo", skills: "Outils",  about: "À propos", contact: "Contact", skip: "Aller au contenu", cv: "CV", toDark: "Passer en mode nuit", toLight: "Passer en mode jour" },
   status: "Disponible pour un CDI à Paris",
   hero: {
     role: "J’automatise vos process manuels et je les héberge là où vos données doivent rester.",
-    lede: "Développeur et ingénieur DevOps. J’écris l’outil, puis je le fais tourner sur votre cloud ou sur vos propres serveurs. Dix ans de code livré, dont quatre en équipe de production.",
+    lede: "Ingénieur automatisation & infrastructure. J’écris l’outil, puis je le fais tourner sur votre cloud ou sur vos propres serveurs. Dix ans de code livré, dont quatre en équipe de production.",
     email: "M’écrire",
     cv: "Voir mon CV",
   },

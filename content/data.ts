@@ -9,7 +9,7 @@ export const site = {
   cv: "/cv-fr.pdf",
   // Page images shown on /[lang]/cv. When the PDF changes, regenerate them:
   // pdftoppm -jpeg -jpegopt quality=85 -r 150 public/cv-fr.pdf public/cv/page
-  cvPages: [{ src: "/cv/page-1.jpg", width: 1242, height: 1755 }],
+  cvPages: [{ src: "/cv/page-1.jpg", width: 1240, height: 1754 }],
   links: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/cyrildelajudie" },
     { label: "GitHub", href: "https://github.com/Axoloot" },
@@ -40,14 +40,14 @@ export const roles: Role[] = [
     focus: { dev: 35, ops: 65 },
     bullets: {
       en: [
-        "Infiny, a recruitment platform, parsed CVs with LLMs on Azure and ran the rest of its backend on AWS, and needed a private network between the two. I linked the clouds with a site-to-site IPsec tunnel (VPN Gateway to Virtual Private Gateway), written in Terraform.",
-        "Planned a zero-downtime DNS cutover on OVH, and cut unused resources from the Terraform code.",
+        "Infiny’s LLMs ran on Azure and the rest of the platform on AWS, with no private link between them. I connected the two clouds with an IPsec tunnel written in Terraform and switched DNS over with no downtime.",
+        "Audited the cloud resources and removed the unused ones from the Terraform code.",
         "Designed a hierarchical job data model on France Travail’s ROME reference.",
         "Wrote my own boilerplates (Node.js/TypeScript, Next.js, AWS CDK with projen) as the base for my client and personal projects.",
       ],
       fr: [
-        "Infiny, plateforme de recrutement, analysait les CV avec des LLM sur Azure et faisait tourner le reste du backend sur AWS : il fallait un réseau privé entre les deux. J’ai relié les clouds par un tunnel IPsec site-à-site (VPN Gateway vers Virtual Private Gateway), écrit en Terraform.",
-        "Bascule DNS planifiée sur OVH sans interruption de service, et nettoyage des ressources inutilisées dans le code Terraform.",
+        "Les LLM d’Infiny tournaient sur Azure et le reste de la plateforme sur AWS, sans lien privé entre les deux. J’ai relié les deux clouds par un tunnel IPsec écrit en Terraform et basculé le DNS sans coupure.",
+        "Audit des ressources cloud et suppression des ressources inutilisées dans le code Terraform.",
         "Schéma de données métiers hiérarchique construit sur le référentiel ROME de France Travail.",
         "Boilerplates maison (Node.js/TypeScript, Next.js, AWS CDK avec projen), base de mes projets clients et personnels.",
       ],
@@ -82,18 +82,16 @@ export const roles: Role[] = [
     kind: { en: "Hotel services, Staycation-style, 15–20 people", fr: "Services hôteliers façon Staycation, 15 à 20 salariés" },
     bullets: {
       en: [
-        "Time-slot product search ran on Algolia. I moved it to Typesense and cut search costs by ~75%.",
+        "Time-slot search ran on Algolia. I moved it to Typesense, which cut its cost by ~75%, and automated product listings on Google Shopping.",
         "Built standalone event-driven services on AWS: Lambda, EventBridge, SQS/SNS and single-table DynamoDB (DynamoDB Toolbox).",
         "Rebuilt the search page (V2) in Next.js and Tailwind and shipped other front-end changes, on Hono APIs deployed with AWS CDK.",
-        "Shipped automatic Google Shopping listings and an email service on Brevo.",
-        "Wired production errors to Slack alerts, opened fix PRs when needed, and wrote unit tests in Jest.",
+        "Wired production errors to Slack alerts, opened fix PRs when needed, shipped an email service on Brevo and wrote unit tests in Jest.",
       ],
       fr: [
-        "La recherche par créneaux tournait sur Algolia. Je l’ai migrée vers Typesense : ~75 % de coûts de recherche en moins.",
+        "La recherche par créneaux tournait sur Algolia. Je l’ai migrée vers Typesense, ce qui a réduit son coût de ~75 %, et j’ai automatisé le référencement des produits sur Google Shopping.",
         "Services événementiels autonomes sur AWS : Lambda, EventBridge, SQS/SNS et DynamoDB single-table (DynamoDB Toolbox).",
         "Refonte de la page de recherche (V2) en Next.js et Tailwind et autres évolutions de l’interface, sur des API Hono déployées en AWS CDK.",
-        "Référencement automatique sur Google Shopping et service d’emailing sur Brevo.",
-        "Erreurs de production branchées sur des alertes Slack, PR correctives ouvertes au besoin, tests unitaires en Jest.",
+        "Erreurs de production branchées sur des alertes Slack, PR correctives ouvertes au besoin, service d’emailing sur Brevo, tests unitaires en Jest.",
       ],
     },
     tags: ["Typesense", "Next.js", "Hono", "Lambda", "EventBridge", "DynamoDB", "AWS CDK", "Jest", "Kinesis", "Athena"],
@@ -120,17 +118,17 @@ export const roles: Role[] = [
     kind: { en: "B2B video SaaS, ~1,000 clients, €40M Series B", fr: "SaaS vidéo B2B, ~1 000 clients, série B de 40 M€" },
     bullets: {
       en: [
-        "Video rendering ran on Windows Server. I moved it to macOS and cut generation time by ~40%. Apple dropped macOS Server, so I built headless macOS desktop images with Packer and AppleScript.",
+        "Pitchy rendered its videos on Windows Server. I moved rendering to headless macOS images (~40% less generation time) and cut the AWS bill by 22%.",
         "Pitchy renders motion-design videos for clients like Accor, Orange and Danone on an autoscaling farm of After Effects, Cavalry and Filmora machines. I worked on four fronts: performance, SRE, architecture and FinOps.",
-        "Cut the AWS bill by 22% with right-sizing, autoscaling and on-demand services.",
+        "Apple dropped macOS Server, so I built the headless macOS desktop images with Packer and AppleScript. The AWS savings came from right-sizing, autoscaling and on-demand services.",
         "Ran production on Kubernetes with GitLab CI, and set up GitLab LFS for the motion designers’ heavy assets.",
         "Worked around tech debt with a shell tool that adapts the production Docker image to each laptop and generates a backward-compatible Docker Compose stack. I rolled it out without blocking the teams.",
         "Benchmarked After Effects v19 against v23 before the upgrade (v23 renders 5% slower), and traced incidents across CloudWatch, Datadog and Honeycomb.",
       ],
       fr: [
-        "Les rendus vidéo tournaient sur Windows Server. Je les ai passés sur macOS : ~40 % de temps de génération en moins. macOS Server n’existant plus, j’ai construit des images macOS desktop headless avec Packer et AppleScript.",
+        "Pitchy rendait ses vidéos sur Windows Server. J’ai passé les rendus sur des images macOS headless (~40 % de temps de génération en moins) et réduit la facture AWS de 22 %.",
         "Pitchy rend des vidéos en motion design pour des clients comme Accor, Orange et Danone, sur une ferme de machines After Effects, Cavalry et Filmora en autoscaling. J’ai travaillé sur quatre axes : performances, SRE, architecture et FinOps.",
-        "Facture AWS réduite de 22 % : bon dimensionnement, autoscaling et services à la demande.",
+        "macOS Server n’existant plus, j’ai construit les images macOS desktop headless avec Packer et AppleScript. Les économies AWS viennent du bon dimensionnement, de l’autoscaling et des services à la demande.",
         "Production sur Kubernetes avec GitLab CI, et GitLab LFS pour les assets lourds des motion designers.",
         "Contournement de la dette technique : un script shell adapte l’image Docker de production au poste du développeur et génère un Docker Compose rétrocompatible. Déployé sans bloquer les équipes.",
         "Benchmark d’After Effects v19 contre v23 avant la montée de version (v23 rend 5 % plus lentement), analyse d’incidents sur CloudWatch, Datadog et Honeycomb.",
@@ -146,13 +144,13 @@ export const roles: Role[] = [
     focus: { dev: 50, ops: 50 },
     bullets: {
       en: [
-        "RedPill, the startup studio behind Quidol, built a one-to-one live shopping platform, a web FaceTime, at Hermès’s request. I designed and built it, UX/UI included.",
-        "Owned the full cycle: prototype, release, hosting, Docker microservices on GKE, CI/CD and SRE.",
+        "Hermès wanted to sell one-to-one over video. I built the live shopping platform and took it from prototype to production, infrastructure included.",
+        "RedPill, the startup studio behind Quidol, ran the project. I designed the UX/UI and ran Docker microservices on GKE, CI/CD and SRE.",
         "Tracked a bug that appeared with a new iOS release down to a race condition in a JavaScript class.",
       ],
       fr: [
-        "RedPill, startup studio éditeur de Quidol, a construit une plateforme de live shopping en tête-à-tête, un FaceTime web, à la demande d’Hermès. Je l’ai conçue et développée, UX/UI comprise.",
-        "Cycle complet : prototype, mise en production, hébergement, microservices Docker sur GKE, CI/CD et SRE.",
+        "Hermès voulait vendre en tête-à-tête par vidéo. J’ai construit la plateforme de live shopping et je l’ai menée du prototype à la production, infrastructure comprise.",
+        "RedPill, startup studio éditeur de Quidol, portait le projet. J’ai conçu l’UX/UI et opéré les microservices Docker sur GKE, la CI/CD et le SRE.",
         "Bug apparu avec une nouvelle version d’iOS, remonté jusqu’à une race condition dans une classe JavaScript.",
       ],
     },
@@ -167,13 +165,13 @@ export const roles: Role[] = [
     kind: { en: "White-label live shopping; Carrefour lives averaged 4,500 viewers", fr: "Live shopping en marque blanche ; 4 500 spectateurs en moyenne par live Carrefour" },
     bullets: {
       en: [
-        "Automated replays, recorded by hand in OBS until then: I drove recording through the Vonage (WebRTC) and Wowza (HLS) APIs and replayed chat, polls and product clicks.",
+        "Someone recorded every live replay by hand in OBS. I automated recording through the Vonage and Wowza APIs, with the chat, polls and products.",
         "Built the self-service offer: customers subscribe to one of 3 plans to run their own live shopping, paid through Stripe with no card data stored on our side (GDPR).",
         "Cut live latency by tuning the HLS pipeline, and raised the Lighthouse score with webpack and a CDN.",
         "Deployed the main API and its microservices (quiz, users, chat, live, products, queues) on GKE with Helm charts, across dev, staging and production. Scrum team of developers, a DevOps, the CTO and a Product Owner.",
       ],
       fr: [
-        "Replays automatisés, enregistrés à la main dans OBS jusque-là : pilotage de l’enregistrement via les API Vonage (WebRTC) et Wowza (HLS), replay du chat, des sondages et des clics produits.",
+        "Quelqu’un enregistrait chaque replay de live à la main dans OBS. J’ai automatisé l’enregistrement via les API Vonage et Wowza, avec le chat, les sondages et les produits.",
         "Offre self-service : inscription à l’un des 3 abonnements pour lancer son propre live shopping, paiement via Stripe sans stocker de données bancaires (RGPD).",
         "Latence des lives réduite en optimisant le flux HLS, score Lighthouse relevé avec webpack et un CDN.",
         "API principale et microservices (quiz, utilisateurs, chat, live, produits, files de messages) déployés sur GKE avec des charts Helm, sur 3 environnements. Équipe Scrum : développeurs, un DevOps, le CTO et une Product Owner.",
@@ -190,15 +188,13 @@ export const roles: Role[] = [
     kind: { en: "Food group, 120 countries, 9 French factories", fr: "Groupe agroalimentaire, 120 pays, 9 usines en France" },
     bullets: {
       en: [
-        "Bel wanted its factory teams to work from one reliable, automated data source, with no re-keying. I relayed PLC data and wired alerting on it.",
-        "Built on DIP, Bel’s framework that reads PLC data and serves it as live reports and apps.",
-        "Built a real-time animated dashboard on the SAP API, shown at headquarters (React, styled-components).",
+        "Bel wanted a paperless factory, where teams read one data source with no re-keying. I developed on DIP, the framework that reads the PLCs, relayed their data with alerts and built a real-time dashboard on the SAP API for headquarters.",
+        "Built the dashboard in React and styled-components.",
         "Shipped the app as a PWA: offline mode, install, changelog and enforced versioning.",
       ],
       fr: [
-        "Bel voulait que ses équipes d’usine travaillent sur une même source de données fiable et automatisée, sans ressaisie. J’ai relayé les données des automates et mis en place l’alerting.",
-        "Développement sur DIP, le framework de Bel qui lit les automates (PLC) et sert les données en rapports et applications temps réel.",
-        "Dashboard animé temps réel sur l’API SAP, diffusé au siège (React, styled-components).",
+        "Bel voulait une usine sans papier, où les équipes lisent une même source de données sans ressaisie. J’ai développé sur DIP, le framework qui lit les automates, relayé leurs données avec des alertes et construit pour le siège un dashboard temps réel sur l’API SAP.",
+        "Dashboard développé en React et styled-components.",
         "Application livrée en PWA : mode hors ligne, installation, journal des versions et versioning imposé.",
       ],
     },
@@ -213,17 +209,15 @@ export const roles: Role[] = [
     kind: { en: "Live quiz app; 450,000+ downloads and 20,000+ games a day in 2019", fr: "Quiz en direct ; 450 000+ téléchargements et 20 000+ parties par jour en 2019" },
     bullets: {
       en: [
-        "Marketing asked developers for a new promo card every day. I built a generator in the back office so marketing makes them without a developer.",
+        "Marketing asked developers for a promo card every day. I added a generator to the back office so marketing makes them alone, and wrote the production MongoDB scripts: data repair, fraud detection, statistics.",
         "Worked across the React Native app, the Node.js game server and the React back office, on GKE.",
         "Host-less blind tests: converted mp3 to multi-bitrate HLS with FFmpeg, so music plays within the question’s 10 seconds.",
-        "Wrote production MongoDB scripts: data repair after a bad update, payment-fraud detection, weekly marketing stats.",
         "Fixed a game-server bug that reset players’ reward goals, helped fix an update that stopped the app from opening, and added a lost-connection warning.",
       ],
       fr: [
-        "Le marketing demandait chaque jour une carte promo aux développeurs. J’ai construit un générateur dans le back-office : le marketing les crée sans développeur.",
+        "Le marketing demandait chaque jour une carte promo aux développeurs. J’ai ajouté un générateur au back-office pour que le marketing les crée seul, et j’ai écrit les scripts MongoDB de production : réparation de données, détection de fraude, statistiques.",
         "Développement sur l’app React Native, le serveur de jeu Node.js et le back-office React, sur GKE.",
         "Blind tests sans animateur : mp3 convertis en HLS multi-bitrate avec FFmpeg, la musique démarre dans les 10 secondes de la question.",
-        "Scripts MongoDB en production : réparation de données après une mise à jour, détection de fraude au paiement, statistiques marketing hebdomadaires.",
         "Correction d’un bug du serveur de jeu qui remettait à zéro les objectifs de récompense, participation au correctif d’une mise à jour qui bloquait l’ouverture de l’app, pop-up de perte de connexion.",
       ],
     },
@@ -520,6 +514,14 @@ export const about: { id: string; title: L; text: L }[] = [
       fr: "Chez Pitchy, j’ai déployé un nouvel outil de développement local sans bloquer les équipes. J’ai aussi donné des cours d’électronique à Epitech.",
     },
     // TODO(Axo): your own soft skills, in your words. One concrete example each.
+  },
+  {
+    id: "ai",
+    title: { en: "How I use AI", fr: "Comment j’utilise l’IA" },
+    text: {
+      en: "Every day: Cursor in 2025, Claude Code and multi-agent workflows since 2026. AI speeds up my work; I keep the architecture choices, the review and the production release. I’m preparing Anthropic’s Claude certification.",
+      fr: "Au quotidien : Cursor en 2025, Claude Code et des workflows multi-agents depuis 2026. L’IA accélère mon travail ; je garde les choix d’architecture, la relecture et la mise en production. Je prépare la certification Claude d’Anthropic.",
+    },
   },
   {
     id: "electronics",
