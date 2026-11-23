@@ -2,13 +2,14 @@ import type { Locale } from "./data";
 
 const en = {
   meta: {
-    title: "Cyril de Lajudie, I automate your manual processes",
+    title: "Cyril de Lajudie, full-stack developer & DevOps engineer: I automate your manual processes",
     description:
-      "Paris-based automation & infrastructure engineer. I turn manual processes into tools and host them on your cloud or your own servers. Available for a permanent role.",
+      "Paris-based automation & infrastructure engineer, full-stack developer and DevOps engineer. I turn manual processes into tools and host them on your cloud or your own servers. Available for a permanent role.",
   },
   nav: { automation: "Automation", experience: "What I shipped", projects: "Lab", skills: "Tools",  about: "About", contact: "Contact", skip: "Skip to content", cv: "CV", toDark: "Switch to night", toLight: "Switch to day" },
   status: "Available now for a permanent role in Paris",
   hero: {
+    keywords: "Full-stack developer and DevOps engineer",
     role: "I automate your manual processes and host them where your data has to live.",
     lede: "Automation & infrastructure engineer. I write the tool, then run it on your cloud or on your own servers. Ten years of shipped code, four of them in production teams.",
     email: "Email me",
@@ -29,18 +30,18 @@ const en = {
   },
   waterline: {
     label: "My working time since 2019, weighted by how long each role lasted",
-    devTitle: "build",
+    devTitle: "Build · Dev",
     devText: "Making the tool: interfaces, mobile apps and the APIs behind them.",
-    opsTitle: "run",
+    opsTitle: "Run · DevOps",
     opsText: "Keeping it running: cloud, infrastructure as code, CI/CD and monitoring.",
   },
   experience: {
     title: "What I shipped",
-    intro: "I started on the build side, then moved toward running platforms from 2022. Yellow marks build work, cyan marks run work.",
+    intro: "I started on the build side (development), then moved toward running platforms (DevOps) from 2022. Yellow marks build work, cyan marks run work.",
     filterLabel: "Show roles",
     all: "All roles",
-    dev: "Mostly build",
-    ops: "Mostly run",
+    dev: "Mostly build · Dev",
+    ops: "Mostly run · DevOps",
     both: "Even split",
     resume: "See the full résumé (PDF in French)",
   },
@@ -79,13 +80,14 @@ const en = {
 
 const fr: typeof en = {
   meta: {
-    title: "Cyril de Lajudie, j’automatise vos process manuels",
+    title: "Cyril de Lajudie, développeur fullstack & ingénieur DevOps : j’automatise vos process manuels",
     description:
-      "Ingénieur automatisation & infrastructure à Paris. Je transforme vos process manuels en outils, hébergés sur votre cloud ou sur vos propres serveurs. Disponible pour un CDI.",
+      "Ingénieur automatisation & infrastructure à Paris, développeur fullstack et ingénieur DevOps. Je transforme vos process manuels en outils, hébergés sur votre cloud ou sur vos propres serveurs. Disponible pour un CDI.",
   },
   nav: { automation: "Automatisation", experience: "Ce que j’ai livré", projects: "Labo", skills: "Outils",  about: "À propos", contact: "Contact", skip: "Aller au contenu", cv: "CV", toDark: "Passer en mode nuit", toLight: "Passer en mode jour" },
   status: "Disponible pour un CDI à Paris",
   hero: {
+    keywords: "Développeur fullstack et ingénieur DevOps",
     role: "J’automatise vos process manuels et je les héberge là où vos données doivent rester.",
     lede: "Ingénieur automatisation & infrastructure. J’écris l’outil, puis je le fais tourner sur votre cloud ou sur vos propres serveurs. Dix ans de code livré, dont quatre en équipe de production.",
     email: "M’écrire",
@@ -106,18 +108,18 @@ const fr: typeof en = {
   },
   waterline: {
     label: "Mon temps de travail depuis 2019, pondéré par la durée de chaque poste",
-    devTitle: "construire",
+    devTitle: "Construire · Dev",
     devText: "Fabriquer l’outil : interfaces, apps mobiles et les API derrière.",
-    opsTitle: "faire tourner",
+    opsTitle: "Faire tourner · DevOps",
     opsText: "Le garder en service : cloud, infrastructure as code, CI/CD et supervision.",
   },
   experience: {
     title: "Ce que j’ai livré",
-    intro: "J’ai commencé côté construire, puis je suis allé vers l’exploitation des plateformes à partir de 2022. Le jaune marque ce que je construis, le cyan ce que je fais tourner.",
+    intro: "J’ai commencé côté construire (développement), puis je suis allé vers l’exploitation des plateformes (DevOps) à partir de 2022. Le jaune marque ce que je construis, le cyan ce que je fais tourner.",
     filterLabel: "Afficher",
     all: "Tous les postes",
-    dev: "Surtout construire",
-    ops: "Surtout faire tourner",
+    dev: "Surtout construire · Dev",
+    ops: "Surtout faire tourner · DevOps",
     both: "Équilibré",
     resume: "Voir le CV complet en PDF",
   },

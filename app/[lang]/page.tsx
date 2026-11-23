@@ -71,6 +71,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <br />
               de Lajudie
             </h1>
+            <p className="mt-4 text-[clamp(18px,1.8vw,22px)] font-semibold tracking-tight text-ink-soft">{t.hero.keywords}</p>
 
             <div className="mt-[clamp(40px,6vw,72px)] grid gap-12 lg:grid-cols-[1fr_420px] lg:gap-20">
               <div>
