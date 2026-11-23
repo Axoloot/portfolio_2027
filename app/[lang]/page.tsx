@@ -316,7 +316,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               {about.map((a) => (
                 <div key={a.id} id={a.id} className="scroll-mt-20 border-b border-rule py-6">
                   <h3 className="font-semibold">{tl(a.title)}</h3>
-                  <p className="mt-2 max-w-[34em] text-foam/85">{tl(a.text)}</p>
+                  <p className="mt-2 max-w-[34em] whitespace-pre-line text-foam/85">{tl(a.text)}</p>
                 </div>
               ))}
             </div>
