@@ -2,23 +2,33 @@ import type { Locale } from "./data";
 
 const en = {
   meta: {
-    title: "Cyril de Lajudie, developer and DevOps engineer",
+    title: "Cyril de Lajudie, I automate your manual processes",
     description:
-      "Paris-based engineer who builds products in React and Node and runs them on AWS, Terraform and Kubernetes. Available for a permanent role.",
+      "Paris-based developer and DevOps engineer. I turn manual processes into tools and host them on your cloud or your own servers. Available for a permanent role.",
   },
-  nav: { experience: "Experience", projects: "Projects", skills: "Skills", contact: "Contact", skip: "Skip to content", cv: "CV", toDark: "Switch to night", toLight: "Switch to day" },
+  nav: { automation: "Automation", experience: "Experience", projects: "Projects", skills: "Skills", about: "About", contact: "Contact", skip: "Skip to content", cv: "CV", toDark: "Switch to night", toLight: "Switch to day" },
   status: "Available now for a permanent role in Paris",
   hero: {
-    role: "Developer and DevOps engineer.",
-    lede: "I build the product, then I run the platform it sits on. Ten years of shipped code, four of them in production teams.",
+    role: "I automate your manual processes and host them where your data has to live.",
+    lede: "Developer and DevOps engineer. I write the tool, then run it on your cloud or on your own servers. Ten years of shipped code, four of them in production teams.",
     email: "Email me",
     cv: "Download my CV",
   },
   results: {
     title: "Recent results",
   },
+  automation: {
+    title: "Manual work I automated",
+    intro: "Each case started with a person repeating the same task by hand.",
+    before: "Before",
+    after: "After",
+    runs: "Runs on",
+  },
+  about: {
+    title: "About me",
+  },
   waterline: {
-    label: "How my working time splits since 2019, weighted by how long each role lasted",
+    label: "My working time since 2019, weighted by how long each role lasted",
     devTitle: "dev",
     devText: "Interfaces, mobile apps and the APIs behind them.",
     opsTitle: "DevOps",
@@ -32,7 +42,6 @@ const en = {
     dev: "Dev-heavy",
     ops: "DevOps-heavy",
     both: "Even split",
-    chart: "Dev share above the line, DevOps share below, oldest role on the left",
     resume: "Full résumé, PDF in French",
   },
   projects: {
@@ -60,7 +69,7 @@ const en = {
     ],
   },
   contact: {
-    title: "Hiring for a team that ships and runs its own product?",
+    title: "Tell me which process your team still runs by hand.",
     sub: "I’m available now for a permanent role or similar. I live in Paris and have a car.",
     copy: "Copy email",
     copied: "Copied",
@@ -73,23 +82,33 @@ const en = {
 
 const fr: typeof en = {
   meta: {
-    title: "Cyril de Lajudie, développeur et ingénieur DevOps",
+    title: "Cyril de Lajudie, j’automatise vos process manuels",
     description:
-      "Ingénieur à Paris : je construis des produits en React et Node, puis je les opère sur AWS, Terraform et Kubernetes. Disponible pour un CDI.",
+      "Développeur et ingénieur DevOps à Paris. Je transforme vos process manuels en outils, hébergés sur votre cloud ou sur vos propres serveurs. Disponible pour un CDI.",
   },
-  nav: { experience: "Parcours", projects: "Projets", skills: "Compétences", contact: "Contact", skip: "Aller au contenu", cv: "CV", toDark: "Passer en mode nuit", toLight: "Passer en mode jour" },
+  nav: { automation: "Automatisation", experience: "Parcours", projects: "Projets", skills: "Compétences", about: "À propos", contact: "Contact", skip: "Aller au contenu", cv: "CV", toDark: "Passer en mode nuit", toLight: "Passer en mode jour" },
   status: "Disponible pour un CDI à Paris",
   hero: {
-    role: "Développeur et ingénieur DevOps.",
-    lede: "Je construis le produit, puis j’opère la plateforme qui le porte. Dix ans de code livré, dont quatre en équipe de production.",
+    role: "J’automatise vos process manuels et je les héberge là où vos données doivent rester.",
+    lede: "Développeur et ingénieur DevOps. J’écris l’outil, puis je le fais tourner sur votre cloud ou sur vos propres serveurs. Dix ans de code livré, dont quatre en équipe de production.",
     email: "M’écrire",
     cv: "Télécharger mon CV",
   },
   results: {
     title: "Résultats récents",
   },
+  automation: {
+    title: "Du manuel que j’ai automatisé",
+    intro: "Chaque cas part d’une personne qui répétait la même tâche à la main.",
+    before: "Avant",
+    after: "Après",
+    runs: "Tourne sur",
+  },
+  about: {
+    title: "À propos",
+  },
   waterline: {
-    label: "Répartition de mon temps de travail depuis 2019, pondérée par la durée de chaque poste",
+    label: "Mon temps de travail depuis 2019, pondéré par la durée de chaque poste",
     devTitle: "dev",
     devText: "Interfaces, apps mobiles et les API derrière.",
     opsTitle: "DevOps",
@@ -103,7 +122,6 @@ const fr: typeof en = {
     dev: "Orienté dev",
     ops: "Orienté DevOps",
     both: "Équilibré",
-    chart: "Part dev au-dessus de la ligne, part DevOps en dessous, du plus ancien au plus récent",
     resume: "CV complet en PDF",
   },
   projects: {
@@ -131,7 +149,7 @@ const fr: typeof en = {
     ],
   },
   contact: {
-    title: "Votre équipe construit et opère son propre produit ?",
+    title: "Dites-moi quel process votre équipe fait encore à la main.",
     sub: "Je suis disponible pour un CDI ou équivalent. J’habite à Paris et je suis véhiculé.",
     copy: "Copier l’e-mail",
     copied: "Copié",

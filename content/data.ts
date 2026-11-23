@@ -448,3 +448,85 @@ export const impact = [
   { delta: "−40%", name: { en: "video generation time at Pitchy", fr: "de temps de génération vidéo chez Pitchy" }, how: { en: "I moved rendering from Windows Server to headless macOS images built with Packer.", fr: "J’ai passé le rendu de Windows Server à des images macOS headless construites avec Packer." } },
   { delta: "−22%", name: { en: "on Pitchy’s AWS bill", fr: "sur la facture AWS de Pitchy" }, how: { en: "Autoscaling, right-sizing and on-demand services.", fr: "Autoscaling, bon dimensionnement et services à la demande." } },
 ];
+
+// Manual processes I turned into tools. Before/after come from the master DC.
+// `gain` stays empty until Axo adds a measured figure to the DC (hours saved per week, etc.).
+// Never fill it with an estimate: the card hides the line when it is missing.
+export type Automation = { where: L; before: L; after: L; runs: L; gain?: L };
+
+export const automations: Automation[] = [
+  {
+    where: { en: "RedPill Live · Carrefour live shopping", fr: "RedPill Live · live shopping Carrefour" },
+    before: {
+      en: "Someone recorded each replay by hand in OBS.",
+      fr: "Quelqu’un enregistrait chaque replay à la main dans OBS.",
+    },
+    after: {
+      en: "The platform records the replay through the Vonage and Wowza APIs, with the chat, polls and product clicks.",
+      fr: "La plateforme enregistre le replay via les API Vonage et Wowza, avec le chat, les sondages et les clics produits.",
+    },
+    runs: { en: "Microservices on GKE, deployed with Helm", fr: "Microservices sur GKE, déployés avec Helm" },
+    // TODO(Axo): gain? e.g. replays per week, time per replay before.
+  },
+  {
+    where: { en: "Quidol · marketing team", fr: "Quidol · équipe marketing" },
+    before: {
+      en: "Marketing asked a developer for a new promo card every day.",
+      fr: "Le marketing demandait chaque jour une carte promo à un développeur.",
+    },
+    after: {
+      en: "Marketing builds the cards in the back office, without a developer.",
+      fr: "Le marketing crée les cartes dans le back-office, sans développeur.",
+    },
+    runs: { en: "React back office on GKE", fr: "Back-office React sur GKE" },
+    // TODO(Axo): gain? e.g. developer time freed per day.
+  },
+  {
+    where: { en: "Bel Group · paperless factory", fr: "Groupe Bel · usine sans papier" },
+    before: {
+      en: "Factory teams re-keyed production data by hand.",
+      fr: "Les équipes de l’usine ressaisissaient les données de production.",
+    },
+    after: {
+      en: "I relayed PLC data to the teams and wired alerts on it. Everyone reads the same live source.",
+      fr: "J’ai relayé les données des automates aux équipes, avec des alertes. Tout le monde lit la même source en temps réel.",
+    },
+    runs: { en: "Bel’s in-house DIP platform, with a PWA that works offline", fr: "Plateforme interne DIP de Bel, avec une PWA utilisable hors ligne" },
+    // TODO(Axo): gain? and confirm the "before": the DC states the project goal ("sans ressaisie"), not who re-keyed what.
+  },
+];
+
+// About me. Drafted from the master DC; lines marked TODO wait on Axo.
+export const about: { title: L; text: L }[] = [
+  {
+    title: { en: "How I work", fr: "Ma façon de travailler" },
+    text: {
+      en: "I build for the people who use the tool, and I ship changes without stopping their work. At Pitchy I rolled out a new local dev tool without blocking any team. I also like explaining: I taught electronics courses at Epitech.",
+      fr: "Je construis pour les gens qui utilisent l’outil, et je livre sans arrêter leur travail. Chez Pitchy, j’ai déployé un nouvel outil de développement local sans bloquer les équipes. J’aime aussi expliquer : j’ai donné des cours d’électronique à Epitech.",
+    },
+    // TODO(Axo): your own soft skills, in your words. One concrete example each.
+  },
+  {
+    title: { en: "Electronics", fr: "Électronique" },
+    text: {
+      en: "I ran the electronics side of PoC Innovation, a student association, then served as its treasurer and vice-president. Today I’m writing an embedded app for the Flipper Zero.",
+      fr: "J’ai été responsable électronique de PoC Innovation, une association étudiante, puis trésorier et vice-président. Aujourd’hui je développe une application embarquée pour le Flipper Zero.",
+    },
+    // TODO(Axo): current electronics projects (boards, sensors, what you build).
+  },
+  {
+    title: { en: "3D printing", fr: "Impression 3D" },
+    text: {
+      en: "I own a 3D printer.",
+      fr: "J’ai une imprimante 3D.",
+    },
+    // TODO(Axo): which printer, what you print or design, any part that solved a real problem.
+  },
+  {
+    title: { en: "Under water", fr: "Sous l’eau" },
+    text: {
+      en: "I trained in scuba diving during my sabbatical year.",
+      fr: "Je me suis formé à la plongée sous-marine pendant mon année sabbatique.",
+    },
+  },
+];
