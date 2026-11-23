@@ -22,12 +22,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
   return (
     <>
-      <div role="note" title={t.wip.text} style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }} className="pointer-events-auto fixed left-0 top-0 z-[60] size-10 bg-sun text-[#0b2230] sm:size-16">
-        <span aria-hidden className="absolute left-[30%] top-[30%] -translate-x-1/2 -translate-y-1/2 -rotate-45 text-[9px] font-bold tracking-wide sm:text-[12px]">
-          {t.wip.label}
-        </span>
-        <span className="sr-only">{t.wip.text}</span>
-      </div>
 
       <a href="#main" className="absolute -left-[9999px] top-2 z-[100] rounded bg-sun px-3 py-2 text-ink focus:left-2">
         {t.nav.skip}
@@ -300,14 +294,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <div className="mt-14 grid gap-14 lg:grid-cols-3 lg:gap-12">
               <SkillColumn title={t.skills.automate} sub={t.skills.automateSub} tone="sun" groups={skills.automate} lang={lang} />
               <SkillColumn title={t.skills.host} sub={t.skills.hostSub} tone="glow" groups={skills.host} lang={lang} />
-              <div>
-                <SkillColumn title={t.skills.secure} sub={t.skills.secureSub} tone="foam" groups={skills.secure} lang={lang} />
-                <div className="border-b border-rule py-6">
-                  <h4 className="font-semibold">{t.skills.spoken}</h4>
-                  <p className="mt-2 text-foam/85">{t.skills.spokenValue}</p>
-                </div>
-              </div>
+              <SkillColumn title={t.skills.secure} sub={t.skills.secureSub} tone="foam" groups={skills.secure} lang={lang} />
             </div>
+            <p className="mt-10 text-foam/85">
+              <span className="font-semibold text-foam">{t.skills.spoken}</span> · {t.skills.spokenValue}
+            </p>
           </section>
 
           <section id="about" className={`${wrap} pb-20 pt-12`}>
@@ -322,17 +313,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </div>
           </section>
 
-          <figure className={`${wrap} pb-24 pt-8`}>
-            <blockquote className="space-y-3">
-              {t.joke.lines.map((l, i) => (
-                <p key={l.who} className="grid grid-cols-[96px_1fr] items-baseline gap-4 sm:grid-cols-[140px_1fr]">
-                  <span className={`stretch-112 text-[17px] font-semibold ${["text-sun", "text-mist", "text-glow"][i]}`}>{l.who}</span>
-                  <span className="stretch-88 text-[clamp(22px,3.2vw,38px)] font-semibold leading-tight tracking-[-0.02em]">{l.says}</span>
-                </p>
-              ))}
-            </blockquote>
-            <figcaption className="mt-6 text-mist sm:ml-[156px]">{t.joke.caption}</figcaption>
-          </figure>
 
           <section id="contact" className={`${wrap} pb-14 pt-16`}>
             <h2 className="stretch-75 max-w-[11em] text-[clamp(44px,8vw,112px)] font-bold leading-[0.9] tracking-[-0.03em]">{t.contact.title}</h2>
