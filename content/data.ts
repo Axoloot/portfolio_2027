@@ -102,8 +102,8 @@ export const roles: Role[] = [
     company: { en: "Sabbatical year", fr: "Année sabbatique" },
     role: { en: "Travel and diving", fr: "Voyages et plongée" },
     bullets: {
-      en: ["I took a year to travel: Croatia, Montenegro and Hungary, then three months in New Caledonia. I used it to get my motorbike and car licences and to train in scuba diving."],
-      fr: ["J’ai pris un an pour voyager : la Croatie, le Monténégro et la Hongrie, puis trois mois en Nouvelle-Calédonie. J’en ai profité pour passer mes permis moto et voiture et me former à la plongée sous-marine."],
+      en: ["I went through five years of study without a break. Once I had my degree, I took a year for myself. I travelled through Croatia, Montenegro and Hungary, then spent three months in New Caledonia. I dived a lot there (Level 2, wrecks, night dives) and passed my car and motorbike licences. I’ve ridden a motorbike ever since."],
+      fr: ["J’ai enchaîné cinq ans d’études sans prendre de pause. Une fois mon diplôme obtenu, j’ai pris un an pour moi. J’ai voyagé en Croatie, au Monténégro et en Hongrie, puis j’ai passé trois mois en Nouvelle-Calédonie. J’y ai beaucoup plongé (niveau 2, épaves, plongées de nuit) et j’ai passé mes permis auto et moto. Je roule à moto depuis."],
     },
     start: "2024-04", end: "2025-03",
     when: { en: "Apr 2024–Mar 2025", fr: "Avr. 2024–mars 2025" },
@@ -543,13 +543,13 @@ export const about: { id: string; title: L; text: L }[] = [
     id: "diving",
     title: { en: "Under water", fr: "Sous l’eau" },
     text: {
-      en: "I trained in scuba diving during my sabbatical year.",
-      fr: "Je me suis formé à la plongée sous-marine pendant mon année sabbatique.",
+      en: "Level 2 diver. I dived a lot in New Caledonia during my sabbatical year: wrecks and night dives.",
+      fr: "Plongeur niveau 2. J’ai beaucoup plongé en Nouvelle-Calédonie pendant mon année sabbatique : épaves et plongées de nuit.",
     },
   },
   {
     id: "motorbike",
     title: { en: "Motorbike", fr: "Moto" },
-    text: { en: "I ride a motorbike.", fr: "Je roule à moto." },
+    text: { en: "I passed my motorbike licence in New Caledonia and have ridden ever since.", fr: "J’ai passé mon permis moto en Nouvelle-Calédonie et je roule depuis." },
   },
 ];
