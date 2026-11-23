@@ -157,6 +157,5 @@ const fr: typeof en = {
 };
 
 export const dictionaries = { en, fr };
-export type Dict = typeof en;
 export const locales: Locale[] = ["en", "fr"];
 export const hasLocale = (l: string): l is Locale => l === "en" || l === "fr";
