@@ -12,7 +12,7 @@ const en = {
     role: "I automate your manual processes and host them where your data has to live.",
     lede: "Developer and DevOps engineer. I write the tool, then run it on your cloud or on your own servers. Ten years of shipped code, four of them in production teams.",
     email: "Email me",
-    cv: "Download my CV",
+    cv: "See my CV",
   },
   results: {
     title: "Recent results",
@@ -42,7 +42,7 @@ const en = {
     dev: "Dev-heavy",
     ops: "DevOps-heavy",
     both: "Even split",
-    resume: "Full résumé, PDF in French",
+    resume: "See the full résumé (PDF in French)",
   },
   projects: {
     title: "Side projects",
@@ -78,6 +78,11 @@ const en = {
   footer: "Built with Next.js, hosted on Vercel.",
   old: "2024 portfolio",
   wip: { label: "WIP", text: "Still in progress: some content isn’t final yet." },
+  cvPage: {
+    title: "CV, Cyril de Lajudie",
+    note: "PDF in French",
+    download: "Download the PDF",
+  },
 };
 
 const fr: typeof en = {
@@ -92,7 +97,7 @@ const fr: typeof en = {
     role: "J’automatise vos process manuels et je les héberge là où vos données doivent rester.",
     lede: "Développeur et ingénieur DevOps. J’écris l’outil, puis je le fais tourner sur votre cloud ou sur vos propres serveurs. Dix ans de code livré, dont quatre en équipe de production.",
     email: "M’écrire",
-    cv: "Télécharger mon CV",
+    cv: "Voir mon CV",
   },
   results: {
     title: "Résultats récents",
@@ -122,7 +127,7 @@ const fr: typeof en = {
     dev: "Orienté dev",
     ops: "Orienté DevOps",
     both: "Équilibré",
-    resume: "CV complet en PDF",
+    resume: "Voir le CV complet en PDF",
   },
   projects: {
     title: "Projets perso",
@@ -158,6 +163,11 @@ const fr: typeof en = {
   footer: "Construit avec Next.js, hébergé sur Vercel.",
   old: "Portfolio 2024",
   wip: { label: "WIP", text: "En cours : certains contenus ne sont pas encore finalisés." },
+  cvPage: {
+    title: "CV, Cyril de Lajudie",
+    note: "PDF en français",
+    download: "Télécharger le PDF",
+  },
 };
 
 export const dictionaries = { en, fr };

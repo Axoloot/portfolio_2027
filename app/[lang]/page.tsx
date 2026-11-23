@@ -54,9 +54,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <Link href={`/${other}`} hrefLang={other} lang={other} className="opacity-65 transition-opacity hover:opacity-100">
               {other === "fr" ? "Français" : "English"}
             </Link>
-            <a href={site.cv} download="Cyril-de-Lajudie-CV.pdf" className="rounded-full border border-current/25 px-3.5 py-1.5 transition-colors hover:border-current">
+            <Link href={`/${lang}/cv`} className="rounded-full border border-current/25 px-3.5 py-1.5 transition-colors hover:border-current">
               {t.nav.cv}
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -86,13 +86,12 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   <a href={`mailto:${site.email}`} className="inline-flex h-12 items-center rounded-full bg-ink px-6 text-[15px] font-medium text-surface transition-colors hover:bg-shallow">
                     {t.hero.email}
                   </a>
-                  <a
-                    href={site.cv}
-                    download="Cyril-de-Lajudie-CV.pdf"
+                  <Link
+                    href={`/${lang}/cv`}
                     className="inline-flex h-12 items-center rounded-full border border-ink/20 px-6 text-[15px] font-medium transition-colors hover:border-ink"
                   >
                     {t.hero.cv}
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -243,9 +242,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               ))}
             </div>
             <p className="mt-12 md:ml-[260px]">
-              <a href={site.cv} download="Cyril-de-Lajudie-CV.pdf" className={`${link} decoration-sun hover:text-sun`}>
+              <Link href={`/${lang}/cv`} className={`${link} decoration-sun hover:text-sun`}>
                 {t.experience.resume}
-              </a>
+              </Link>
             </p>
           </section>
 
@@ -349,9 +348,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </a>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <CopyEmail email={site.email} label={t.contact.copy} done={t.contact.copied} />
-              <a href={site.cv} download="Cyril-de-Lajudie-CV.pdf" className="inline-flex h-12 items-center rounded-full border border-rule-2 px-5 text-[15px] transition-colors hover:border-foam/40">
+              <Link href={`/${lang}/cv`} className="inline-flex h-12 items-center rounded-full border border-rule-2 px-5 text-[15px] transition-colors hover:border-foam/40">
                 {t.hero.cv}
-              </a>
+              </Link>
             </div>
             <p className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
               {site.links.map((l) => (

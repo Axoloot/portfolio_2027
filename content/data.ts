@@ -7,6 +7,9 @@ export const site = {
   email: "cyril_de_lajudie@hotmail.fr",
   url: "https://cyrildelajudie.fr",
   cv: "/cv-fr.pdf",
+  // Page images shown on /[lang]/cv. When the PDF changes, regenerate them:
+  // pdftoppm -jpeg -jpegopt quality=85 -r 150 public/cv-fr.pdf public/cv/page
+  cvPages: [{ src: "/cv/page-1.jpg", width: 1242, height: 1755 }],
   links: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/cyrildelajudie" },
     { label: "GitHub", href: "https://github.com/Axoloot" },
@@ -228,13 +231,22 @@ export const roles: Role[] = [
   },
   {
     company: { en: "GMODStore", fr: "GMODStore" },
-    role: { en: "Freelance · Lua plugins for Garry’s Mod", fr: "Freelance · plugins Lua pour Garry’s Mod" },
+    role: { en: "Freelance · Lua for Garry’s Mod", fr: "Freelance · Lua pour Garry’s Mod" },
     start: "2016-01", end: "2017-12",
     when: { en: "2016–2017", fr: "2016–2017" },
     focus: { dev: 100, ops: 0 },
+    tags: ["Lua", "Game server hosting"],
     bullets: {
-      en: ["First paid code: custom game-server plugins sold on a freelance platform."],
-      fr: ["Premier code payé : des plugins sur mesure vendus sur une plateforme freelance."],
+      en: [
+        "My first paid code. Clients posted a job or offered me a mission on the platform, and I wrote it in Lua.",
+        "Built the HUD for a Star Wars RP game mode.",
+        "Built a custom Prison RP server: I hosted it and wrote its game add-ons.",
+      ],
+      fr: [
+        "Mon premier code payé. Les clients publiaient une offre ou me proposaient une mission sur la plateforme, et je l’écrivais en Lua.",
+        "HUD d’un mode de jeu Star Wars RP.",
+        "Serveur Prison RP sur mesure : je l’ai hébergé et j’ai écrit ses addons de jeu.",
+      ],
     },
     minor: true,
   },
