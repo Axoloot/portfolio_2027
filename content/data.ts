@@ -353,7 +353,7 @@ export const projects: Project[] = [
   {
     slug: "wechoose",
     title: { en: "WeChoose", fr: "WeChoose" },
-    kind: { en: "Mobile app", fr: "App mobile" },
+    kind: { en: "Personal mobile app", fr: "App mobile perso" },
     when: "2025–2026",
     summary: {
       en: "Interactive stories with generative narration: the reader makes the choices, an LLM writes what happens next.",
