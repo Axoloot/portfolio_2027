@@ -40,13 +40,13 @@ export const roles: Role[] = [
     focus: { dev: 35, ops: 65 },
     bullets: {
       en: [
-        "Infiny, a recruitment platform, runs its CV-parsing LLMs on Azure and the rest of its backend on AWS. I linked the two clouds with a site-to-site IPsec tunnel (VPN Gateway to Virtual Private Gateway), written in Terraform.",
+        "Infiny, a recruitment platform, parsed CVs with LLMs on Azure and ran the rest of its backend on AWS, and needed a private network between the two. I linked the clouds with a site-to-site IPsec tunnel (VPN Gateway to Virtual Private Gateway), written in Terraform.",
         "Planned a zero-downtime DNS cutover on OVH, and cut unused resources from the Terraform code.",
         "Designed a hierarchical job data model on France Travail’s ROME reference.",
         "Wrote my own boilerplates (Node.js/TypeScript, Next.js, AWS CDK with projen) as the base for my client and personal projects.",
       ],
       fr: [
-        "Infiny, plateforme de recrutement, analyse les CV avec des LLM sur Azure et fait tourner le reste du backend sur AWS. J’ai relié les deux clouds par un tunnel IPsec site-à-site (VPN Gateway vers Virtual Private Gateway), écrit en Terraform.",
+        "Infiny, plateforme de recrutement, analysait les CV avec des LLM sur Azure et faisait tourner le reste du backend sur AWS : il fallait un réseau privé entre les deux. J’ai relié les clouds par un tunnel IPsec site-à-site (VPN Gateway vers Virtual Private Gateway), écrit en Terraform.",
         "Bascule DNS planifiée sur OVH sans interruption de service, et nettoyage des ressources inutilisées dans le code Terraform.",
         "Schéma de données métiers hiérarchique construit sur le référentiel ROME de France Travail.",
         "Boilerplates maison (Node.js/TypeScript, Next.js, AWS CDK avec projen), base de mes projets clients et personnels.",
@@ -82,14 +82,14 @@ export const roles: Role[] = [
     kind: { en: "Hotel services, Staycation-style, 15–20 people", fr: "Services hôteliers façon Staycation, 15 à 20 salariés" },
     bullets: {
       en: [
-        "Moved time-slot product search from Algolia to Typesense and cut search costs by ~75%.",
+        "Time-slot product search ran on Algolia. I moved it to Typesense and cut search costs by ~75%.",
         "Built standalone event-driven services on AWS: Lambda, EventBridge, SQS/SNS and single-table DynamoDB (DynamoDB Toolbox).",
         "Rebuilt the search page (V2) in Next.js and Tailwind and shipped other front-end changes, on Hono APIs deployed with AWS CDK.",
         "Shipped automatic Google Shopping listings and an email service on Brevo.",
         "Wired production errors to Slack alerts, opened fix PRs when needed, and wrote unit tests in Jest.",
       ],
       fr: [
-        "Migration de la recherche par créneaux d’Algolia vers Typesense : ~75 % de coûts de recherche en moins.",
+        "La recherche par créneaux tournait sur Algolia. Je l’ai migrée vers Typesense : ~75 % de coûts de recherche en moins.",
         "Services événementiels autonomes sur AWS : Lambda, EventBridge, SQS/SNS et DynamoDB single-table (DynamoDB Toolbox).",
         "Refonte de la page de recherche (V2) en Next.js et Tailwind et autres évolutions de l’interface, sur des API Hono déployées en AWS CDK.",
         "Référencement automatique sur Google Shopping et service d’emailing sur Brevo.",
@@ -120,16 +120,16 @@ export const roles: Role[] = [
     kind: { en: "B2B video SaaS, ~1,000 clients, €40M Series B", fr: "SaaS vidéo B2B, ~1 000 clients, série B de 40 M€" },
     bullets: {
       en: [
+        "Video rendering ran on Windows Server. I moved it to macOS and cut generation time by ~40%. Apple dropped macOS Server, so I built headless macOS desktop images with Packer and AppleScript.",
         "Pitchy renders motion-design videos for clients like Accor, Orange and Danone on an autoscaling farm of After Effects, Cavalry and Filmora machines. I worked on four fronts: performance, SRE, architecture and FinOps.",
-        "Cut video generation time by ~40% by moving rendering from Windows Server to macOS. Apple dropped macOS Server, so I built headless macOS desktop images with Packer and AppleScript.",
         "Cut the AWS bill by 22% with right-sizing, autoscaling and on-demand services.",
         "Ran production on Kubernetes with GitLab CI, and set up GitLab LFS for the motion designers’ heavy assets.",
         "Worked around tech debt with a shell tool that adapts the production Docker image to each laptop and generates a backward-compatible Docker Compose stack. I rolled it out without blocking the teams.",
         "Benchmarked After Effects v19 against v23 before the upgrade (v23 renders 5% slower), and traced incidents across CloudWatch, Datadog and Honeycomb.",
       ],
       fr: [
+        "Les rendus vidéo tournaient sur Windows Server. Je les ai passés sur macOS : ~40 % de temps de génération en moins. macOS Server n’existant plus, j’ai construit des images macOS desktop headless avec Packer et AppleScript.",
         "Pitchy rend des vidéos en motion design pour des clients comme Accor, Orange et Danone, sur une ferme de machines After Effects, Cavalry et Filmora en autoscaling. J’ai travaillé sur quatre axes : performances, SRE, architecture et FinOps.",
-        "Temps de génération vidéo réduit de ~40 % en passant les rendus de Windows Server à macOS. macOS Server n’existant plus, j’ai construit des images macOS desktop headless avec Packer et AppleScript.",
         "Facture AWS réduite de 22 % : bon dimensionnement, autoscaling et services à la demande.",
         "Production sur Kubernetes avec GitLab CI, et GitLab LFS pour les assets lourds des motion designers.",
         "Contournement de la dette technique : un script shell adapte l’image Docker de production au poste du développeur et génère un Docker Compose rétrocompatible. Déployé sans bloquer les équipes.",
@@ -190,14 +190,14 @@ export const roles: Role[] = [
     kind: { en: "Food group, 120 countries, 9 French factories", fr: "Groupe agroalimentaire, 120 pays, 9 usines en France" },
     bullets: {
       en: [
-        "Paperless factory: built on DIP, Bel’s framework that reads PLC data and serves it as live reports and apps.",
-        "Relayed PLC data and wired alerting on it.",
+        "Bel wanted its factory teams to work from one reliable, automated data source, with no re-keying. I relayed PLC data and wired alerting on it.",
+        "Built on DIP, Bel’s framework that reads PLC data and serves it as live reports and apps.",
         "Built a real-time animated dashboard on the SAP API, shown at headquarters (React, styled-components).",
         "Shipped the app as a PWA: offline mode, install, changelog and enforced versioning.",
       ],
       fr: [
-        "Usine sans papier : développement sur DIP, le framework de Bel qui lit les automates (PLC) et sert les données en rapports et applications temps réel.",
-        "Relais des données d’automates et alerting.",
+        "Bel voulait que ses équipes d’usine travaillent sur une même source de données fiable et automatisée, sans ressaisie. J’ai relayé les données des automates et mis en place l’alerting.",
+        "Développement sur DIP, le framework de Bel qui lit les automates (PLC) et sert les données en rapports et applications temps réel.",
         "Dashboard animé temps réel sur l’API SAP, diffusé au siège (React, styled-components).",
         "Application livrée en PWA : mode hors ligne, installation, journal des versions et versioning imposé.",
       ],
@@ -213,17 +213,17 @@ export const roles: Role[] = [
     kind: { en: "Live quiz app; 450,000+ downloads and 20,000+ games a day in 2019", fr: "Quiz en direct ; 450 000+ téléchargements et 20 000+ parties par jour en 2019" },
     bullets: {
       en: [
+        "Marketing asked developers for a new promo card every day. I built a generator in the back office so marketing makes them without a developer.",
         "Worked across the React Native app, the Node.js game server and the React back office, on GKE.",
         "Host-less blind tests: converted mp3 to multi-bitrate HLS with FFmpeg, so music plays within the question’s 10 seconds.",
         "Wrote production MongoDB scripts: data repair after a bad update, payment-fraud detection, weekly marketing stats.",
-        "Built a promo-card generator in the back office, which marketing had asked developers for every day.",
         "Fixed a game-server bug that reset players’ reward goals, helped fix an update that stopped the app from opening, and added a lost-connection warning.",
       ],
       fr: [
+        "Le marketing demandait chaque jour une carte promo aux développeurs. J’ai construit un générateur dans le back-office : le marketing les crée sans développeur.",
         "Développement sur l’app React Native, le serveur de jeu Node.js et le back-office React, sur GKE.",
         "Blind tests sans animateur : mp3 convertis en HLS multi-bitrate avec FFmpeg, la musique démarre dans les 10 secondes de la question.",
         "Scripts MongoDB en production : réparation de données après une mise à jour, détection de fraude au paiement, statistiques marketing hebdomadaires.",
-        "Générateur de cartes promotionnelles dans le back-office, que le marketing demandait chaque jour aux développeurs.",
         "Correction d’un bug du serveur de jeu qui remettait à zéro les objectifs de récompense, participation au correctif d’une mise à jour qui bloquait l’ouverture de l’app, pop-up de perte de connexion.",
       ],
     },
@@ -388,22 +388,27 @@ export const projects: Project[] = [
 
 export type SkillGroup = { title: L; lead: string[]; other: string[]; proof: L };
 
-export const skills: { dev: SkillGroup[]; ops: SkillGroup[]; also: SkillGroup[] } = {
-  dev: [
-    {
-      title: { en: "Languages", fr: "Langages" },
-      lead: ["TypeScript", "JavaScript", "Python"], other: ["C", "Bash", "Go", "Lua"],
-      proof: { en: "TypeScript on every recent project; Python for scripting and ML.", fr: "TypeScript sur tous les projets récents ; Python pour le scripting et le ML." },
-    },
-    {
-      title: { en: "Frontend & mobile", fr: "Frontend & mobile" },
-      lead: ["React", "Next.js", "Tailwind"], other: ["React Native", "Expo", "Redux", "PWA", "styled-components", "webpack"],
-      proof: { en: "Sézame’s search page V2, live shopping fronts for Hermès and Carrefour, the Quidol app (450k+ downloads).", fr: "Recherche V2 de Sézame, fronts live shopping pour Hermès et Carrefour, app Quidol (450k+ téléchargements)." },
-    },
+export const skills: { automate: SkillGroup[]; host: SkillGroup[]; secure: SkillGroup[] } = {
+  automate: [
     {
       title: { en: "Backend & APIs", fr: "Back-end & API" },
       lead: ["Node.js", "Hono", "Microservices"], other: ["Express", "REST", "Jest", "Stripe", "Cognito", "Brevo"],
       proof: { en: "Microservices at RedPill and Sézame, Stripe subscriptions at RedPill Live, the Quidol game server.", fr: "Microservices chez RedPill et Sézame, abonnements Stripe chez RedPill Live, serveur de jeu Quidol." },
+    },
+    {
+      title: { en: "Business apps: web & mobile", fr: "Applications métier : web & mobile" },
+      lead: ["React", "Next.js", "Tailwind"], other: ["React Native", "Expo", "Redux", "PWA", "styled-components", "webpack"],
+      proof: { en: "Sézame’s search page V2, live shopping fronts for Hermès and Carrefour, the Quidol app (450k+ downloads).", fr: "Recherche V2 de Sézame, fronts live shopping pour Hermès et Carrefour, app Quidol (450k+ téléchargements)." },
+    },
+    {
+      title: { en: "AI integration", fr: "Intégration IA" },
+      lead: ["Claude Code"], other: ["MCP", "Cursor", "Multi-agent workflows", "AWS Bedrock", "OpenAI API", "LLM integration"],
+      proof: { en: "Agentic coding daily; LLMs integrated in two mobile apps.", fr: "Codage agentique au quotidien ; LLM intégrés dans deux apps mobiles." },
+    },
+    {
+      title: { en: "Languages", fr: "Langages" },
+      lead: ["TypeScript", "JavaScript", "Python"], other: ["C", "Bash", "Go", "Lua"],
+      proof: { en: "TypeScript on every recent project; Python for scripting and ML.", fr: "TypeScript sur tous les projets récents ; Python pour le scripting et le ML." },
     },
     {
       title: { en: "Data & search", fr: "Données & recherche" },
@@ -416,7 +421,7 @@ export const skills: { dev: SkillGroup[]; ops: SkillGroup[]; also: SkillGroup[] 
       proof: { en: "Live shopping for Carrefour and Hermès, automated replays, macOS rendering at Pitchy.", fr: "Live shopping pour Carrefour et Hermès, replays automatisés, rendu macOS chez Pitchy." },
     },
   ],
-  ops: [
+  host: [
     {
       title: { en: "Cloud & IaC", fr: "Cloud & IaC" },
       lead: ["AWS", "Terraform", "AWS CDK"], other: ["Azure", "GCP", "projen", "CloudFormation", "Packer", "FinOps"],
@@ -437,17 +442,12 @@ export const skills: { dev: SkillGroup[]; ops: SkillGroup[]; also: SkillGroup[] 
       lead: ["Linux & Bash", "CloudWatch", "Datadog"], other: ["Honeycomb", "Mixpanel", "Slack alerting"],
       proof: { en: "Incident tracing at Pitchy, Slack alerts on production errors at Sézame.", fr: "Analyse d’incidents chez Pitchy, alertes Slack sur les erreurs de production chez Sézame." },
     },
+  ],
+  secure: [
     {
       title: { en: "Network", fr: "Réseau" },
       lead: ["IPsec"], other: ["VPC", "VNet", "DNS", "CDN"],
       proof: { en: "Site-to-site VPN between Azure and AWS, DNS cutover off OVH with no downtime.", fr: "VPN site-à-site entre Azure et AWS, bascule DNS depuis OVH sans interruption." },
-    },
-  ],
-  also: [
-    {
-      title: { en: "AI", fr: "IA" },
-      lead: ["Claude Code"], other: ["MCP", "Cursor", "Multi-agent workflows", "AWS Bedrock", "OpenAI API", "LLM integration"],
-      proof: { en: "Agentic coding daily; LLMs integrated in two mobile apps.", fr: "Codage agentique au quotidien ; LLM intégrés dans deux apps mobiles." },
     },
     {
       title: { en: "Security", fr: "Sécurité" },

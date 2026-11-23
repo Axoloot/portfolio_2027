@@ -297,18 +297,15 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           <section id="skills" className={`${wrap} pb-28 pt-12`}>
             <h2 className="stretch-88 text-[clamp(40px,6vw,76px)] font-bold leading-[0.95] tracking-[-0.035em]">{t.skills.title}</h2>
             <p className="mt-4 max-w-[34em] text-mist">{t.skills.intro}</p>
-            <div className="mt-14 grid gap-14 lg:grid-cols-2 lg:gap-20">
-              <SkillColumn title={t.skills.dev} sub={t.skills.devSub} tone="sun" groups={skills.dev} lang={lang} />
-              <SkillColumn title={t.skills.ops} sub={t.skills.opsSub} tone="glow" groups={skills.ops} lang={lang} />
-            </div>
-            <h3 className="mt-20 text-[15px] text-mist">{t.skills.also}</h3>
-            <div className="mt-2 grid gap-x-20 border-t border-rule md:grid-cols-3">
-              {skills.also.map((g) => (
-                <SkillRow key={g.title.en} g={g} lang={lang} lead="text-foam" />
-              ))}
-              <div className="border-b border-rule py-6">
-                <h4 className="font-semibold">{t.skills.spoken}</h4>
-                <p className="mt-2 text-foam/85">{t.skills.spokenValue}</p>
+            <div className="mt-14 grid gap-14 lg:grid-cols-3 lg:gap-12">
+              <SkillColumn title={t.skills.automate} sub={t.skills.automateSub} tone="sun" groups={skills.automate} lang={lang} />
+              <SkillColumn title={t.skills.host} sub={t.skills.hostSub} tone="glow" groups={skills.host} lang={lang} />
+              <div>
+                <SkillColumn title={t.skills.secure} sub={t.skills.secureSub} tone="foam" groups={skills.secure} lang={lang} />
+                <div className="border-b border-rule py-6">
+                  <h4 className="font-semibold">{t.skills.spoken}</h4>
+                  <p className="mt-2 text-foam/85">{t.skills.spokenValue}</p>
+                </div>
               </div>
             </div>
           </section>
@@ -378,16 +375,20 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   );
 }
 
-function SkillColumn({ title, sub, tone, groups, lang }: { title: string; sub: string; tone: "sun" | "glow"; groups: SkillGroup[]; lang: Locale }) {
+function SkillColumn({ title, sub, tone, groups, lang }: { title: string; sub: string; tone: "sun" | "glow" | "foam"; groups: SkillGroup[]; lang: Locale }) {
+  const dot = { sun: "bg-sun", glow: "bg-glow", foam: "bg-foam" }[tone];
+  const lead = { sun: "text-sun", glow: "text-glow", foam: "text-foam" }[tone];
   return (
     <div>
-      <div className="flex items-baseline gap-3 border-b border-rule pb-4">
-        <span className={`size-2.5 rounded-full ${tone === "sun" ? "bg-sun" : "bg-glow"}`} />
-        <h3 className="stretch-112 text-[28px] font-bold tracking-[-0.02em]">{title}</h3>
-        <span className="text-mist">{sub}</span>
+      <div className="border-b border-rule pb-4">
+        <div className="flex items-baseline gap-3">
+          <span className={`size-2.5 rounded-full ${dot}`} />
+          <h3 className="stretch-112 text-[28px] font-bold tracking-[-0.02em]">{title}</h3>
+        </div>
+        <p className="mt-1 text-[15px] text-mist">{sub}</p>
       </div>
       {groups.map((g) => (
-        <SkillRow key={g.title.en} g={g} lang={lang} lead={tone === "sun" ? "text-sun" : "text-glow"} />
+        <SkillRow key={g.title.en} g={g} lang={lang} lead={lead} />
       ))}
     </div>
   );
