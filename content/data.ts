@@ -125,6 +125,7 @@ export const roles: Role[] = [
         "The motion designers rendered through an SVN “server”: a screenless laptop wired to several disks, and they lost about a day a week to slow renders. I found the cause, proposed the fix and moved them, on my own initiative, to Git LFS on our self-hosted GitLab, which also centralised the files.",
         "The production database went down. I traced it to a recursive query, then added an ORM for the developers, multi-AZ, multi-cluster and blue-green deploys.",
         "Worked around tech debt with a shell tool that adapts the production Docker image to each laptop and generates a backward-compatible Docker Compose stack. I rolled it out without blocking the teams.",
+        "Wrote Python scripts with boto3 for cleanup and production tasks, and migrated Lambdas from Python 2.7 to Python 3.",
         "Benchmarked After Effects v19 against v23 before the upgrade (v23 renders 5% slower), and traced incidents across CloudWatch, Datadog and Honeycomb.",
       ],
       fr: [
@@ -135,10 +136,11 @@ export const roles: Role[] = [
         "Les motion designers rendaient via un « serveur » SVN : un laptop sans écran relié à plusieurs disques, et perdaient au moins une journée par semaine. J’ai trouvé la cause, proposé la solution et migré seul vers Git LFS sur notre GitLab auto-hébergé, qui centralise aussi les fichiers.",
         "Panne de la base de production : j’ai trouvé la cause, une requête récursive, puis ajouté un ORM pour les développeurs, du multi-AZ, du multi-cluster et des déploiements blue-green.",
         "Contournement de la dette technique : un script shell adapte l’image Docker de production au poste du développeur et génère un Docker Compose rétrocompatible. Déployé sans bloquer les équipes.",
+        "Scripts Python avec boto3 pour le nettoyage et la production ; migration des Lambdas de Python 2.7 vers Python 3.",
         "Benchmark d’After Effects v19 contre v23 avant la montée de version (v23 rend 5 % plus lentement), analyse d’incidents sur CloudWatch, Datadog et Honeycomb.",
       ],
     },
-    tags: ["AWS", "EC2", "Kubernetes", "GitLab CI", "Git LFS", "Terraform", "Packer", "Docker Compose", "Datadog", "FinOps"],
+    tags: ["AWS", "EC2", "Kubernetes", "GitLab CI", "Git LFS", "Terraform", "Packer", "Python", "Docker Compose", "Datadog", "FinOps"],
   },
   {
     company: { en: "RedPill", fr: "RedPill" },
@@ -148,12 +150,12 @@ export const roles: Role[] = [
     focus: { dev: 50, ops: 50 },
     bullets: {
       en: [
-        "Hermès wanted to sell one-to-one over video. I built the live shopping platform and took it from prototype to production, infrastructure included.",
+        "A luxury house wanted to sell one-to-one over video. I built the live shopping platform and took it from prototype to production, infrastructure included.",
         "RedPill, the startup studio behind Quidol, ran the project. I designed the UX/UI and ran Docker microservices on GKE, CI/CD and SRE.",
         "Tracked a bug that appeared with a new iOS release down to a race condition in a JavaScript class.",
       ],
       fr: [
-        "Hermès voulait vendre en tête-à-tête par vidéo. J’ai construit la plateforme de live shopping et je l’ai menée du prototype à la production, infrastructure comprise.",
+        "Une maison de luxe voulait vendre en tête-à-tête par vidéo. J’ai construit la plateforme de live shopping et je l’ai menée du prototype à la production, infrastructure comprise.",
         "RedPill, startup studio éditeur de Quidol, portait le projet. J’ai conçu l’UX/UI et opéré les microservices Docker sur GKE, la CI/CD et le SRE.",
         "Bug apparu avec une nouvelle version d’iOS, remonté jusqu’à une race condition dans une classe JavaScript.",
       ],
@@ -387,7 +389,7 @@ export const skills: { automate: SkillGroup[]; host: SkillGroup[]; secure: Skill
     {
       title: { en: "Business apps: web & mobile", fr: "Applications métier : web & mobile" },
       lead: ["React", "Next.js", "Tailwind"], other: ["React Native", "Expo", "Redux", "PWA", "styled-components", "webpack"],
-      proof: { en: "Sézame’s search page V2, live shopping fronts for Hermès and Carrefour, the Quidol app (450k+ downloads).", fr: "Recherche V2 de Sézame, fronts live shopping pour Hermès et Carrefour, app Quidol (450k+ téléchargements)." },
+      proof: { en: "Sézame’s search page V2, live shopping fronts for a luxury house and Carrefour, the Quidol app (450k+ downloads).", fr: "Recherche V2 de Sézame, fronts live shopping pour une maison de luxe et Carrefour, app Quidol (450k+ téléchargements)." },
     },
     {
       title: { en: "AI integration", fr: "Intégration IA" },
@@ -397,7 +399,7 @@ export const skills: { automate: SkillGroup[]; host: SkillGroup[]; secure: Skill
     {
       title: { en: "Languages", fr: "Langages" },
       lead: ["TypeScript", "JavaScript", "Python"], other: ["C", "Bash", "Go", "Lua"],
-      proof: { en: "TypeScript on every recent project; Python for scripting and ML.", fr: "TypeScript sur tous les projets récents ; Python pour le scripting et le ML." },
+      proof: { en: "TypeScript on every recent project. Python is my first language: boto3 scripts and a Python 2.7 → 3 Lambda migration at Pitchy, prototypes and data work.", fr: "TypeScript sur tous les projets récents. Python est mon premier langage : scripts boto3 et migration des Lambdas de Python 2.7 vers 3 chez Pitchy, prototypes et données." },
     },
     {
       title: { en: "Data & search", fr: "Données & recherche" },
@@ -407,7 +409,7 @@ export const skills: { automate: SkillGroup[]; host: SkillGroup[]; secure: Skill
     {
       title: { en: "Video & real time", fr: "Vidéo & temps réel" },
       lead: ["HLS", "FFmpeg"], other: ["Vonage (WebRTC)", "Wowza", "After Effects", "Cavalry"],
-      proof: { en: "Live shopping for Carrefour and Hermès, automated replays, macOS rendering at Pitchy.", fr: "Live shopping pour Carrefour et Hermès, replays automatisés, rendu macOS chez Pitchy." },
+      proof: { en: "Live shopping for Carrefour and a luxury house, automated replays, macOS rendering at Pitchy.", fr: "Live shopping pour Carrefour et une maison de luxe, replays automatisés, rendu macOS chez Pitchy." },
     },
   ],
   host: [
