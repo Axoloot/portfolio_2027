@@ -42,13 +42,13 @@ export const roles: Role[] = [
       en: [
         "Infiny’s LLMs ran on Azure and the rest of the platform on AWS, with no private link between them. I connected the two clouds with an IPsec tunnel written in Terraform and switched DNS over with no downtime.",
         "Audited the cloud resources and removed the unused ones from the Terraform code.",
-        "Designed a hierarchical job data model on France Travail’s ROME reference.",
+        "Optimised the data schema: France Travail’s ROME job hierarchy, with each job tied to its sector.",
         "Wrote my own boilerplates (Node.js/TypeScript, Next.js, AWS CDK with projen) as the base for my client and personal projects.",
       ],
       fr: [
         "Les LLM d’Infiny tournaient sur Azure et le reste de la plateforme sur AWS, sans lien privé entre les deux. J’ai relié les deux clouds par un tunnel IPsec écrit en Terraform et basculé le DNS sans coupure.",
         "Audit des ressources cloud et suppression des ressources inutilisées dans le code Terraform.",
-        "Schéma de données métiers hiérarchique construit sur le référentiel ROME de France Travail.",
+        "Optimisation du schéma de données : hiérarchie du référentiel métiers ROME de France Travail et rattachement de chaque métier à son secteur.",
         "Boilerplates maison (Node.js/TypeScript, Next.js, AWS CDK avec projen), base de mes projets clients et personnels.",
       ],
     },
@@ -83,13 +83,13 @@ export const roles: Role[] = [
     bullets: {
       en: [
         "Time-slot search ran on Algolia. I moved it to Typesense, which cut its cost by ~75%, and automated product listings on Google Shopping.",
-        "Built standalone event-driven services on AWS: Lambda, EventBridge, SQS/SNS and single-table DynamoDB (DynamoDB Toolbox). Events are stored and queried in SQL with Athena. Google Shopping now lists 200+ offers.",
+        "Built on a fully serverless, event-driven AWS architecture: Lambda, EventBridge and single-table DynamoDB (DynamoDB Toolbox), with services talking through Kinesis or SNS/SQS. Events are stored and queried in SQL with Athena. Google Shopping now lists 200+ offers.",
         "Rebuilt the search page (V2) in Next.js and Tailwind and shipped other front-end changes, on Hono APIs deployed with AWS CDK.",
         "Wired production errors to Slack alerts, opened fix PRs when needed, shipped an email service on Brevo and wrote unit tests in Jest.",
       ],
       fr: [
         "La recherche par créneaux tournait sur Algolia. Je l’ai migrée vers Typesense, ce qui a réduit son coût de ~75 %, et j’ai automatisé le référencement des produits sur Google Shopping.",
-        "Services événementiels autonomes sur AWS : Lambda, EventBridge, SQS/SNS et DynamoDB single-table (DynamoDB Toolbox). Événements stockés et consultés en SQL avec Athena. Plus de 200 offres référencées sur Google Shopping.",
+        "Architecture entièrement serverless et événementielle sur AWS : Lambda, EventBridge et DynamoDB single-table (DynamoDB Toolbox), avec des services qui communiquent par Kinesis ou SNS/SQS. Événements stockés et consultés en SQL avec Athena. Plus de 200 offres référencées sur Google Shopping.",
         "Refonte de la page de recherche (V2) en Next.js et Tailwind et autres évolutions de l’interface, sur des API Hono déployées en AWS CDK.",
         "Erreurs de production branchées sur des alertes Slack, PR correctives ouvertes au besoin, service d’emailing sur Brevo, tests unitaires en Jest.",
       ],
@@ -424,7 +424,7 @@ export const skills: { automate: SkillGroup[]; host: SkillGroup[]; secure: Skill
     {
       title: { en: "Serverless & events", fr: "Serverless & événements" },
       lead: ["AWS Lambda", "EventBridge"], other: ["SQS/SNS", "API Gateway"],
-      proof: { en: "Standalone event-driven services at Sézame.", fr: "Services événementiels autonomes chez Sézame." },
+      proof: { en: "Fully serverless, event-driven architecture at Sézame.", fr: "Architecture serverless et événementielle chez Sézame." },
     },
     {
       title: { en: "SRE & observability", fr: "SRE & observabilité" },
