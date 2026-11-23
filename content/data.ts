@@ -342,7 +342,7 @@ export const projects: Project[] = [
     },
     tags: ["React", "Expo", "Express", "Prisma", "PostgreSQL", "Cypress"],
     media: [
-      { type: "image", src: "/projects/fundy/projects.jpg", alt: { en: "Fundy projects page: categories and crowdfunding projects with their goals", fr: "Page projets de Fundy : catégories et projets avec leurs objectifs" }, width: 1440, height: 900 },
+      { type: "image", src: "/projects/fundy/associations.jpg", alt: { en: "Fundy associations page: categories and the associations you can support", fr: "Page associations de Fundy : catégories et associations à soutenir" }, width: 1903, height: 1022 },
       { type: "image", src: "/projects/fundy/home.jpg", alt: { en: "Fundy home page: round-up crowdfunding", fr: "Accueil de Fundy : le crowdfunding par l’arrondi" }, width: 1440, height: 900 },
     ],
     links: [
