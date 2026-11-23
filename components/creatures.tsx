@@ -1,16 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import type * as Three from "three";
+import { cssColor, renderer as makeRenderer, useGL, watch, type T3 } from "./gl";
 import { jellies } from "./jelly";
 import { manta } from "./manta";
 
-const GATE = "(prefers-reduced-motion: no-preference)";
-
-export type View = { w: number; h: number; top: number; k: number };
+type View = { w: number; h: number; top: number; k: number };
 
 export type Creature = (ctx: {
-  T: typeof Three;
+  T: T3;
   scene: Three.Scene;
   blend: Partial<Three.ShaderMaterialParameters>;
   color: (name: string, fallback: string) => readonly [number, number, number];
@@ -23,21 +21,10 @@ export type Creature = (ctx: {
 
 const kinds: Creature[] = [manta, jellies];
 
-function color(name: string, fallback: string) {
-  const s = getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
-  const v = parseInt(s.slice(1), 16);
-  return [((v >> 16) & 255) / 255, ((v >> 8) & 255) / 255, (v & 255) / 255] as const;
-}
-
-function start(T: typeof Three, canvas: HTMLCanvasElement, layer: HTMLElement) {
-  let renderer: Three.WebGLRenderer;
-  try {
-    renderer = new T.WebGLRenderer({ canvas, alpha: true, antialias: true, premultipliedAlpha: true, powerPreference: "low-power" });
-  } catch {
-    return () => {};
-  }
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
-  renderer.setClearColor(0x000000, 0);
+function start(T: T3, canvas: HTMLCanvasElement) {
+  const layer = canvas.parentElement;
+  const renderer = makeRenderer(T, canvas);
+  if (!layer || !renderer) return () => {};
 
   const scene = new T.Scene();
   const camera = new T.PerspectiveCamera(30, 1, 10, 6000);
@@ -48,7 +35,7 @@ function start(T: typeof Three, canvas: HTMLCanvasElement, layer: HTMLElement) {
     blendSrc: T.OneFactor,
     blendDst: T.OneMinusSrcAlphaFactor,
   };
-  const parts = kinds.map((k) => k({ T, scene, blend, color }));
+  const parts = kinds.map((k) => k({ T, scene, blend, color: cssColor }));
 
   const theme = () => {
     const night = document.documentElement.dataset.theme === "dark";
@@ -102,51 +89,33 @@ function start(T: typeof Three, canvas: HTMLCanvasElement, layer: HTMLElement) {
     }
   };
 
-  const io = new IntersectionObserver(([e]) => {
-    visible = e.isIntersecting;
-    if (visible) play();
-    else halt();
-  });
-  const ro = new ResizeObserver(resize);
-  const mo = new MutationObserver(theme);
-  const onVis = () => (document.hidden ? halt() : play());
-
   theme();
   resize();
-  io.observe(layer);
-  ro.observe(canvas);
-  mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-  document.addEventListener("visibilitychange", onVis);
+  const unwatch = watch(
+    canvas,
+    {
+      visible: (v) => {
+        visible = v;
+        if (v) play();
+        else halt();
+      },
+      resize,
+      theme,
+      tab: () => (document.hidden ? halt() : play()),
+    },
+    layer,
+  );
 
   return () => {
     halt();
-    io.disconnect();
-    ro.disconnect();
-    mo.disconnect();
-    document.removeEventListener("visibilitychange", onVis);
+    unwatch();
     parts.forEach((p) => p.dispose());
     renderer.dispose();
   };
 }
 
 export function Creatures() {
-  const ref = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = ref.current;
-    const layer = canvas?.parentElement;
-    if (!canvas || !layer || !matchMedia(GATE).matches) return;
-    let stop = () => {};
-    let dead = false;
-    import("three")
-      .then((T) => {
-        if (!dead) stop = start(T, canvas, layer);
-      })
-      .catch(() => {});
-    return () => {
-      dead = true;
-      stop();
-    };
-  }, []);
+  const ref = useGL(start);
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
       <canvas ref={ref} className="sticky top-0 h-screen w-full" />

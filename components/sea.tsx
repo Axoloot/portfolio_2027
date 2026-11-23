@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import type * as Three from "three";
 import { buoy } from "./buoy";
 import { fish } from "./fish";
+import { cssColor, renderer as makeRenderer, useGL, watch, type T3 } from "./gl";
 import { glslSea } from "./waves";
 
 const ABOVE = 110;
@@ -94,18 +94,12 @@ void main() {
 }
 `;
 
-function hex(css: CSSStyleDeclaration, name: string, fallback: string) {
-  const s = css.getPropertyValue(name).trim() || fallback;
-  const v = parseInt(s.slice(1), 16);
-  return [((v >> 16) & 255) / 255, ((v >> 8) & 255) / 255, (v & 255) / 255] as const;
-}
-
-export type SeaUniforms = Record<"uSky" | "uFog" | "uWater" | "uGlow" | "uLight" | "uLightDir", { value: Three.Vector3 }> & {
+type SeaUniforms = Record<"uSky" | "uFog" | "uWater" | "uGlow" | "uLight" | "uLightDir", { value: Three.Vector3 }> & {
   uLamp: { value: Three.Vector4 };
 };
 
-export type SeaScene = {
-  T: typeof Three;
+type SeaScene = {
+  T: T3;
   scene: Three.Scene;
   u: SeaUniforms;
   night: boolean;
@@ -118,7 +112,7 @@ export type SeaAddon = (s: SeaScene) => {
   dispose: () => void;
 };
 
-function surfaceGeometry(T: typeof Three, w: number, f: number) {
+function surfaceGeometry(T: T3, w: number, f: number) {
   const nx = 160;
   const nz = 120;
   const pos = new Float32Array((nx + 1) * (nz + 1) * 3);
@@ -143,7 +137,7 @@ function surfaceGeometry(T: typeof Three, w: number, f: number) {
   return g;
 }
 
-function faceGeometry(T: typeof Three, w: number) {
+function faceGeometry(T: T3, w: number) {
   const nx = 480;
   const pos = new Float32Array((nx + 1) * 2 * 3);
   const idx: number[] = [];
@@ -160,15 +154,10 @@ function faceGeometry(T: typeof Three, w: number) {
 
 const addons: SeaAddon[] = [buoy, fish];
 
-function start(T: typeof Three, canvas: HTMLCanvasElement, line: HTMLElement) {
-  let renderer: Three.WebGLRenderer;
-  try {
-    renderer = new T.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "low-power" });
-  } catch {
-    return () => {};
-  }
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
-  renderer.setClearColor(0x000000, 0);
+function start(T: T3, canvas: HTMLCanvasElement) {
+  const line = canvas.parentElement;
+  const renderer = makeRenderer(T, canvas);
+  if (!line || !renderer) return () => {};
 
   const v3 = () => ({ value: new T.Vector3() });
   const u = {
@@ -196,11 +185,10 @@ function start(T: typeof Three, canvas: HTMLCanvasElement, line: HTMLElement) {
   const parts = addons.map((a) => a(ctx));
 
   const theme = () => {
-    const css = getComputedStyle(document.documentElement);
     ctx.night = document.documentElement.dataset.theme === "dark";
-    u.uSky.value.set(...hex(css, "--c-sky-top", "#c9e3ec"));
-    u.uFog.value.set(...hex(css, "--c-surface", "#edf1ee"));
-    u.uWater.value.set(...hex(css, "--c-shallow", "#17506a"));
+    u.uSky.value.set(...cssColor("--c-sky-top", "#c9e3ec"));
+    u.uFog.value.set(...cssColor("--c-surface", "#edf1ee"));
+    u.uWater.value.set(...cssColor("--c-shallow", "#17506a"));
     if (ctx.night) u.uLight.value.set(0.78, 0.75, 0.66);
     else u.uLight.value.set(1, 0.9, 0.68);
     parts.forEach((p) => p.theme());
@@ -245,20 +233,6 @@ function start(T: typeof Three, canvas: HTMLCanvasElement, line: HTMLElement) {
     raf = 0;
   };
 
-  const io = new IntersectionObserver(([e]) => {
-    visible = e.isIntersecting;
-    if (visible) play();
-    else pause();
-  });
-  const ro = new ResizeObserver(() => {
-    resize();
-    draw(performance.now());
-  });
-  const mo = new MutationObserver(() => {
-    theme();
-    draw(performance.now());
-  });
-  const onVis = () => (document.hidden ? pause() : play());
   const onLost = (e: Event) => {
     e.preventDefault();
     pause();
@@ -269,18 +243,27 @@ function start(T: typeof Three, canvas: HTMLCanvasElement, line: HTMLElement) {
   resize();
   draw(performance.now());
   line.setAttribute("data-gl", "");
-  io.observe(canvas);
-  ro.observe(canvas);
-  mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-  document.addEventListener("visibilitychange", onVis);
+  const unwatch = watch(canvas, {
+    visible: (v) => {
+      visible = v;
+      if (v) play();
+      else pause();
+    },
+    resize: () => {
+      resize();
+      draw(performance.now());
+    },
+    theme: () => {
+      theme();
+      draw(performance.now());
+    },
+    tab: () => (document.hidden ? pause() : play()),
+  });
   canvas.addEventListener("webglcontextlost", onLost);
 
   return () => {
     pause();
-    io.disconnect();
-    ro.disconnect();
-    mo.disconnect();
-    document.removeEventListener("visibilitychange", onVis);
+    unwatch();
     canvas.removeEventListener("webglcontextlost", onLost);
     parts.forEach((p) => p.dispose());
     surface.geometry.dispose();
@@ -293,22 +276,6 @@ function start(T: typeof Three, canvas: HTMLCanvasElement, line: HTMLElement) {
 }
 
 export function Sea() {
-  const ref = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = ref.current;
-    const line = canvas?.parentElement;
-    if (!canvas || !line || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let stop = () => {};
-    let dead = false;
-    import("three")
-      .then((T) => {
-        if (!dead) stop = start(T, canvas, line);
-      })
-      .catch(() => {});
-    return () => {
-      dead = true;
-      stop();
-    };
-  }, []);
+  const ref = useGL(start);
   return <canvas ref={ref} aria-hidden className="sea pointer-events-none absolute inset-x-0" style={{ top: `calc(50% - ${ABOVE}px)`, height: ABOVE + BELOW }} />;
 }
