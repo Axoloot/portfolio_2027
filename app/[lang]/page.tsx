@@ -36,14 +36,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <Mark />
             {site.name}
           </a>
-          <nav aria-label="Sections" className="ml-auto hidden gap-7 text-[15px] md:flex">
+          <nav aria-label="Sections" className="ml-auto hidden gap-7 whitespace-nowrap text-[15px] lg:flex">
             {(["automation", "experience", "skills", "about", "contact"] as const).map((k) => (
               <a key={k} href={`#${k}`} className="opacity-65 transition-opacity hover:opacity-100">
                 {t.nav[k]}
               </a>
             ))}
           </nav>
-          <div className="ml-auto flex items-center gap-4 text-[15px] md:ml-6">
+          <div className="ml-auto flex items-center gap-4 whitespace-nowrap text-[15px] lg:ml-6">
             <ThemeToggle labels={{ toDark: t.nav.toDark, toLight: t.nav.toLight }} />
             <Link href={`/${other}`} hrefLang={other} lang={other} className="opacity-65 transition-opacity hover:opacity-100">
               {other === "fr" ? "Français" : "English"}
