@@ -13,7 +13,6 @@ export const site = {
   links: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/cyrildelajudie" },
     { label: "GitHub", href: "https://github.com/Axoloot" },
-    { label: "Malt", href: "https://www.malt.fr/profile/cyrildelajudie1" },
   ],
 };
 
@@ -82,14 +81,14 @@ export const roles: Role[] = [
     kind: { en: "Hotel services, Staycation-style, 15–20 people", fr: "Services hôteliers façon Staycation, 15 à 20 salariés" },
     bullets: {
       en: [
-        "Time-slot search ran on Algolia. I moved it to Typesense, which cut its cost by ~75%, and automated product listings on Google Shopping.",
-        "Built on a fully serverless, event-driven AWS architecture: Lambda, EventBridge and single-table DynamoDB (DynamoDB Toolbox), with services talking through Kinesis or SNS/SQS. Events are stored and queried in SQL with Athena. Google Shopping now lists 200+ offers.",
+        "Time-slot search ran on Algolia. I moved it to Typesense, which cut its cost by ~75%, and automated product listings on Google Shopping (200+ offers).",
+        "Built on a fully serverless, event-driven AWS architecture: Lambda, EventBridge and single-table DynamoDB (DynamoDB Toolbox), with services talking through Kinesis or SNS/SQS. Events are stored and queried in SQL with Athena.",
         "Rebuilt the search page (V2) in Next.js and Tailwind and shipped other front-end changes, on Hono APIs deployed with AWS CDK.",
         "Wired production errors to Slack alerts, opened fix PRs when needed, shipped an email service on Brevo and wrote unit tests in Jest.",
       ],
       fr: [
-        "La recherche par créneaux tournait sur Algolia. Je l’ai migrée vers Typesense, ce qui a réduit son coût de ~75 %, et j’ai automatisé le référencement des produits sur Google Shopping.",
-        "Architecture entièrement serverless et événementielle sur AWS : Lambda, EventBridge et DynamoDB single-table (DynamoDB Toolbox), avec des services qui communiquent par Kinesis ou SNS/SQS. Événements stockés et consultés en SQL avec Athena. Plus de 200 offres référencées sur Google Shopping.",
+        "La recherche par créneaux tournait sur Algolia. Je l’ai migrée vers Typesense, ce qui a réduit son coût de ~75 %, et j’ai automatisé le référencement des produits sur Google Shopping (plus de 200 offres).",
+        "Architecture entièrement serverless et événementielle sur AWS : Lambda, EventBridge et DynamoDB single-table (DynamoDB Toolbox), avec des services qui communiquent par Kinesis ou SNS/SQS. Événements stockés et consultés en SQL avec Athena.",
         "Refonte de la page de recherche (V2) en Next.js et Tailwind et autres évolutions de l’interface, sur des API Hono déployées en AWS CDK.",
         "Erreurs de production branchées sur des alertes Slack, PR correctives ouvertes au besoin, service d’emailing sur Brevo, tests unitaires en Jest.",
       ],
@@ -100,8 +99,8 @@ export const roles: Role[] = [
     company: { en: "Sabbatical year", fr: "Année sabbatique" },
     role: { en: "Travel and diving", fr: "Voyages et plongée" },
     bullets: {
-      en: ["I went through five years of study without a break. Once I had my degree, I took a year for myself. I travelled through Croatia, Montenegro and Hungary, then spent three months in New Caledonia. I’ve dived since I was 11 (Level 2), and I dived a lot there, wrecks and night dives included. I also passed my car and motorbike licences. I’ve ridden a motorbike ever since."],
-      fr: ["J’ai enchaîné cinq ans d’études sans prendre de pause. Une fois mon diplôme obtenu, j’ai pris un an pour moi. J’ai voyagé en Croatie, au Monténégro et en Hongrie, puis j’ai passé trois mois en Nouvelle-Calédonie. Plongeur depuis mes 11 ans (niveau 2), j’y ai beaucoup plongé, sur épaves et de nuit, et j’ai passé mes permis auto et moto. Je roule à moto depuis."],
+      en: ["I went through five years of study without a break. Once I had my degree, I took a year for myself: Croatia, Montenegro and Hungary, then three months in New Caledonia."],
+      fr: ["J’ai enchaîné cinq ans d’études sans pause. Une fois mon diplôme obtenu, j’ai pris un an pour moi : Croatie, Monténégro et Hongrie, puis trois mois en Nouvelle-Calédonie."],
     },
     start: "2024-04", end: "2025-03",
     when: { en: "Apr 2024–Mar 2025", fr: "Avr. 2024–mars 2025" },
@@ -115,32 +114,24 @@ export const roles: Role[] = [
     start: "2023-03", end: "2024-04",
     when: { en: "Mar 2023–Apr 2024", fr: "Mars 2023–avr. 2024" },
     focus: { dev: 15, ops: 85 },
-    kind: { en: "B2B video SaaS, ~1,000 clients, €40M Series B", fr: "SaaS vidéo B2B, ~1 000 clients, série B de 40 M€" },
+    kind: { en: "B2B video SaaS (Accor, Orange, Danone), ~1,000 clients, €40M Series B, 150 people", fr: "SaaS vidéo B2B (Accor, Orange, Danone), ~1 000 clients, série B de 40 M€, 150 salariés" },
     bullets: {
       en: [
-        "Pitchy rendered its videos on Windows Server. I moved rendering to headless macOS images (~40% less generation time) and cut the AWS bill by 22%.",
-        "Pitchy renders motion-design videos for clients like Accor, Orange and Danone on an autoscaling farm of After Effects, Cavalry and Filmora machines. I worked on four fronts: performance, SRE, architecture and FinOps.",
-        "Apple dropped macOS Server, so I built the headless macOS desktop images with Packer and AppleScript. The AWS savings came from right-sizing, autoscaling and on-demand services.",
-        "Ran production on self-managed Kubernetes on EC2 with GitLab CI. The render farm ran on an autoscaling EC2 fleet that we set up as a team of two. Architecture decisions were made with my team and my manager, within the limits of the tech debt.",
+        "Pitchy rendered its videos on Windows Server. I moved rendering to headless macOS images built with Packer and AppleScript (~40% less generation time), and cut the AWS bill by 22% with right-sizing, autoscaling and on-demand services.",
+        "I worked on performance, SRE, architecture and FinOps, in a DevOps team of three. Production ran on self-managed Kubernetes on EC2 with GitLab CI; the After Effects, Cavalry and Filmora render farm ran on an autoscaling EC2 fleet that we set up as a team of two.",
         "The motion designers rendered through an SVN “server”: a screenless laptop wired to several disks, and they lost about a day a week to slow renders. I found the cause, proposed the fix and moved them, on my own initiative, to Git LFS on our self-hosted GitLab, which also centralised the files.",
         "The production database went down. I traced it to a recursive query, then added an ORM for the developers, multi-AZ, multi-cluster and blue-green deploys.",
-        "Worked around tech debt with a shell tool that adapts the production Docker image to each laptop and generates a backward-compatible Docker Compose stack. I rolled it out without blocking the teams.",
         "Wrote Python scripts with boto3 for cleanup and production tasks, and migrated Lambdas from Python 2.7 to Python 3.",
-        "Benchmarked After Effects v19 against v23 before the upgrade (v23 renders 5% slower), and traced incidents across CloudWatch, Datadog and Honeycomb.",
       ],
       fr: [
-        "Pitchy rendait ses vidéos sur Windows Server. J’ai passé les rendus sur des images macOS headless (~40 % de temps de génération en moins) et réduit la facture AWS de 22 %.",
-        "Pitchy rend des vidéos en motion design pour des clients comme Accor, Orange et Danone, sur une ferme de machines After Effects, Cavalry et Filmora en autoscaling. J’ai travaillé sur quatre axes : performances, SRE, architecture et FinOps.",
-        "macOS Server n’existant plus, j’ai construit les images macOS desktop headless avec Packer et AppleScript. Les économies AWS viennent du bon dimensionnement, de l’autoscaling et des services à la demande.",
-        "Production sur Kubernetes autogéré sur EC2 avec GitLab CI. La ferme de rendu tournait sur une flotte d’EC2 en autoscaling, mise en place à deux. L’architecture se décidait avec mon équipe et mon manager, en tenant compte de la dette technique.",
+        "Pitchy rendait ses vidéos sur Windows Server. J’ai passé les rendus sur des images macOS headless construites avec Packer et AppleScript (~40 % de temps de génération en moins), et réduit la facture AWS de 22 % par le bon dimensionnement, l’autoscaling et les services à la demande.",
+        "J’ai travaillé sur les performances, le SRE, l’architecture et le FinOps, dans une équipe DevOps de trois. Production sur Kubernetes autogéré sur EC2 avec GitLab CI ; la ferme de rendu After Effects, Cavalry et Filmora tournait sur une flotte d’EC2 en autoscaling, mise en place à deux.",
         "Les motion designers rendaient via un « serveur » SVN : un laptop sans écran relié à plusieurs disques, et perdaient au moins une journée par semaine. J’ai trouvé la cause, proposé la solution et migré seul vers Git LFS sur notre GitLab auto-hébergé, qui centralise aussi les fichiers.",
         "Panne de la base de production : j’ai trouvé la cause, une requête récursive, puis ajouté un ORM pour les développeurs, du multi-AZ, du multi-cluster et des déploiements blue-green.",
-        "Contournement de la dette technique : un script shell adapte l’image Docker de production au poste du développeur et génère un Docker Compose rétrocompatible. Déployé sans bloquer les équipes.",
         "Scripts Python avec boto3 pour le nettoyage et la production ; migration des Lambdas de Python 2.7 vers Python 3.",
-        "Benchmark d’After Effects v19 contre v23 avant la montée de version (v23 rend 5 % plus lentement), analyse d’incidents sur CloudWatch, Datadog et Honeycomb.",
       ],
     },
-    tags: ["AWS", "EC2", "Kubernetes", "GitLab CI", "Git LFS", "Terraform", "Packer", "Python", "Docker Compose", "Datadog", "FinOps"],
+    tags: ["AWS", "EC2", "Kubernetes", "GitLab CI", "Git LFS", "Terraform", "Packer", "Python", "Datadog", "FinOps"],
   },
   {
     company: { en: "RedPill", fr: "RedPill" },
@@ -152,12 +143,10 @@ export const roles: Role[] = [
       en: [
         "A luxury house wanted to sell one-to-one over video. I built the live shopping platform and took it from prototype to production, infrastructure included.",
         "RedPill, the startup studio behind Quidol, ran the project. I designed the UX/UI and ran Docker microservices on GKE, CI/CD and SRE.",
-        "Tracked a bug that appeared with a new iOS release down to a race condition in a JavaScript class.",
       ],
       fr: [
         "Une maison de luxe voulait vendre en tête-à-tête par vidéo. J’ai construit la plateforme de live shopping et je l’ai menée du prototype à la production, infrastructure comprise.",
         "RedPill, startup studio éditeur de Quidol, portait le projet. J’ai conçu l’UX/UI et opéré les microservices Docker sur GKE, la CI/CD et le SRE.",
-        "Bug apparu avec une nouvelle version d’iOS, remonté jusqu’à une race condition dans une classe JavaScript.",
       ],
     },
     tags: ["React", "Node.js", "TypeScript", "GKE", "Docker", "Wowza"],
@@ -194,15 +183,13 @@ export const roles: Role[] = [
     kind: { en: "Food group, 120 countries, 9 French factories", fr: "Groupe agroalimentaire, 120 pays, 9 usines en France" },
     bullets: {
       en: [
-        "Bel wanted a paperless factory, where teams read one data source with no re-keying. With the DIP team, I developed on the framework that reads the PLCs, relayed their data with alerts and built a real-time dashboard on the SAP API for headquarters.",
-        "PLC data, errors and incidents went to SAP, replacing paper for the factory operators. The platform ran on Kubernetes with Traefik.",
-        "Built the dashboard in React and styled-components.",
+        "Bel wanted a paperless factory, where teams read one data source with no re-keying. With the DIP team, I developed on the framework that reads the PLCs: their data, errors and incidents went to SAP with alerts, replacing paper for the factory operators. The platform ran on Kubernetes with Traefik.",
+        "Built a real-time dashboard on the SAP API for headquarters, in React and styled-components.",
         "Shipped the app as a PWA: offline mode, install, changelog and enforced versioning.",
       ],
       fr: [
-        "Bel voulait une usine sans papier, où les équipes lisent une même source de données sans ressaisie. Avec l’équipe DIP, j’ai développé sur le framework qui lit les automates, relayé leurs données avec des alertes et construit pour le siège un dashboard temps réel sur l’API SAP.",
-        "Les données d’automates, les erreurs et les incidents remontaient vers SAP, à la place du papier pour les opérateurs d’usine. La plateforme tournait sur Kubernetes avec Traefik.",
-        "Dashboard développé en React et styled-components.",
+        "Bel voulait une usine sans papier, où les équipes lisent une même source de données sans ressaisie. Avec l’équipe DIP, j’ai développé sur le framework qui lit les automates : leurs données, les erreurs et les incidents remontaient vers SAP avec des alertes, à la place du papier pour les opérateurs d’usine. La plateforme tournait sur Kubernetes avec Traefik.",
+        "Dashboard temps réel sur l’API SAP pour le siège, en React et styled-components.",
         "Application livrée en PWA : mode hors ligne, installation, journal des versions et versioning imposé.",
       ],
     },
@@ -220,14 +207,12 @@ export const roles: Role[] = [
         "Marketing asked developers for a promo card every day (homepage ads for events such as Christmas), 5 to 10 minutes of developer time each. I added a generator to the back office so marketing makes them alone, and wrote the production MongoDB scripts: data repair, fraud detection, statistics.",
         "Worked across the React Native app, the Node.js game server and the React back office, on GKE.",
         "Host-less blind tests: converted mp3 to multi-bitrate HLS with FFmpeg, so music plays within the question’s 10 seconds.",
-        "Fixed a game-server bug that reset players’ reward goals, helped fix an update that stopped the app from opening, and added a lost-connection warning.",
         "Incident I caused: a badly scoped script, run against dev, reached production and wiped the Redis cluster, and a show was lost. My scripts now stay scoped to dev, with warnings and safeguards in production.",
       ],
       fr: [
         "Le marketing demandait chaque jour une carte promo aux développeurs (annonces d’événements comme Noël sur la page d’accueil), 5 à 10 minutes de développeur à chaque fois. J’ai ajouté un générateur au back-office pour que le marketing les crée seul, et j’ai écrit les scripts MongoDB de production : réparation de données, détection de fraude, statistiques.",
         "Développement sur l’app React Native, le serveur de jeu Node.js et le back-office React, sur GKE.",
         "Blind tests sans animateur : mp3 convertis en HLS multi-bitrate avec FFmpeg, la musique démarre dans les 10 secondes de la question.",
-        "Correction d’un bug du serveur de jeu qui remettait à zéro les objectifs de récompense, participation au correctif d’une mise à jour qui bloquait l’ouverture de l’app, pop-up de perte de connexion.",
         "Incident de ma part : un script mal borné, lancé sur la dev, a touché la prod et supprimé le cluster Redis ; l’émission n’a pas pu avoir lieu. Depuis, mes scripts sont bornés à la dev, avec avertissement et protection en prod.",
       ],
     },
@@ -304,8 +289,8 @@ export const education = [
     when: "2018–2021",
     title: "PoC Innovation · PoC Services",
     text: {
-      en: "Head of Electronics, Treasurer, then Vice-President; set up the PoC Services junior enterprise (2021) after Epitech’s previous one was struck off. Built a lab of 3 networked 3D printers on OctoPrint, monitored with Prometheus and Grafana.",
-      fr: "Responsable électronique, Trésorier, puis Vice-Président ; création de la Junior-Entreprise PoC Services (2021) après la radiation de la précédente JE d’Epitech. Labo de 3 imprimantes 3D en réseau sous OctoPrint, supervisé avec Prometheus et Grafana.",
+      en: "Head of Electronics, Treasurer, then Vice-President; set up the PoC Services junior enterprise (2021) after Epitech’s previous one was struck off.",
+      fr: "Responsable électronique, Trésorier, puis Vice-Président ; création de la Junior-Entreprise PoC Services (2021) après la radiation de la précédente JE d’Epitech.",
     },
   },
 ];
@@ -328,6 +313,19 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "printer-lab",
+    title: { en: "3D-printer lab", fr: "Labo d’impression 3D" },
+    kind: { en: "PoC Innovation, Epitech", fr: "PoC Innovation, Epitech" },
+    when: "2018–2021",
+    summary: {
+      en: "Three networked 3D printers on OctoPrint for PoC Innovation, monitored with Prometheus and Grafana.",
+      fr: "Trois imprimantes 3D en réseau sous OctoPrint pour PoC Innovation, supervisées avec Prometheus et Grafana.",
+    },
+    tags: ["OctoPrint", "Prometheus", "Grafana", "Jenkins"],
+    media: [],
+    links: [],
+  },
   {
     slug: "fundy",
     title: { en: "Fundy", fr: "Fundy" },
@@ -383,8 +381,8 @@ export const skills: { automate: SkillGroup[]; host: SkillGroup[]; secure: Skill
   automate: [
     {
       title: { en: "Backend & APIs", fr: "Back-end & API" },
-      lead: ["Node.js", "Hono", "Microservices"], other: ["Express", "REST", "Jest", "Stripe", "Cognito", "Brevo"],
-      proof: { en: "Microservices at RedPill and Sézame, Stripe subscriptions at RedPill Live, the Quidol game server.", fr: "Microservices chez RedPill et Sézame, abonnements Stripe chez RedPill Live, serveur de jeu Quidol." },
+      lead: ["Node.js", "Hono", "Microservices"], other: ["Express", "REST", "Jest", "Stripe", "Cognito", "Brevo", "HLS", "FFmpeg", "Vonage (WebRTC)", "Wowza"],
+      proof: { en: "Microservices at RedPill and Sézame, Stripe subscriptions and automated replays at RedPill Live, the Quidol game server.", fr: "Microservices chez RedPill et Sézame, abonnements Stripe et replays automatisés chez RedPill Live, serveur de jeu Quidol." },
     },
     {
       title: { en: "Business apps: web & mobile", fr: "Applications métier : web & mobile" },
@@ -406,21 +404,16 @@ export const skills: { automate: SkillGroup[]; host: SkillGroup[]; secure: Skill
       lead: ["DynamoDB", "MongoDB"], other: ["Redis", "PostgreSQL", "Typesense", "Kinesis", "Athena"],
       proof: { en: "Single-table DynamoDB at Sézame; production MongoDB scripts for fraud detection at Quidol.", fr: "DynamoDB single-table chez Sézame ; scripts MongoDB de détection de fraude chez Quidol." },
     },
-    {
-      title: { en: "Video & real time", fr: "Vidéo & temps réel" },
-      lead: ["HLS", "FFmpeg"], other: ["Vonage (WebRTC)", "Wowza", "After Effects", "Cavalry"],
-      proof: { en: "Live shopping for Carrefour and a luxury house, automated replays, macOS rendering at Pitchy.", fr: "Live shopping pour Carrefour et une maison de luxe, replays automatisés, rendu macOS chez Pitchy." },
-    },
   ],
   host: [
     {
       title: { en: "Cloud & IaC", fr: "Cloud & IaC" },
       lead: ["AWS", "Terraform", "AWS CDK"], other: ["Azure", "GCP", "projen", "CloudFormation", "Packer", "FinOps"],
-      proof: { en: "−22% on Pitchy’s AWS bill, an Azure ↔ AWS IPsec tunnel in Terraform for Infiny.", fr: "−22 % sur la facture AWS de Pitchy, tunnel IPsec Azure ↔ AWS en Terraform pour Infiny." },
+      proof: { en: "An Azure ↔ AWS IPsec tunnel in Terraform for Infiny, FinOps on AWS at Pitchy.", fr: "Tunnel IPsec Azure ↔ AWS en Terraform pour Infiny, FinOps sur AWS chez Pitchy." },
     },
     {
       title: { en: "Containers & CI/CD", fr: "Conteneurs & CI/CD" },
-      lead: ["Docker", "Kubernetes", "GitLab CI"], other: ["GitHub Actions", "GKE", "Helm", "Docker Compose", "GitLab LFS", "Traefik", "Jenkins"],
+      lead: ["Docker", "Kubernetes", "GitLab CI"], other: ["GitHub Actions", "GKE", "Helm", "Docker Compose", "Git LFS", "Traefik", "Jenkins"],
       proof: { en: "Kubernetes in production at Pitchy, microservices on GKE at RedPill and Quidol.", fr: "Kubernetes en production chez Pitchy, microservices sur GKE chez RedPill et Quidol." },
     },
     {
@@ -490,8 +483,8 @@ export const automations: Automation[] = [
       fr: "Les rendus passaient par un « serveur » SVN, un laptop sans écran relié à plusieurs disques. Les designers perdaient environ une journée par semaine.",
     },
     after: {
-      en: "On my own initiative, I moved their files to Git LFS on the company’s self-hosted GitLab.",
-      fr: "De ma propre initiative, j’ai migré leurs fichiers vers Git LFS sur le GitLab auto-hébergé de l’entreprise.",
+      en: "Their files live in Git LFS on the company’s self-hosted GitLab.",
+      fr: "Leurs fichiers sont dans Git LFS, sur le GitLab auto-hébergé de l’entreprise.",
     },
     runs: { en: "Self-hosted GitLab, on the company’s own infrastructure", fr: "GitLab auto-hébergé, sur l’infrastructure de l’entreprise" },
   },
@@ -515,8 +508,8 @@ export const about: { id: string; title: L; text: L }[] = [
     id: "work",
     title: { en: "How I work", fr: "Ma façon de travailler" },
     text: {
-      en: "Initiative: at Pitchy, the motion designers lost about a day a week to slow renders. I found the cause, proposed the fix and moved them to Git LFS on my own.\nOwnership: at Quidol, a badly scoped script of mine wiped the Redis cluster and a show was lost; my scripts are now bound to dev, with guardrails in production. At Pitchy, I traced a database outage to a recursive query, then added an ORM, multi-AZ, multi-cluster and blue-green deploys.\nTeaching: I gave electronics classes at Epitech. At Quidol, I built marketing a promo card generator so they stopped waiting on a developer.\nCuriosity: I keep a tech watch and moved from web to industry, one subject at a time.",
-      fr: "Initiative : chez Pitchy, les motion designers perdaient environ une journée par semaine sur leurs rendus. J’ai trouvé la cause, proposé la solution et migré seul vers Git LFS.\nResponsabilité : chez Quidol, un de mes scripts mal borné a supprimé le cluster Redis et une émission a sauté ; mes scripts sont depuis bornés à la dev, avec des garde-fous en prod. Chez Pitchy, j’ai remonté une panne de base de données jusqu’à une requête récursive, puis ajouté un ORM, du multi-AZ, du multi-cluster et des déploiements blue-green.\nTransmission : j’ai donné des cours d’électronique à Epitech. Chez Quidol, j’ai construit pour le marketing un générateur de cartes promo : ils n’attendent plus un développeur.\nCuriosité : je fais de la veille et je suis passé du web à l’industriel, un sujet à la fois.",
+      en: "Initiative: I spot a problem and fix it without waiting to be asked (Git LFS at Pitchy).\nOwnership: I own my incidents and add the guardrail that stops them coming back (Quidol Redis cluster, Pitchy database).\nTeaching: I gave electronics classes at Epitech.\nMaking teams autonomous: Quidol’s marketing team builds its promo cards without a developer.\nCuriosity: I keep a tech watch and I’m moving from web to industry, one subject at a time.",
+      fr: "Initiative : je repère un problème et je le règle sans attendre qu’on me le demande (Git LFS chez Pitchy).\nResponsabilité : j’assume mes incidents et j’ajoute le garde-fou qui les empêche de revenir (cluster Redis chez Quidol, base de données chez Pitchy).\nTransmission : j’ai donné des cours d’électronique à Epitech.\nAutonomie des équipes : le marketing de Quidol crée ses cartes promo sans développeur.\nCuriosité : je fais de la veille et je passe du web à l’industriel, un sujet à la fois.",
     },
   },
   {
@@ -531,8 +524,8 @@ export const about: { id: string; title: L; text: L }[] = [
     id: "electronics",
     title: { en: "Electronics", fr: "Électronique" },
     text: {
-      en: "Electronics has always pulled me in: it gives software a concrete, physical side. At PoC Innovation, a student association, I was head of electronics, then treasurer and vice-president.",
-      fr: "L’électronique m’a toujours attiré : elle donne au logiciel une couche concrète, physique. À PoC Innovation, une association étudiante, j’ai été responsable électronique, puis trésorier et vice-président.",
+      en: "Electronics gives software a concrete, physical side. My 3D-printer lab at PoC Innovation is in the Lab section.",
+      fr: "L’électronique donne au logiciel une couche concrète, physique. Mon labo d’impression 3D à PoC Innovation est dans la section Labo.",
     },
     // Axo may add a separate hobby/electronics portfolio later.
   },

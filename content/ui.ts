@@ -19,7 +19,7 @@ const en = {
   },
   automation: {
     title: "Manual work I automated",
-    intro: "Each case started with a person repeating the same task by hand.",
+    intro: "Each case started with time lost every day or every week.",
     before: "Before",
     after: "After",
     runs: "Runs on",
@@ -46,7 +46,7 @@ const en = {
   },
   projects: {
     title: "Lab",
-    intro: "R&D on my own time: things I designed, built and host myself.",
+    intro: "Projects outside work: things I designed and built.",
     noMedia: "Screenshots coming",
   },
   skills: {
@@ -61,24 +61,15 @@ const en = {
     spoken: "Languages",
     spokenValue: "French (native), English (C1, TOEIC 950/990)",
   },
-  joke: {
-    caption: "I’ve held all three jobs.",
-    lines: [
-      { who: "Dev", says: "It works on my machine." },
-      { who: "Ops", says: "We’re not shipping your machine." },
-      { who: "DevOps", says: "We are now. It’s called Docker." },
-    ],
-  },
   contact: {
     title: "Tell me which process your team still runs by hand.",
-    sub: "I’m available now for a permanent role or similar. I live in Paris and have a car.",
+    sub: "I’m available now for a permanent role in Paris and Île-de-France. I live in Paris and have a car.",
     copy: "Copy email",
     copied: "Copied",
     email: "Write to me",
   },
   footer: "Built with Next.js, hosted on Vercel.",
   old: "2024 portfolio",
-  wip: { label: "WIP", text: "Still in progress: some content isn’t final yet." },
   cvPage: {
     title: "CV, Cyril de Lajudie",
     note: "PDF in French",
@@ -105,7 +96,7 @@ const fr: typeof en = {
   },
   automation: {
     title: "Du manuel que j’ai automatisé",
-    intro: "Chaque cas part d’une personne qui répétait la même tâche à la main.",
+    intro: "Chaque cas part d’un temps perdu chaque jour ou chaque semaine.",
     before: "Avant",
     after: "Après",
     runs: "Tourne sur",
@@ -132,7 +123,7 @@ const fr: typeof en = {
   },
   projects: {
     title: "Labo",
-    intro: "De la R&D sur mon temps libre : ce que j’ai conçu, développé et hébergé moi-même.",
+    intro: "Projets hors travail : ce que j’ai conçu et construit.",
     noMedia: "Captures à venir",
   },
   skills: {
@@ -147,24 +138,15 @@ const fr: typeof en = {
     spoken: "Langues",
     spokenValue: "Français (natif), anglais (C1, TOEIC 950/990)",
   },
-  joke: {
-    caption: "J’ai occupé les trois postes.",
-    lines: [
-      { who: "Dev", says: "Ça marche sur ma machine." },
-      { who: "Ops", says: "On ne va pas livrer ta machine." },
-      { who: "DevOps", says: "Si, maintenant. Ça s’appelle Docker." },
-    ],
-  },
   contact: {
     title: "Dites-moi quel process votre équipe fait encore à la main.",
-    sub: "Je suis disponible pour un CDI ou équivalent. J’habite à Paris et je suis véhiculé.",
+    sub: "Je suis disponible pour un CDI à Paris et en Île-de-France. J’habite à Paris et je suis véhiculé.",
     copy: "Copier l’e-mail",
     copied: "Copié",
     email: "M’écrire",
   },
   footer: "Construit avec Next.js, hébergé sur Vercel.",
   old: "Portfolio 2024",
-  wip: { label: "WIP", text: "En cours : certains contenus ne sont pas encore finalisés." },
   cvPage: {
     title: "CV, Cyril de Lajudie",
     note: "PDF en français",
