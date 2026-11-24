@@ -198,7 +198,7 @@ body {
   .sun, .moon, .stars { transition: none; }
 }
 
-/* Before → after flow on the automation cards: a dot runs down the connector, the gear turns on hover. */
+/* Before → after flow on the automation cards: a dot runs down the connector. */
 .flow {
   background: linear-gradient(to bottom, var(--color-rule-2, rgb(255 255 255 / 0.2)), var(--color-sun));
 }
@@ -219,11 +219,8 @@ body {
   85% { opacity: 1; }
   100% { transform: translateY(29px); opacity: 0; }
 }
-.group:hover .gear { animation: gear-turn 2.4s linear infinite; }
-@keyframes gear-turn { to { transform: rotate(360deg); } }
-.gear { transform-origin: 50% 50%; }
 @media (prefers-reduced-motion: reduce) {
-  .flow-dot, .group:hover .gear { animation: none; }
+  .flow-dot { animation: none; }
   .flow-dot { top: 50%; opacity: 1; }
 }
 

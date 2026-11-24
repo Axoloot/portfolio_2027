@@ -160,7 +160,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <p className="mt-4 max-w-[34em] text-mist">{t.automation.intro}</p>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
               {automations.map((a) => (
-                <article key={a.where.en} className="rv group flex flex-col rounded-lg border border-rule bg-deep/40 p-6 transition duration-300 hover:-translate-y-1 hover:border-rule-2 hover:bg-deep/60 hover:shadow-[0_18px_40px_rgb(0_0_0/0.25)] motion-reduce:hover:translate-y-0">
+                <article key={a.where.en} className="rv flex flex-col rounded-lg border border-rule bg-deep/40 p-6">
                   <h3 className="font-semibold">{tl(a.where)}</h3>
                   <ol className="mt-5 text-[15px] leading-snug">
                     <li className="rounded-md border border-rule bg-trench/30 p-4">
