@@ -236,3 +236,6 @@ body {
     animation: none !important;
   }
 }
+
+/* Count-up: hide the server value until the script takes over, so it never flashes to 0. Without JS or with reduced motion, the real value shows. */
+.count-js .count-val:not([data-ready]) { opacity: 0; }
