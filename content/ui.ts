@@ -4,10 +4,10 @@ const en = {
   meta: {
     title: "Cyril de Lajudie, full-stack developer & DevOps engineer: I automate your manual processes",
     description:
-      "Paris-based automation & infrastructure engineer, full-stack developer and DevOps engineer. I turn manual processes into tools and host them on your cloud or your own servers. Available for a permanent role.",
+      "Paris-based automation & infrastructure engineer, full-stack developer and DevOps engineer. I turn manual processes into tools and host them on your cloud or your own servers. Available for a permanent role, in Paris, elsewhere in France or abroad.",
   },
   nav: { automation: "Automation", experience: "What I shipped", projects: "Lab", skills: "Tools",  about: "About", contact: "Contact", skip: "Skip to content", cv: "CV", toDark: "Switch to night", toLight: "Switch to day" },
-  status: "Available now for a permanent role in Paris",
+  status: "Available now for a permanent role · Based in Paris, open to relocation",
   hero: {
     keywords: "Full-stack developer and DevOps engineer",
     role: "I automate your manual processes and host them where your data has to live.",
@@ -64,7 +64,7 @@ const en = {
   },
   contact: {
     title: "Tell me which process your team still runs by hand.",
-    sub: "I’m available now for a permanent role in Paris and Île-de-France. I live in Paris and have a car.",
+    sub: "I’m available now for a permanent role. I live in Paris and can relocate to another region of France or abroad.",
     copy: "Copy email",
     copied: "Copied",
     email: "Write to me",
@@ -82,10 +82,10 @@ const fr: typeof en = {
   meta: {
     title: "Cyril de Lajudie, développeur fullstack & ingénieur DevOps : j’automatise vos process manuels",
     description:
-      "Ingénieur automatisation & infrastructure à Paris, développeur fullstack et ingénieur DevOps. Je transforme vos process manuels en outils, hébergés sur votre cloud ou sur vos propres serveurs. Disponible pour un CDI.",
+      "Ingénieur automatisation & infrastructure à Paris, développeur fullstack et ingénieur DevOps. Je transforme vos process manuels en outils, hébergés sur votre cloud ou sur vos propres serveurs. Disponible pour un CDI, à Paris, ailleurs en France ou à l’étranger.",
   },
   nav: { automation: "Automatisation", experience: "Ce que j’ai livré", projects: "Labo", skills: "Outils",  about: "À propos", contact: "Contact", skip: "Aller au contenu", cv: "CV", toDark: "Passer en mode nuit", toLight: "Passer en mode jour" },
-  status: "Disponible pour un CDI à Paris",
+  status: "Disponible pour un CDI · Basé à Paris, mobile en France et à l’étranger",
   hero: {
     keywords: "Développeur fullstack et ingénieur DevOps",
     role: "J’automatise vos process manuels et je les héberge là où vos données doivent rester.",
@@ -142,7 +142,7 @@ const fr: typeof en = {
   },
   contact: {
     title: "Dites-moi quel process votre équipe fait encore à la main.",
-    sub: "Je suis disponible pour un CDI à Paris et en Île-de-France. J’habite à Paris et je suis véhiculé.",
+    sub: "Je suis disponible pour un CDI. J’habite à Paris et je peux déménager dans une autre région ou à l’étranger.",
     copy: "Copier l’e-mail",
     copied: "Copié",
     email: "M’écrire",
