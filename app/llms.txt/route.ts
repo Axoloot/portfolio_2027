@@ -11,11 +11,15 @@ export function GET() {
     "",
     t.hero.lede,
     "",
-    `- Website: ${site.url} (English: ${site.url}/en, French: ${site.url}/fr)`,
-    `- Email: ${site.email}`,
-    ...site.links.map((l) => `- ${l.label}: ${l.href}`),
-    `- CV (PDF): ${site.url}${site.cv.en} (English), ${site.url}${site.cv.fr} (French)`,
-    `- Languages: ${t.skills.spokenValue}`,
+    `Languages: ${t.skills.spokenValue}.`,
+    "",
+    "## Links",
+    `- [Portfolio (English)](${site.url}/en): the full profile`,
+    `- [Portfolio (French)](${site.url}/fr): the same profile in French`,
+    `- [CV in English (PDF)](${site.url}${site.cv.en})`,
+    `- [CV in French (PDF)](${site.url}${site.cv.fr})`,
+    `- [Email](mailto:${site.email}): ${site.email}`,
+    ...site.links.map((l) => `- [${l.label}](${l.href})`),
     "",
     "## Results",
     ...impact.map((m) => `- ${m.delta} ${m.name.en}: ${m.how.en}`),
@@ -35,7 +39,7 @@ export function GET() {
   for (const p of projects) {
     lines.push("", `### ${p.title.en} (${p.kind.en}${p.when ? `, ${p.when}` : ""})`, p.summary.en);
     for (const b of p.bullets?.en ?? []) lines.push(`- ${b}`);
-    for (const l of p.links) lines.push(`- ${l.label.en}: ${l.href}`);
+    for (const l of p.links) lines.push(`- [${l.label.en}](${l.href})`);
   }
   lines.push("", "## Skills");
   for (const g of [...skills.automate, ...skills.host, ...skills.secure]) {

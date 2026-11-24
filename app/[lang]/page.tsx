@@ -46,7 +46,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           <div className="ml-auto flex items-center gap-3 whitespace-nowrap text-[15px] sm:gap-4 lg:ml-6">
             <CommandMenu sections={sections} t={t.command} other={other} cvHref={cvHref} email={site.email} links={site.links} />
             <ThemeToggle labels={{ toDark: t.nav.toDark, toLight: t.nav.toLight }} />
-            <Link href={`/${other}`} hrefLang={other} lang={other} className="opacity-65 transition-opacity hover:opacity-100">
+            <Link href={`/${other}`} hrefLang={other} lang={other} className="opacity-85 transition-opacity hover:opacity-100">
               {other === "fr" ? "Français" : "English"}
             </Link>
             <Link href={cvHref} className="hidden rounded-full border border-current/25 px-3.5 py-1.5 transition-colors hover:border-current sm:inline-block">
