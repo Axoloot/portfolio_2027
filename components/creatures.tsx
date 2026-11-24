@@ -115,7 +115,7 @@ function start(T: T3, canvas: HTMLCanvasElement) {
 }
 
 export function Creatures() {
-  const ref = useGL(start);
+  const ref = useGL(start, { decorative: true });
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
       <canvas ref={ref} className="sticky top-0 h-screen w-full" />

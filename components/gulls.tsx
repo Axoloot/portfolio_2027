@@ -167,6 +167,6 @@ function start(T: T3, canvas: HTMLCanvasElement) {
 }
 
 export function Gulls() {
-  const ref = useGL(start);
+  const ref = useGL(start, { decorative: true });
   return <canvas ref={ref} aria-hidden className="pointer-events-none absolute inset-0 h-full w-full" />;
 }

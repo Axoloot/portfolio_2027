@@ -7,6 +7,12 @@ type Start = (T: T3, canvas: HTMLCanvasElement) => () => void;
 
 export const motionOk = () => matchMedia("(prefers-reduced-motion: no-preference)").matches;
 
+/** Phones, data-saver and low-core devices get the sea only: no gulls or creatures. */
+export const liteDevice = () => {
+  const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
+  return matchMedia("(max-width: 767px)").matches || !!nav.connection?.saveData || (navigator.hardwareConcurrency ?? 8) <= 4;
+};
+
 export function cssColor(name: string, fallback: string) {
   const s = getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
   const v = parseInt(s.slice(1), 16);
@@ -16,7 +22,7 @@ export function cssColor(name: string, fallback: string) {
 export function renderer(T: T3, canvas: HTMLCanvasElement) {
   try {
     const r = new T.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: "low-power" });
-    r.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+    r.setPixelRatio(Math.min(devicePixelRatio, matchMedia("(max-width: 767px)").matches ? 1 : 1.5));
     r.setClearColor(0x000000, 0);
     return r;
   } catch {
@@ -44,11 +50,11 @@ export function watch(
   };
 }
 
-export function useGL(start: Start) {
+export function useGL(start: Start, { decorative = false }: { decorative?: boolean } = {}) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const canvas = ref.current;
-    if (!canvas || !motionOk()) return;
+    if (!canvas || !motionOk() || (decorative && liteDevice())) return;
     let stop = () => {};
     let dead = false;
     const load = () =>
@@ -66,6 +72,6 @@ export function useGL(start: Start) {
       else clearTimeout(id);
       stop();
     };
-  }, [start]);
+  }, [start, decorative]);
   return ref;
 }
