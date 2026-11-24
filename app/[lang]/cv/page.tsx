@@ -8,8 +8,13 @@ import { dictionaries, hasLocale } from "@/content/ui";
 export async function generateMetadata({ params }: PageProps<"/[lang]/cv">): Promise<Metadata> {
   const { lang } = await params;
   if (!hasLocale(lang)) return {};
-  const t = dictionaries[lang].cvPage;
-  return { title: t.title, alternates: { canonical: `/${lang}/cv` } };
+  const t = dictionaries[lang];
+  return {
+    title: t.cvPage.title,
+    description: t.meta.cvDescription,
+    alternates: { canonical: `/${lang}/cv`, languages: { en: "/en/cv", fr: "/fr/cv", "x-default": "/en/cv" } },
+    openGraph: { title: t.cvPage.title, description: t.meta.cvDescription, url: `/${lang}/cv`, images: [{ url: `/og-${lang}.png`, width: 1200, height: 630, alt: t.meta.ogAlt }] },
+  };
 }
 
 export default async function CvPage({ params }: PageProps<"/[lang]/cv">) {
@@ -25,8 +30,8 @@ export default async function CvPage({ params }: PageProps<"/[lang]/cv">) {
         </Link>
         <p className="text-sm text-dim">{t.note}</p>
         <a
-          href={site.cv}
-          download="Cyril-de-Lajudie-CV.pdf"
+          href={site.cv[lang]}
+          download={`Cyril-de-Lajudie-CV-${lang.toUpperCase()}.pdf`}
           className="ml-auto inline-flex h-10 items-center rounded-full bg-sun px-5 text-[15px] font-medium text-[#0b2230] transition-opacity hover:opacity-90"
         >
           {t.download}
@@ -34,7 +39,7 @@ export default async function CvPage({ params }: PageProps<"/[lang]/cv">) {
       </header>
       <div className="flex-1 overflow-y-auto bg-shallow/40 px-[clamp(16px,4vw,48px)] py-8">
         <div className="mx-auto flex max-w-[860px] flex-col gap-6">
-          {site.cvPages.map((pg, i) => (
+          {site.cvPages[lang].map((pg, i) => (
             <Image
               key={pg.src}
               src={pg.src}

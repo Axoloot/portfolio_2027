@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { about, automations, careerMix, education, impact, lean, projects, roles, site, skills, type L, type Locale, type SkillGroup } from "@/content/data";
@@ -62,12 +63,22 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           <div className="moon right-[-24px] top-[72px] size-[clamp(72px,10vw,140px)] sm:right-[7%]" aria-hidden />
           <Gulls />
           <div className={`${wrap} relative pb-16 pt-[clamp(48px,9vw,112px)]`}>
-            <p className="flex items-center gap-2.5 text-[15px] text-ink-soft">
-              <span className="size-2 rounded-full bg-sun ring-4 ring-sun/25" />
-              {t.status}
-            </p>
+            <div className="flex items-center gap-4">
+              <Image
+                src="/avatar.jpg"
+                alt={t.meta.photoAlt}
+                width={240}
+                height={240}
+                priority
+                className="size-16 shrink-0 rounded-full object-cover ring-2 ring-ink/10"
+              />
+              <p className="flex items-center gap-2.5 text-[15px] text-ink-soft">
+                <span className="size-2 shrink-0 rounded-full bg-sun ring-4 ring-sun/25" />
+                {t.status}
+              </p>
+            </div>
             <h1 className="stretch-125 mt-6 text-[clamp(48px,9.2vw,132px)] font-bold leading-[0.88] tracking-[-0.04em]">
-              Cyril
+              Cyril{" "}
               <br />
               de Lajudie
             </h1>
@@ -197,6 +208,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   <div>
                     <h3 className="stretch-100 text-[clamp(22px,2.2vw,28px)] font-semibold leading-tight tracking-[-0.02em]">
                       {tl(r.company)}
+                      <span className="sr-only">, </span>
                       {tl(r.role) &&
                         (r.href ? (
                           <a href={r.href} className={`${link} ml-3 text-[17px] font-normal tracking-normal text-mist decoration-glow hover:text-glow`}>

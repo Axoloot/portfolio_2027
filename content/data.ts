@@ -6,8 +6,15 @@ export const site = {
   name: "Cyril de Lajudie",
   email: "cyril_de_lajudie@hotmail.fr",
   url: "https://cyrildelajudie.fr",
-  cv: "/cv-fr.pdf",
-  cvPages: [{ src: "/cv/page-1.jpg", width: 1242, height: 1755 }],
+  photo: "/photo.jpg",
+  cv: { fr: "/cv-fr.pdf", en: "/cv-en.pdf" },
+  cvPages: {
+    fr: [{ src: "/cv/page-1.jpg", width: 1242, height: 1755 }],
+    en: [
+      { src: "/cv/en-page-1.jpg", width: 1242, height: 1755 },
+      { src: "/cv/en-page-2.jpg", width: 1242, height: 1755 },
+    ],
+  },
   links: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/cyrildelajudie" },
     { label: "GitHub", href: "https://github.com/Axoloot" },

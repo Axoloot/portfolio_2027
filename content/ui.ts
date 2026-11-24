@@ -2,9 +2,12 @@ import type { Locale } from "./data";
 
 const en = {
   meta: {
-    title: "Cyril de Lajudie, full-stack developer & DevOps engineer: I automate your manual processes",
+    title: "Cyril de Lajudie · Automation & Infrastructure Engineer",
     description:
-      "Paris-based automation & infrastructure engineer, full-stack developer and DevOps engineer. I turn manual processes into tools and host them on your cloud or your own servers. Available for a permanent role, in Paris, elsewhere in France or abroad.",
+      "Full-stack developer and DevOps engineer in Paris. I automate manual processes and host them on your cloud or your servers. Open to a permanent role.",
+    cvDescription: "Résumé of Cyril de Lajudie, automation & infrastructure engineer, full-stack developer and DevOps engineer. PDF in English.",
+    ogAlt: "Cyril de Lajudie, automation & infrastructure engineer. Full-stack developer and DevOps engineer, Paris.",
+    photoAlt: "Portrait of Cyril de Lajudie",
   },
   nav: { automation: "Automation", experience: "What I shipped", projects: "Lab", skills: "Tools",  about: "About", contact: "Contact", skip: "Skip to content", cv: "CV", toDark: "Switch to night", toLight: "Switch to day" },
   status: "Available now for a permanent role · Based in Paris, open to relocation",
@@ -43,7 +46,7 @@ const en = {
     dev: "Mostly build · Dev",
     ops: "Mostly run · DevOps",
     both: "Even split",
-    resume: "See the full résumé (PDF in French)",
+    resume: "See the full résumé (PDF)",
   },
   projects: {
     title: "Lab",
@@ -73,16 +76,19 @@ const en = {
   old: "2024 portfolio",
   cvPage: {
     title: "CV, Cyril de Lajudie",
-    note: "PDF in French",
+    note: "PDF in English",
     download: "Download the PDF",
   },
 };
 
 const fr: typeof en = {
   meta: {
-    title: "Cyril de Lajudie, développeur fullstack & ingénieur DevOps : j’automatise vos process manuels",
+    title: "Cyril de Lajudie · Ingénieur automatisation & infrastructure",
     description:
-      "Ingénieur automatisation & infrastructure à Paris, développeur fullstack et ingénieur DevOps. Je transforme vos process manuels en outils, hébergés sur votre cloud ou sur vos propres serveurs. Disponible pour un CDI, à Paris, ailleurs en France ou à l’étranger.",
+      "Développeur fullstack et ingénieur DevOps à Paris. J’automatise vos process manuels et les héberge sur votre cloud ou vos serveurs. Disponible pour un CDI.",
+    cvDescription: "CV de Cyril de Lajudie, ingénieur automatisation & infrastructure, développeur fullstack et ingénieur DevOps. PDF en français.",
+    ogAlt: "Cyril de Lajudie, ingénieur automatisation & infrastructure. Développeur fullstack et ingénieur DevOps, Paris.",
+    photoAlt: "Portrait de Cyril de Lajudie",
   },
   nav: { automation: "Automatisation", experience: "Ce que j’ai livré", projects: "Labo", skills: "Outils",  about: "À propos", contact: "Contact", skip: "Aller au contenu", cv: "CV", toDark: "Passer en mode nuit", toLight: "Passer en mode jour" },
   status: "Disponible pour un CDI · Basé à Paris, mobile en France et à l’étranger",
