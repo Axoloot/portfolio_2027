@@ -76,11 +76,11 @@ export const roles: Role[] = [
     start: "2025-04", end: "2026-01",
     when: { en: "Apr 2025–Jan 2026", fr: "Avr. 2025–janv. 2026" },
     focus: { dev: 55, ops: 45 },
-    kind: { en: "Hotel services, Staycation-style, 15–20 people", fr: "Services hôteliers façon Staycation, 15 à 20 salariés" },
+    kind: { en: "Hotel services startup, 15–20 people", fr: "Services hôteliers façon Staycation, 15 à 20 salariés" },
     bullets: {
       en: [
         "Time-slot search ran on Algolia. I moved it to Typesense, which cut its cost by ~75%, and automated product listings on Google Shopping (200+ offers).",
-        "Built on a fully serverless, event-driven AWS architecture: Lambda, EventBridge and single-table DynamoDB (DynamoDB Toolbox), with services talking through Kinesis or SNS/SQS. Events are stored and queried in SQL with Athena.",
+        "Worked on a fully serverless, event-driven AWS architecture: Lambda, EventBridge and single-table DynamoDB (DynamoDB Toolbox), with services talking through Kinesis or SNS/SQS. Events are stored and queried in SQL with Athena.",
         "Rebuilt the search page (V2) in Next.js and Tailwind and shipped other front-end changes, on Hono APIs deployed with AWS CDK.",
         "Wired production errors to Slack alerts, opened fix PRs when needed, shipped an email service on Brevo and wrote unit tests in Jest.",
       ],
@@ -117,14 +117,14 @@ export const roles: Role[] = [
       en: [
         "Pitchy rendered its videos on Windows Server. I moved rendering to headless macOS images built with Packer and AppleScript (~40% less generation time), and cut the AWS bill by 22% with right-sizing, autoscaling and on-demand services.",
         "I worked on performance, SRE, architecture and FinOps, in a DevOps team of three. Production ran on self-managed Kubernetes on EC2 with GitLab CI; the After Effects, Cavalry and Filmora render farm ran on an autoscaling EC2 fleet that we set up as a team of two.",
-        "The motion designers stored their renders on SVN, hosted on an old screenless laptop wired to several disks, and lost about a day a week. I found the cause, proposed the fix and moved them, on my own initiative, to Git LFS on our self-hosted GitLab, which also centralised the files. The files are replicated to S3 Glacier buckets as a backup.",
+        "The motion designers stored their renders on SVN, hosted on an old screenless laptop wired to several disks, and lost about a day a week. On my own initiative, I found the cause, proposed the fix and moved the team to Git LFS on our self-hosted GitLab by myself. Their files are now centralised and replicated to S3 Glacier buckets as a backup.",
         "The production database went down. I traced it to a recursive query, then added an ORM for the developers, multi-AZ, multi-cluster and blue-green deploys.",
         "Wrote Python scripts with boto3 for cleanup and production tasks, and migrated Lambdas from Python 2.7 to Python 3.",
       ],
       fr: [
         "Pitchy rendait ses vidéos sur Windows Server. J’ai passé les rendus sur des images macOS headless construites avec Packer et AppleScript (~40 % de temps de génération en moins), et réduit la facture AWS de 22 % par le bon dimensionnement, l’autoscaling et les services à la demande.",
         "J’ai travaillé sur les performances, le SRE, l’architecture et le FinOps, dans une équipe DevOps de trois. Production sur Kubernetes autogéré sur EC2 avec GitLab CI ; la ferme de rendu After Effects, Cavalry et Filmora tournait sur une flotte d’EC2 en autoscaling, mise en place à deux.",
-        "Les motion designers stockaient leurs rendus sur SVN, hébergé sur un vieux laptop sans écran relié à plusieurs disques, et perdaient environ une journée par semaine. J’ai trouvé la cause, proposé la solution et migré seul vers Git LFS sur notre GitLab auto-hébergé, qui centralise aussi les fichiers. Les fichiers sont répliqués sur des buckets S3 Glacier en secours.",
+        "Les motion designers stockaient leurs rendus sur SVN, hébergé sur un vieux laptop sans écran relié à plusieurs disques, et perdaient environ une journée par semaine. De ma propre initiative, j’ai trouvé la cause, proposé la solution et migré seul l’équipe vers Git LFS sur notre GitLab auto-hébergé. Leurs fichiers sont désormais centralisés et répliqués sur des buckets S3 Glacier en secours.",
         "Panne de la base de production : j’ai trouvé la cause, une requête récursive, puis ajouté un ORM pour les développeurs, du multi-AZ, du multi-cluster et des déploiements blue-green.",
         "Scripts Python avec boto3 pour le nettoyage et la production ; migration des Lambdas de Python 2.7 vers Python 3.",
       ],
@@ -140,11 +140,11 @@ export const roles: Role[] = [
     bullets: {
       en: [
         "A luxury house wanted to sell one-to-one over video. I built the live shopping platform and took it from prototype to production, infrastructure included.",
-        "RedPill, the startup studio behind Quidol, ran the project. I designed the UX/UI and ran Docker microservices on GKE, CI/CD and SRE.",
+        "RedPill, the startup studio behind Quidol, led the project. I designed the UX/UI, ran the Docker microservices on GKE and handled CI/CD and SRE.",
       ],
       fr: [
         "Une maison de luxe voulait vendre en tête-à-tête par vidéo. J’ai construit la plateforme de live shopping et je l’ai menée du prototype à la production, infrastructure comprise.",
-        "RedPill, startup studio éditeur de Quidol, portait le projet. J’ai conçu l’UX/UI et opéré les microservices Docker sur GKE, la CI/CD et le SRE.",
+        "RedPill, startup studio éditeur de Quidol, portait le projet. J’ai conçu l’UX/UI, opéré les microservices Docker sur GKE et pris en charge la CI/CD et le SRE.",
       ],
     },
     tags: ["React", "Node.js", "TypeScript", "GKE", "Docker", "Wowza"],
@@ -181,12 +181,12 @@ export const roles: Role[] = [
     kind: { en: "Food group, 120 countries, 9 French factories", fr: "Groupe agroalimentaire, 120 pays, 9 usines en France" },
     bullets: {
       en: [
-        "Bel wanted a paperless factory, where teams read one data source with no re-keying. With the DIP team, I developed on the framework that reads the PLCs: their data, errors and incidents went to SAP with alerts, replacing paper for the factory operators. The platform ran on Kubernetes with Traefik.",
+        "Bel wanted a paperless factory, where every team reads the same data, entered once. With the DIP team, I developed on the framework that reads the PLCs: their data, errors and incidents went to SAP with alerts, replacing paper for the factory operators. The platform ran on Kubernetes with Traefik.",
         "Built a real-time dashboard on the SAP API for headquarters, in React and styled-components.",
         "Shipped the app as a PWA: offline mode, install, changelog and enforced versioning.",
       ],
       fr: [
-        "Bel voulait une usine sans papier, où les équipes lisent une même source de données sans ressaisie. Avec l’équipe DIP, j’ai développé sur le framework qui lit les automates : leurs données, les erreurs et les incidents remontaient vers SAP avec des alertes, à la place du papier pour les opérateurs d’usine. La plateforme tournait sur Kubernetes avec Traefik.",
+        "Bel voulait une usine sans papier, où toutes les équipes lisent les mêmes données, saisies une seule fois. Avec l’équipe DIP, j’ai développé sur le framework qui lit les automates : leurs données, les erreurs et les incidents remontaient vers SAP avec des alertes, à la place du papier pour les opérateurs d’usine. La plateforme tournait sur Kubernetes avec Traefik.",
         "Dashboard temps réel sur l’API SAP pour le siège, en React et styled-components.",
         "Application livrée en PWA : mode hors ligne, installation, journal des versions et versioning imposé.",
       ],
@@ -202,16 +202,18 @@ export const roles: Role[] = [
     kind: { en: "Live quiz app; 450,000+ downloads and 20,000+ games a day in 2019", fr: "Quiz en direct ; 450 000+ téléchargements et 20 000+ parties par jour en 2019" },
     bullets: {
       en: [
-        "Marketing asked developers for a promo card every day (homepage ads for events such as Christmas), 5 to 10 minutes of developer time each. I added a generator to the back office so marketing makes them alone, and wrote the production MongoDB scripts: data repair, fraud detection, statistics.",
+        "Marketing asked developers for a promo card every day (homepage ads for events such as Christmas), 5 to 10 minutes of developer time each. I added a generator to the back office so marketing makes them alone.",
+        "Wrote the production MongoDB scripts: data repair, fraud detection, statistics.",
         "Worked across the React Native app, the Node.js game server and the React back office, on GKE.",
-        "Host-less blind tests: converted mp3 to multi-bitrate HLS with FFmpeg, so music plays within the question’s 10 seconds.",
-        "Incident I caused: a badly scoped script, run against dev, reached production and wiped the Redis cluster, and a show was lost. My scripts now stay scoped to dev, with warnings and safeguards in production.",
+        "For blind tests with no host, I converted mp3 files to multi-bitrate HLS with FFmpeg, so the music starts within the question’s 10 seconds.",
+        "I caused an incident: a badly scoped script, run against dev, reached production and wiped the Redis cluster, so the show could not air. My scripts now stay scoped to dev, with warnings and safeguards in production.",
       ],
       fr: [
-        "Le marketing demandait chaque jour une carte promo aux développeurs (annonces d’événements comme Noël sur la page d’accueil), 5 à 10 minutes de développeur à chaque fois. J’ai ajouté un générateur au back-office pour que le marketing les crée seul, et j’ai écrit les scripts MongoDB de production : réparation de données, détection de fraude, statistiques.",
+        "Le marketing demandait chaque jour une carte promo aux développeurs (annonces d’événements comme Noël sur la page d’accueil), 5 à 10 minutes de développeur à chaque fois. J’ai ajouté un générateur au back-office pour que le marketing les crée seul.",
+        "Scripts MongoDB de production : réparation de données, détection de fraude, statistiques.",
         "Développement sur l’app React Native, le serveur de jeu Node.js et le back-office React, sur GKE.",
         "Blind tests sans animateur : mp3 convertis en HLS multi-bitrate avec FFmpeg, la musique démarre dans les 10 secondes de la question.",
-        "Incident de ma part : un script mal borné, lancé sur la dev, a touché la prod et supprimé le cluster Redis ; l’émission n’a pas pu avoir lieu. Depuis, mes scripts sont bornés à la dev, avec avertissement et protection en prod.",
+        "J’ai causé un incident : un script mal borné, lancé sur la dev, a touché la prod et supprimé le cluster Redis ; l’émission n’a pas pu avoir lieu. Depuis, mes scripts sont bornés à la dev, avec avertissement et protection en prod.",
       ],
     },
     tags: ["React Native", "Redux", "Node.js", "Go", "MongoDB", "Redis", "FFmpeg", "GKE"],
@@ -288,7 +290,7 @@ export const education = [
     title: "PoC Innovation · PoC Services",
     text: {
       en: "Head of Electronics, Treasurer, then Vice-President; set up the PoC Services junior enterprise (2021) after Epitech’s previous one was struck off.",
-      fr: "Responsable électronique, Trésorier, puis Vice-Président ; création de la Junior-Entreprise PoC Services (2021) après la radiation de la précédente JE d’Epitech.",
+      fr: "Responsable électronique, trésorier, puis vice-président ; création de la Junior-Entreprise PoC Services (2021) après la radiation de la précédente JE d’Epitech.",
     },
   },
 ];
@@ -323,11 +325,11 @@ export const projects: Project[] = [
     bullets: {
       en: [
         "I built the web app in 2023. In 2026 I merged the two repos into a monorepo and moved inference into the browser with TensorFlow.js: measurements and X-rays never leave the doctor’s machine, and the server runs no ML.",
-        "Secured API, one-click demo reset every night by Vercel Cron, GitHub Actions CI. Demo project, not a medical device: the live demo uses fictional patients, no account needed.",
+        "I secured the API and set up GitHub Actions CI and a Vercel Cron job that resets the one-click demo every night. It’s a demo project, not a medical device: the live demo uses fictional patients and needs no account.",
       ],
       fr: [
         "J’ai construit l’app web en 2023. En 2026, j’ai regroupé les deux dépôts en monorepo et déplacé l’inférence dans le navigateur avec TensorFlow.js : les mesures et les radios ne quittent plus le poste du médecin, et le serveur ne fait tourner aucun modèle.",
-        "API sécurisée, démo en un clic remise à zéro chaque nuit par Vercel Cron, CI GitHub Actions. Projet de démonstration, pas un dispositif médical : la démo en ligne utilise des patients fictifs, sans compte.",
+        "J’ai sécurisé l’API, mis en place la CI GitHub Actions et un job Vercel Cron qui remet la démo en un clic à zéro chaque nuit. C’est un projet de démonstration, pas un dispositif médical : la démo en ligne utilise des patients fictifs, sans compte.",
       ],
     },
     tags: ["Next.js", "TensorFlow.js", "Keras", "MongoDB", "NextAuth", "Vercel Cron"],
@@ -524,16 +526,16 @@ export const about: { id: string; title: L; text: L }[] = [
     id: "ai",
     title: { en: "How I use AI", fr: "Comment j’utilise l’IA" },
     text: {
-      en: "Every day: Cursor in 2025, Claude Code and multi-agent workflows since 2026. AI speeds up my work; I keep the architecture choices, the review and the production release. I follow daily.dev, Reddit and RSS feeds.",
-      fr: "Au quotidien : Cursor en 2025, Claude Code et des workflows multi-agents depuis 2026. L’IA accélère mon travail ; je garde les choix d’architecture, la relecture et la mise en production. Ma veille : daily.dev, Reddit et flux RSS.",
+      en: "I was sceptical of AI at first. Now I use it every day: Cursor in 2025, Claude Code and multi-agent workflows since 2026. It speeds up my work; I keep the architecture choices, the review and the production release. For my tech watch I follow daily.dev, Reddit and RSS feeds.",
+      fr: "J’étais sceptique au début. Aujourd’hui, j’utilise l’IA tous les jours : Cursor en 2025, Claude Code et des workflows multi-agents depuis 2026. Elle accélère mon travail ; je garde les choix d’architecture, la relecture et la mise en production. Ma veille : daily.dev, Reddit et flux RSS.",
     },
   },
   {
     id: "electronics",
     title: { en: "Electronics", fr: "Électronique" },
     text: {
-      en: "Electronics gives software a concrete, physical side. At PoC Innovation I ran a lab of three networked 3D printers on OctoPrint, monitored with Prometheus and Grafana.",
-      fr: "L’électronique donne au logiciel une couche concrète, physique. À PoC Innovation, j’ai monté un labo de trois imprimantes 3D en réseau sous OctoPrint, supervisées avec Prometheus et Grafana.",
+      en: "I led electronics at PoC Innovation and ran a lab of three networked 3D printers on OctoPrint, monitored with Prometheus and Grafana.",
+      fr: "J’ai été responsable électronique à PoC Innovation et j’y ai monté un labo de trois imprimantes 3D en réseau sous OctoPrint, supervisées avec Prometheus et Grafana.",
     },
   },
   {
