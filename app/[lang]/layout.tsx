@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Archivo } from "next/font/google";
 import { notFound } from "next/navigation";
 import { dictionaries, hasLocale, locales } from "@/content/ui";
-import { site } from "@/content/data";
+import { site, skills, type Locale } from "@/content/data";
 import { ThemeSync } from "@/components/client";
 import "./globals.css";
 
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
     title: t.title,
     description: t.description,
     authors: [{ name: site.name }],
-    alternates: { canonical: `/${lang}`, languages: { en: "/en", fr: "/fr" } },
+    alternates: { canonical: `/${lang}`, languages: { en: "/en", fr: "/fr", "x-default": "/en" } },
     openGraph: {
       type: "profile",
       siteName: site.name,
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
       description: t.description,
       url: `/${lang}`,
       locale: lang === "fr" ? "fr_FR" : "en_GB",
-      images: [{ url: "/og.png", width: 1200, height: 630, alt: site.name }],
+      images: [{ url: `/og-${lang}.png`, width: 1200, height: 630, alt: t.ogAlt }],
     },
     twitter: { card: "summary_large_image" },
   };
@@ -57,19 +57,47 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         {children}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: site.name,
-              jobTitle: "Automation & Infrastructure Engineer",
-              address: { "@type": "PostalAddress", addressLocality: "Paris", addressCountry: "FR" },
-              url: site.url,
-              sameAs: site.links.map((l) => l.href),
-            }).replace(/</g, "\\u003c"),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema(lang)).replace(/</g, "\\u003c") }}
         />
       </body>
     </html>
   );
+}
+
+function personSchema(lang: Locale) {
+  const t = dictionaries[lang];
+  const url = `${site.url}/${lang}`;
+  const person = {
+    "@type": "Person",
+    "@id": `${site.url}/#person`,
+    name: site.name,
+    givenName: "Cyril",
+    familyName: "de Lajudie",
+    jobTitle: lang === "fr" ? "Ingénieur automatisation & infrastructure" : "Automation & Infrastructure Engineer",
+    description: t.meta.description,
+    image: `${site.url}${site.photo}`,
+    email: `mailto:${site.email}`,
+    url: site.url,
+    sameAs: site.links.map((l) => l.href),
+    address: { "@type": "PostalAddress", addressLocality: "Paris", addressCountry: "FR" },
+    alumniOf: [
+      { "@type": "CollegeOrUniversity", name: "EPITECH" },
+      { "@type": "CollegeOrUniversity", name: "Université Laval" },
+    ],
+    knowsLanguage: ["fr", "en"],
+    knowsAbout: [...skills.automate, ...skills.host, ...skills.secure].flatMap((g) => g.lead),
+    hasOccupation: {
+      "@type": "Occupation",
+      name: lang === "fr" ? "Ingénieur DevOps" : "DevOps Engineer",
+      occupationLocation: { "@type": "City", name: "Paris" },
+    },
+  };
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "WebSite", "@id": `${site.url}/#website`, url: site.url, name: site.name, inLanguage: ["en", "fr"] },
+      { "@type": "ProfilePage", "@id": `${url}#page`, url, name: t.meta.title, inLanguage: lang, isPartOf: { "@id": `${site.url}/#website` }, mainEntity: { "@id": `${site.url}/#person` } },
+      person,
+    ],
+  };
 }

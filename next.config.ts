@@ -3,6 +3,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
+  experimental: { globalNotFound: true },
+  async headers() {
+    // The 2024 portfolio stays online but out of search results.
+    return ["/old", "/old/:path*", "/portfolio-2024/:path*"].map((source) => ({
+      source,
+      headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+    }));
+  },
   async rewrites() {
     return {
       beforeFiles: [

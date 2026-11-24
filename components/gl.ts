@@ -51,13 +51,19 @@ export function useGL(start: Start) {
     if (!canvas || !motionOk()) return;
     let stop = () => {};
     let dead = false;
-    import("./three")
-      .then((T) => {
-        if (!dead) stop = start(T, canvas);
-      })
-      .catch(() => {});
+    const load = () =>
+      import("./three")
+        .then((T) => {
+          if (!dead) stop = start(T, canvas);
+        })
+        .catch(() => {});
+    // Load three.js once the page is idle, so it never competes with the first paint.
+    const idle = "requestIdleCallback" in window;
+    const id = idle ? requestIdleCallback(load, { timeout: 2000 }) : window.setTimeout(load, 300);
     return () => {
       dead = true;
+      if (idle) cancelIdleCallback(id);
+      else clearTimeout(id);
       stop();
     };
   }, [start]);
