@@ -9,7 +9,7 @@ import "./globals.css";
 
 const archivo = Archivo({ variable: "--font-archivo", subsets: ["latin", "latin-ext"], axes: ["wdth"] });
 
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme="light"}try{if(matchMedia("(prefers-reduced-motion: no-preference)").matches)document.documentElement.classList.add("count-js")}catch(e){}})()`;
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme="light"}})()`;
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -49,7 +49,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
   return (
-    <html lang={lang} data-scroll-behavior="smooth" className={`${archivo.variable} antialiased`} suppressHydrationWarning>
+    <html lang={lang} className={`${archivo.variable} antialiased`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

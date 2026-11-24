@@ -30,20 +30,11 @@ export function HeaderTone() {
     const h = document.getElementById("top");
     const line = document.getElementById("waterline");
     if (!h || !line) return;
-    let last = scrollY;
     const on = () => {
       const deep = line.getBoundingClientRect().top + line.offsetHeight / 2 < h.offsetHeight;
-      // A jump (page shown again, back/forward scroll restore) switches the tone at once; only real scrolling fades it.
-      const jump = Math.abs(scrollY - last) > 400;
-      last = scrollY;
-      if (h.hasAttribute("data-deep") === deep) return;
-      if (jump) h.style.transition = "none";
       h.toggleAttribute("data-deep", deep);
-      if (jump) requestAnimationFrame(() => requestAnimationFrame(() => h.style.removeProperty("transition")));
     };
-    h.style.transition = "none";
     on();
-    requestAnimationFrame(() => requestAnimationFrame(() => h.style.removeProperty("transition")));
     addEventListener("scroll", on, { passive: true });
     addEventListener("resize", on);
     return () => {
