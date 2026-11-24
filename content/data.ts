@@ -320,26 +320,32 @@ export const projects: Project[] = [
   {
     slug: "hub-health",
     title: { en: "HUB-Health", fr: "HUB-Health" },
-    kind: { en: "AI-assisted diagnosis hub, team of three", fr: "Hub de diagnostic assisté par IA, équipe de trois" },
+    kind: { en: "Medical screening models, team of three", fr: "Modèles de dépistage médical, équipe de trois" },
     when: "2023, revived 2026",
     summary: {
-      en: "A doctor manages their patients and runs four screening models: heart disease, breast cancer, fetal health and pneumonia on chest X-rays. Each prediction is saved to the patient’s record.",
-      fr: "Le médecin gère ses patients et lance quatre modèles de dépistage : cardiopathie, cancer du sein, santé fœtale et pneumonie sur radio thoracique. Chaque prédiction s’enregistre dans le dossier du patient.",
+      en: "Four screening models trained in Python with Keras: heart disease, breast cancer, fetal health and pneumonia on chest X-rays. The playground runs them in your browser and shows each model’s real scores, flaws included.",
+      fr: "Quatre modèles de dépistage entraînés en Python avec Keras : cardiopathie, cancer du sein, santé fœtale et pneumonie sur radio thoracique. Le playground les fait tourner dans votre navigateur et affiche les vrais scores de chaque modèle, défauts compris.",
     },
     bullets: {
       en: [
-        "I built the web app in 2023. In 2026 I merged the two repos into a monorepo and moved inference into the browser with TensorFlow.js: measurements and X-rays never leave the doctor’s machine, and the server runs no ML.",
-        "I secured the API and set up GitHub Actions CI and a Vercel Cron job that resets the one-click demo every night. It’s a demo project, not a medical device: the live demo uses fictional patients and needs no account.",
+        "In 2023 I pair-programmed the four models with Vincent Lemesle and built the doctor app that runs them, a Next.js and MongoDB patient record.",
+        "In 2026 I converted the models to TensorFlow.js and audited them. The fetal model had collapsed to one score for every exam, and the X-ray CNN catches 99.5% of pneumonias but clears only 31% of healthy lungs. The playground shows both.",
+        "I merged the two repos into a monorepo, secured the API, and added GitHub Actions CI and a nightly Vercel Cron reset for the one-click demo.",
       ],
       fr: [
-        "J’ai construit l’app web en 2023. En 2026, j’ai regroupé les deux dépôts en monorepo et déplacé l’inférence dans le navigateur avec TensorFlow.js : les mesures et les radios ne quittent plus le poste du médecin, et le serveur ne fait tourner aucun modèle.",
-        "J’ai sécurisé l’API, mis en place la CI GitHub Actions et un job Vercel Cron qui remet la démo en un clic à zéro chaque nuit. C’est un projet de démonstration, pas un dispositif médical : la démo en ligne utilise des patients fictifs, sans compte.",
+        "En 2023, j’ai codé les quatre modèles en binôme avec Vincent Lemesle et construit l’app médecin qui les utilise, un dossier patient en Next.js et MongoDB.",
+        "En 2026, j’ai converti les modèles en TensorFlow.js et je les ai audités. Le modèle fœtal s’était effondré sur un score unique pour chaque examen, et le CNN radio détecte 99,5 % des pneumonies mais n’innocente que 31 % des poumons sains. Le playground montre les deux.",
+        "J’ai regroupé les deux dépôts en monorepo, sécurisé l’API, et ajouté la CI GitHub Actions et une remise à zéro nocturne de la démo en un clic avec Vercel Cron.",
       ],
     },
-    tags: ["Next.js", "TensorFlow.js", "Keras", "MongoDB", "NextAuth", "Vercel Cron"],
-    media: [],
+    tags: ["Python", "Keras", "TensorFlow.js", "Next.js", "MongoDB", "Vercel Cron"],
+    media: [
+      { type: "image", src: "/projects/hub-health/playground-pneumonia.jpg", alt: { en: "HUB-Health playground: the pneumonia model flags a chest X-ray and shows the 48 × 48 image it actually sees, with its test-set scores", fr: "Playground HUB-Health : le modèle pneumonie signale une radio thoracique et montre l’image 48 × 48 qu’il reçoit réellement, avec ses scores sur le jeu de test" }, width: 1920, height: 1200 },
+      { type: "image", src: "/projects/hub-health/playground-heart.jpg", alt: { en: "HUB-Health playground: the heart disease model scores a real patient from the dataset as you edit the 13 measurements", fr: "Playground HUB-Health : le modèle cardiaque note un vrai patient du jeu de données pendant qu’on modifie les 13 mesures" }, width: 1920, height: 1200 },
+    ],
     links: [
-      { label: { en: "Live demo", fr: "Démo en ligne" }, href: "https://hub-health-ai-diagnosis.vercel.app/" },
+      { label: { en: "Model playground", fr: "Playground des modèles" }, href: "https://hub-health-ai-diagnosis.vercel.app/playground" },
+      { label: { en: "Doctor app demo", fr: "Démo de l’app médecin" }, href: "https://hub-health-ai-diagnosis.vercel.app/" },
       { label: { en: "Source on GitHub", fr: "Code sur GitHub" }, href: "https://github.com/Axoloot/hub-health-ai-diagnosis" },
     ],
   },
