@@ -15,5 +15,5 @@ export function proxy(request: NextRequest) {
   return NextResponse.rewrite(url);
 }
 
-// "/" plus any first segment that is not a locale, the old portfolio, Next internals or a file.
-export const config = { matcher: ["/", "/((?!en(?:/|$)|fr(?:/|$)|old|portfolio-2024|_next|[^/]*\\.[^/]+$).*)"] };
+// "/" plus any path that is not a locale, the old portfolio, Next internals or a file (any depth).
+export const config = { matcher: ["/", "/((?!en(?:/|$)|fr(?:/|$)|old|portfolio-2024|_next)(?!.*\\.[^/]+$).*)"] };

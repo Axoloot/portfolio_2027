@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { about, automations, careerMix, education, impact, lean, projects, roles, site, skills, type L, type Locale, type SkillGroup } from "@/content/data";
 import { dictionaries, hasLocale } from "@/content/ui";
 import { CopyEmail, FocusFilter, HeaderTone, RevealObserver, ThemeToggle } from "@/components/client";
+import { CommandMenu, CountUp, DepthGauge, MobileBar, MobileMenu, SectionNav, ToolRow, type Section } from "@/components/nav";
 import { LeanLabel, Mark, ProjectMedia, SplitBar, Swell, Tag } from "@/components/ui";
 import { Sea } from "@/components/sea";
 import { Gulls } from "@/components/gulls";
@@ -20,6 +21,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
   const mix = careerMix();
   const other: Locale = lang === "en" ? "fr" : "en";
   const tl = (x: L) => x[lang];
+  const sections: Section[] = (["automation", "experience", "projects", "skills", "about", "contact"] as const).map((id) => ({ id, label: t.nav[id] }));
+  const cvHref = `/${lang}/cv`;
+  const uses = toolIndex(lang);
 
   return (
     <>
@@ -37,21 +41,17 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <Mark />
             {site.name}
           </a>
-          <nav aria-label="Sections" className="ml-auto hidden gap-7 whitespace-nowrap text-[15px] lg:flex">
-            {(["automation", "experience", "skills", "about", "contact"] as const).map((k) => (
-              <a key={k} href={`#${k}`} className="opacity-65 transition-opacity hover:opacity-100">
-                {t.nav[k]}
-              </a>
-            ))}
-          </nav>
-          <div className="ml-auto flex items-center gap-4 whitespace-nowrap text-[15px] lg:ml-6">
+          <SectionNav sections={sections} label="Sections" />
+          <div className="ml-auto flex items-center gap-3 whitespace-nowrap text-[15px] sm:gap-4 lg:ml-6">
+            <CommandMenu sections={sections} t={t.command} other={other} cvHref={cvHref} email={site.email} links={site.links} />
             <ThemeToggle labels={{ toDark: t.nav.toDark, toLight: t.nav.toLight }} />
             <Link href={`/${other}`} hrefLang={other} lang={other} className="opacity-65 transition-opacity hover:opacity-100">
               {other === "fr" ? "Français" : "English"}
             </Link>
-            <Link href={`/${lang}/cv`} className="rounded-full border border-current/25 px-3.5 py-1.5 transition-colors hover:border-current">
+            <Link href={cvHref} className="hidden rounded-full border border-current/25 px-3.5 py-1.5 transition-colors hover:border-current sm:inline-block">
               {t.nav.cv}
             </Link>
+            <MobileMenu sections={sections} labels={{ menu: t.nav.menu, close: t.nav.close, cv: t.hero.cv, email: t.hero.email }} cvHref={cvHref} email={site.email} />
           </div>
         </div>
       </header>
@@ -108,7 +108,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 <ul className="mt-3">
                   {impact.map((m) => (
                     <li key={m.delta} className="grid grid-cols-[96px_1fr] items-baseline gap-4 border-t border-rule-ink py-4">
-                      <span className="stretch-112 text-[34px] font-semibold leading-none tracking-[-0.03em] tabular-nums">{m.delta}</span>
+                      <span className="stretch-112 text-[34px] font-semibold leading-none tracking-[-0.03em] tabular-nums">
+                        <CountUp value={m.delta} />
+                      </span>
                       <span>
                         <span className="block font-medium">{tl(m.name)}</span>
                         <span className="block text-[15px] leading-snug text-ink-soft">{tl(m.how)}</span>
@@ -157,7 +159,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <p className="mt-4 max-w-[34em] text-mist">{t.automation.intro}</p>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
               {automations.map((a) => (
-                <article key={a.where.en} className="rv flex flex-col rounded-lg border border-rule bg-deep/40 p-6">
+                <article key={a.where.en} className="rv flex flex-col rounded-lg border border-rule bg-deep/40 p-6 transition duration-300 hover:-translate-y-1 hover:border-rule-2 hover:bg-deep/60 hover:shadow-[0_18px_40px_rgb(0_0_0/0.25)] motion-reduce:hover:translate-y-0">
                   <h3 className="font-semibold">{tl(a.where)}</h3>
                   <dl className="mt-5 space-y-4 text-[15px] leading-snug">
                     <div>
@@ -192,8 +194,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               {roles.map((r, i) => (
                 <li
                   key={r.start + i}
+                  id={roleId(r.company.en)}
                   data-lean={lean(r.focus) ?? "none"}
-                  className="grid gap-3 border-b border-rule py-9 transition-opacity duration-300 md:grid-cols-[220px_1fr] md:gap-10"
+                  className="grid scroll-mt-24 gap-3 border-b border-rule py-9 transition-opacity duration-300 md:grid-cols-[220px_1fr] md:gap-10"
                 >
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-2 md:flex-col md:items-start">
                     <span className="text-[15px] tabular-nums text-mist">{tl(r.when)}</span>
@@ -220,12 +223,28 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                     </h3>
                     {r.bullets && (
                       <ul className="mt-4 max-w-[44em] space-y-2 text-foam/85">
-                        {r.bullets[lang].map((b) => (
-                          <li key={b} className={dash}>
-                            {b}
-                          </li>
-                        ))}
+                        <li className={dash}>{r.bullets[lang][0]}</li>
                       </ul>
+                    )}
+                    {r.bullets && r.bullets[lang].length > 1 && (
+                      <details className="group/role max-w-[44em]" open={r.start >= "2025"}>
+                        <summary className="mt-3 inline-flex cursor-pointer list-none items-center gap-2 text-[15px] text-glow transition-colors hover:text-foam [&::-webkit-details-marker]:hidden">
+                          <span className="group-open/role:hidden">
+                            {t.experience.more} (+{r.bullets[lang].length - 1})
+                          </span>
+                          <span className="hidden group-open/role:inline">{t.experience.less}</span>
+                          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden className="transition-transform group-open/role:rotate-180">
+                            <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                          </svg>
+                        </summary>
+                        <ul className="mt-3 space-y-2 text-foam/85">
+                          {r.bullets[lang].slice(1).map((b) => (
+                            <li key={b} className={dash}>
+                              {b}
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
                     )}
                     {r.tags && (
                       <div className="mt-5 flex flex-wrap gap-1.5">
@@ -260,8 +279,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <p className="mt-4 max-w-[34em] text-mist">{t.projects.intro}</p>
             <div className="mt-14 space-y-16">
               {projects.map((p, i) => (
-                <article key={p.slug} id={`project-${p.slug}`} className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
-                  <div className={`aspect-[16/10] overflow-hidden rounded-lg ${i % 2 ? "lg:order-2" : ""}`}>
+                <article key={p.slug} id={`project-${p.slug}`} className="group grid scroll-mt-24 items-center gap-8 lg:grid-cols-2 lg:gap-14">
+                  <div className={`aspect-[16/10] overflow-hidden rounded-lg ring-1 ring-rule transition duration-500 group-hover:ring-rule-2 [&_img]:transition-transform [&_img]:duration-700 group-hover:[&_img]:scale-[1.03] ${i % 2 ? "lg:order-2" : ""}`}>
                     <ProjectMedia p={p} lang={lang} empty={t.projects.noMedia} />
                   </div>
                   <div>
@@ -305,9 +324,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <h2 className="stretch-88 text-[clamp(40px,6vw,76px)] font-bold leading-[0.95] tracking-[-0.035em]">{t.skills.title}</h2>
             <p className="mt-4 max-w-[34em] text-mist">{t.skills.intro}</p>
             <div className="mt-14 grid gap-14 lg:grid-cols-3 lg:gap-12">
-              <SkillColumn title={t.skills.automate} sub={t.skills.automateSub} tone="sun" groups={skills.automate} lang={lang} />
-              <SkillColumn title={t.skills.host} sub={t.skills.hostSub} tone="glow" groups={skills.host} lang={lang} />
-              <SkillColumn title={t.skills.secure} sub={t.skills.secureSub} tone="foam" groups={skills.secure} lang={lang} />
+              <SkillColumn title={t.skills.automate} sub={t.skills.automateSub} tone="sun" groups={skills.automate} lang={lang} uses={uses} usedAt={t.skills.usedAt} />
+              <SkillColumn title={t.skills.host} sub={t.skills.hostSub} tone="glow" groups={skills.host} lang={lang} uses={uses} usedAt={t.skills.usedAt} />
+              <SkillColumn title={t.skills.secure} sub={t.skills.secureSub} tone="foam" groups={skills.secure} lang={lang} uses={uses} usedAt={t.skills.usedAt} />
             </div>
             <p className="mt-10 text-foam/85">
               <span className="font-semibold text-foam">{t.skills.spoken}</span> · {t.skills.spokenValue}
@@ -362,13 +381,17 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </div>
       </main>
 
+      <DepthGauge sections={sections.slice(0, 5)} label={t.nav.depth} />
+      <MobileBar labels={{ email: t.hero.email, cv: t.hero.cv }} cvHref={cvHref} email={site.email} />
       <RevealObserver />
       <HeaderTone />
     </>
   );
 }
 
-function SkillColumn({ title, sub, tone, groups, lang }: { title: string; sub: string; tone: "sun" | "glow" | "foam"; groups: SkillGroup[]; lang: Locale }) {
+type Uses = (name: string) => { label: string; href: string }[];
+
+function SkillColumn({ title, sub, tone, groups, lang, uses, usedAt }: { title: string; sub: string; tone: "sun" | "glow" | "foam"; groups: SkillGroup[]; lang: Locale; uses: Uses; usedAt: string }) {
   const dot = { sun: "bg-sun", glow: "bg-glow", foam: "bg-foam" }[tone];
   const lead = { sun: "text-sun", glow: "text-glow", foam: "text-foam" }[tone];
   return (
@@ -381,29 +404,39 @@ function SkillColumn({ title, sub, tone, groups, lang }: { title: string; sub: s
         <p className="mt-1 text-[15px] text-mist">{sub}</p>
       </div>
       {groups.map((g) => (
-        <SkillRow key={g.title.en} g={g} lang={lang} lead={lead} />
+        <SkillRow key={g.title.en} g={g} lang={lang} lead={lead} uses={uses} usedAt={usedAt} />
       ))}
     </div>
   );
 }
 
-function SkillRow({ g, lang, lead }: { g: SkillGroup; lang: Locale; lead: string }) {
+function SkillRow({ g, lang, lead, uses, usedAt }: { g: SkillGroup; lang: Locale; lead: string; uses: Uses; usedAt: string }) {
   return (
     <div className="border-b border-rule py-6">
       <h4 className="font-semibold">{g.title[lang]}</h4>
-      <p className="mt-2 leading-relaxed">
-        {g.lead.map((s) => (
-          <span key={s} className={`mr-4 inline-block ${lead}`}>
-            {s}
-          </span>
-        ))}
-        {g.other.map((s) => (
-          <span key={s} className="mr-4 inline-block text-mist">
-            {s}
-          </span>
-        ))}
-      </p>
+      <ToolRow lead={g.lead} other={g.other} tone={lead} uses={Object.fromEntries([...g.lead, ...g.other].map((n) => [n, uses(n)]))} usedAt={usedAt} />
       <p className="mt-2 text-[15px] leading-snug text-dim">{g.proof[lang]}</p>
     </div>
   );
+}
+
+const roleId = (company: string) => `role-${company.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`;
+
+// Skill names that appear under another name in role and project tags.
+const aliases: Record<string, string[]> = {
+  "AWS Lambda": ["Lambda"],
+  Kubernetes: ["Kubernetes", "GKE"],
+  GCP: ["GKE"],
+  "Vonage (WebRTC)": ["Vonage"],
+};
+
+function toolIndex(lang: Locale) {
+  const entries = [
+    ...roles.filter((r) => r.tags?.length).map((r) => ({ label: r.company[lang], href: `#${roleId(r.company.en)}`, tags: r.tags!.map((x) => x.toLowerCase()) })),
+    ...projects.map((p) => ({ label: p.title[lang], href: `#project-${p.slug}`, tags: p.tags.map((x) => x.toLowerCase()) })),
+  ];
+  return (name: string) => {
+    const keys = (aliases[name] ?? [name]).map((x) => x.toLowerCase());
+    return entries.filter((e) => keys.some((k) => e.tags.includes(k))).map(({ label, href }) => ({ label, href }));
+  };
 }
