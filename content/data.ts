@@ -464,7 +464,8 @@ export const impact = [
   { delta: "−22%", name: { en: "on Pitchy’s AWS bill", fr: "sur la facture AWS de Pitchy" }, how: { en: "Autoscaling, right-sizing and on-demand services.", fr: "Autoscaling, bon dimensionnement et services à la demande." } },
 ];
 
-export type Automation = { where: L; before: L; after: L; runs: L; gain?: L };
+// cost / result: short chips on the before/after flow; facts only, taken from the before and after texts.
+export type Automation = { where: L; before: L; after: L; runs: L; cost: L; result: L; gain?: L };
 
 export const automations: Automation[] = [
   {
@@ -478,6 +479,8 @@ export const automations: Automation[] = [
       fr: "La plateforme enregistre le replay via les API Vonage et Wowza, avec le chat, les sondages et les clics produits.",
     },
     runs: { en: "Microservices on GKE, deployed with Helm", fr: "Microservices sur GKE, déployés avec Helm" },
+    cost: { en: "5–10 min per show, by hand", fr: "5 à 10 min par émission, à la main" },
+    result: { en: "Recorded by the platform", fr: "Enregistré par la plateforme" },
   },
   {
     where: { en: "Quidol · marketing team", fr: "Quidol · équipe marketing" },
@@ -490,6 +493,8 @@ export const automations: Automation[] = [
       fr: "Le marketing crée les cartes dans le back-office, sans développeur.",
     },
     runs: { en: "React back office on GKE", fr: "Back-office React sur GKE" },
+    cost: { en: "5–10 min of a developer, every day", fr: "5 à 10 min de développeur, chaque jour" },
+    result: { en: "No developer needed", fr: "Sans développeur" },
   },
   {
     where: { en: "Pitchy · motion design team", fr: "Pitchy · équipe motion design" },
@@ -502,6 +507,8 @@ export const automations: Automation[] = [
       fr: "Leurs fichiers sont dans Git LFS, sur le GitLab auto-hébergé de l’entreprise, et répliqués sur des buckets S3 Glacier en secours.",
     },
     runs: { en: "Self-hosted GitLab, on the company’s own infrastructure", fr: "GitLab auto-hébergé, sur l’infrastructure de l’entreprise" },
+    cost: { en: "About a day lost every week", fr: "Environ une journée perdue par semaine" },
+    result: { en: "Centralised and backed up", fr: "Centralisé et sauvegardé" },
   },
   {
     where: { en: "Bel Group · paperless factory", fr: "Groupe Bel · usine sans papier" },
@@ -514,6 +521,8 @@ export const automations: Automation[] = [
       fr: "Notre équipe DIP a relayé les données des automates, les erreurs et les incidents vers SAP, avec des alertes. Tout le monde lit la même source en temps réel.",
     },
     runs: { en: "Bel’s DIP platform on Kubernetes with Traefik", fr: "Plateforme DIP de Bel sur Kubernetes avec Traefik" },
+    cost: { en: "Tracked on paper", fr: "Suivi sur papier" },
+    result: { en: "Live in SAP, with alerts", fr: "En temps réel dans SAP, avec alertes" },
   },
 ];
 

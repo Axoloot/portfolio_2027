@@ -5,6 +5,7 @@ import { about, automations, careerMix, education, impact, lean, projects, roles
 import { dictionaries, hasLocale } from "@/content/ui";
 import { CopyEmail, FocusFilter, HeaderTone, RevealObserver, ThemeToggle } from "@/components/client";
 import { CommandMenu, CountUp, DepthGauge, MobileBar, MobileMenu, SectionNav, ToolRow, type Section } from "@/components/nav";
+import { SiteStatus } from "@/components/ops";
 import { LeanLabel, Mark, ProjectMedia, SplitBar, Swell, Tag } from "@/components/ui";
 import { Sea } from "@/components/sea";
 import { Gulls } from "@/components/gulls";
@@ -159,19 +160,45 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <p className="mt-4 max-w-[34em] text-mist">{t.automation.intro}</p>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
               {automations.map((a) => (
-                <article key={a.where.en} className="rv flex flex-col rounded-lg border border-rule bg-deep/40 p-6 transition duration-300 hover:-translate-y-1 hover:border-rule-2 hover:bg-deep/60 hover:shadow-[0_18px_40px_rgb(0_0_0/0.25)] motion-reduce:hover:translate-y-0">
+                <article key={a.where.en} className="rv group flex flex-col rounded-lg border border-rule bg-deep/40 p-6 transition duration-300 hover:-translate-y-1 hover:border-rule-2 hover:bg-deep/60 hover:shadow-[0_18px_40px_rgb(0_0_0/0.25)] motion-reduce:hover:translate-y-0">
                   <h3 className="font-semibold">{tl(a.where)}</h3>
-                  <dl className="mt-5 space-y-4 text-[15px] leading-snug">
-                    <div>
-                      <dt className="text-sm text-dim">{t.automation.before}</dt>
-                      <dd className="mt-1 text-mist">{tl(a.before)}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-sm text-sun">{t.automation.after}</dt>
-                      <dd className="mt-1 text-foam">{tl(a.after)}</dd>
-                    </div>
-                    {a.gain && <dd className="stretch-112 text-[24px] font-semibold tracking-[-0.02em] text-sun">{tl(a.gain)}</dd>}
-                  </dl>
+                  <ol className="mt-5 text-[15px] leading-snug">
+                    <li className="rounded-md border border-rule bg-trench/30 p-4">
+                      <p className="flex flex-wrap items-center justify-between gap-2">
+                        <span className="flex items-center gap-2 text-sm text-dim">
+                          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden>
+                            <circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                            <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                          </svg>
+                          {t.automation.before}
+                        </span>
+                        <span className="rounded-full bg-rule px-2.5 py-1 text-[13px] leading-none text-mist">{tl(a.cost)}</span>
+                      </p>
+                      <p className="mt-2 text-mist">{tl(a.before)}</p>
+                    </li>
+                    <li aria-hidden className="flow relative mx-auto h-9 w-px">
+                      <span className="flow-dot" />
+                    </li>
+                    <li className="rounded-md border border-sun/40 bg-sun/[0.06] p-4">
+                      <p className="flex flex-wrap items-center justify-between gap-2">
+                        <span className="flex items-center gap-2 text-sm text-sun">
+                          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden className="gear">
+                            <path
+                              d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm8.4 4.6-.1-2.2 2-1.6-2-3.4-2.4.8a8 8 0 0 0-1.9-1.1L15.5 3h-4l-.5 2.6c-.7.3-1.3.6-1.9 1.1l-2.4-.8-2 3.4 2 1.6a8 8 0 0 0 0 2.2l-2 1.6 2 3.4 2.4-.8c.6.5 1.2.8 1.9 1.1l.5 2.6h4l.5-2.6c.7-.3 1.3-.6 1.9-1.1l2.4.8 2-3.4-2-1.6Z"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.6"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                          {t.automation.after}
+                        </span>
+                        <span className="rounded-full bg-sun/15 px-2.5 py-1 text-[13px] leading-none text-sun">{tl(a.result)}</span>
+                      </p>
+                      <p className="mt-2 text-foam">{tl(a.after)}</p>
+                    </li>
+                    {a.gain && <li className="stretch-112 mt-4 text-[24px] font-semibold tracking-[-0.02em] text-sun">{tl(a.gain)}</li>}
+                  </ol>
                   <p className="mt-auto pt-6 text-sm text-dim">
                     {t.automation.runs}: <span className="text-mist">{tl(a.runs)}</span>
                   </p>
@@ -368,14 +395,19 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 </a>
               ))}
             </p>
-            <footer className="mt-28 flex flex-col justify-between gap-3 border-t border-rule pt-6 text-sm text-dim sm:flex-row">
-              <span className="flex items-center gap-2.5">
-                <Mark size={16} /> © 2026 {site.name}
-              </span>
-              <span className="flex gap-6">
-                <a href="/old" className={`${link} decoration-rule-2 hover:decoration-foam`}>{t.old}</a>
-                <span>{t.footer}</span>
-              </span>
+            <footer className="mt-28 border-t border-rule pt-6 text-sm text-dim">
+              <div className="flex flex-col justify-between gap-3 sm:flex-row">
+                <span className="flex items-center gap-2.5">
+                  <Mark size={16} /> © 2026 {site.name}
+                </span>
+                <span className="flex gap-6">
+                  <a href="/old" className={`${link} decoration-rule-2 hover:decoration-foam`}>{t.old}</a>
+                  <span>{t.footer}</span>
+                </span>
+              </div>
+              <div className="mt-4">
+                <SiteStatus lang={lang} t={t.ops} repo="https://github.com/Axoloot/portfolio_2027" />
+              </div>
             </footer>
           </section>
         </div>

@@ -88,6 +88,17 @@ const en = {
     hint: "Navigate with ↑ ↓, Enter to run, Esc to close",
   },
   footer: "Built with Next.js, hosted on Vercel.",
+  ops: {
+    ok: "All systems operational",
+    deployed: "deployed",
+    how: "How this site runs",
+    steps: [
+      ["git push", "Every change goes through a pull request on GitHub."],
+      ["Checks", "Vercel builds each pull request: TypeScript and the Next.js build must pass, and I review a preview URL."],
+      ["Build", "Pages are pre-rendered in French and English. The sitemap, llms.txt and share images come from the same content file as the page."],
+      ["Edge", "Vercel serves the pages from its CDN. The 3D sea loads once the page is idle, and phones get a lighter scene."],
+    ] as [string, string][],
+  },
   old: "2024 portfolio",
   cvPage: {
     title: "CV, Cyril de Lajudie",
@@ -184,6 +195,17 @@ const fr: typeof en = {
     hint: "Naviguez avec ↑ ↓, Entrée pour lancer, Échap pour fermer",
   },
   footer: "Construit avec Next.js, hébergé sur Vercel.",
+  ops: {
+    ok: "Tous les systèmes sont opérationnels",
+    deployed: "déployé",
+    how: "Comment tourne ce site",
+    steps: [
+      ["git push", "Chaque changement passe par une pull request sur GitHub."],
+      ["Contrôles", "Vercel construit chaque pull request : TypeScript et le build Next.js doivent passer, et je relis une URL de prévisualisation."],
+      ["Build", "Les pages sont pré-générées en français et en anglais. Le sitemap, le llms.txt et les images de partage viennent du même fichier de contenu que la page."],
+      ["Edge", "Vercel sert les pages depuis son CDN. La mer en 3D se charge quand la page est au repos, et les téléphones ont une scène plus légère."],
+    ],
+  },
   old: "Portfolio 2024",
   cvPage: {
     title: "CV, Cyril de Lajudie",

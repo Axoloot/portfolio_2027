@@ -197,3 +197,45 @@ body {
   .rise, .sink { transition: none; transform: none; }
   .sun, .moon, .stars { transition: none; }
 }
+
+/* Before → after flow on the automation cards: a dot runs down the connector, the gear turns on hover. */
+.flow {
+  background: linear-gradient(to bottom, var(--color-rule-2, rgb(255 255 255 / 0.2)), var(--color-sun));
+}
+.flow-dot {
+  position: absolute;
+  left: -3px;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: var(--color-sun);
+  box-shadow: 0 0 10px var(--color-sun);
+  animation: flow-run 1.8s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+@keyframes flow-run {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(29px); opacity: 0; }
+}
+.group:hover .gear { animation: gear-turn 2.4s linear infinite; }
+@keyframes gear-turn { to { transform: rotate(360deg); } }
+.gear { transform-origin: 50% 50%; }
+@media (prefers-reduced-motion: reduce) {
+  .flow-dot, .group:hover .gear { animation: none; }
+  .flow-dot { top: 50%; opacity: 1; }
+}
+
+/* Page transitions (home ↔ CV, FR ↔ EN): a short crossfade. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 260ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

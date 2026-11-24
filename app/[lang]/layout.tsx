@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { ViewTransition } from "react";
 import { Archivo } from "next/font/google";
 import { notFound } from "next/navigation";
 import { dictionaries, hasLocale, locales } from "@/content/ui";
@@ -54,7 +55,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
       </head>
       <body className="min-h-screen overflow-x-hidden font-sans text-[17px] leading-relaxed">
         <ThemeSync lang={lang} />
-        {children}
+        <ViewTransition>{children}</ViewTransition>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema(lang)).replace(/</g, "\\u003c") }}
