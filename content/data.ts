@@ -117,14 +117,14 @@ export const roles: Role[] = [
       en: [
         "Pitchy rendered its videos on Windows Server. I moved rendering to headless macOS images built with Packer and AppleScript (~40% less generation time), and cut the AWS bill by 22% with right-sizing, autoscaling and on-demand services.",
         "I worked on performance, SRE, architecture and FinOps, in a DevOps team of three. Production ran on self-managed Kubernetes on EC2 with GitLab CI; the After Effects, Cavalry and Filmora render farm ran on an autoscaling EC2 fleet that we set up as a team of two.",
-        "The motion designers rendered through an SVN “server”: a screenless laptop wired to several disks, and they lost about a day a week to slow renders. I found the cause, proposed the fix and moved them, on my own initiative, to Git LFS on our self-hosted GitLab, which also centralised the files.",
+        "The motion designers stored their renders on SVN, hosted on an old screenless laptop wired to several disks, and lost about a day a week. I found the cause, proposed the fix and moved them, on my own initiative, to Git LFS on our self-hosted GitLab, which also centralised the files. The files are replicated to S3 Glacier buckets as a backup.",
         "The production database went down. I traced it to a recursive query, then added an ORM for the developers, multi-AZ, multi-cluster and blue-green deploys.",
         "Wrote Python scripts with boto3 for cleanup and production tasks, and migrated Lambdas from Python 2.7 to Python 3.",
       ],
       fr: [
         "Pitchy rendait ses vidéos sur Windows Server. J’ai passé les rendus sur des images macOS headless construites avec Packer et AppleScript (~40 % de temps de génération en moins), et réduit la facture AWS de 22 % par le bon dimensionnement, l’autoscaling et les services à la demande.",
         "J’ai travaillé sur les performances, le SRE, l’architecture et le FinOps, dans une équipe DevOps de trois. Production sur Kubernetes autogéré sur EC2 avec GitLab CI ; la ferme de rendu After Effects, Cavalry et Filmora tournait sur une flotte d’EC2 en autoscaling, mise en place à deux.",
-        "Les motion designers rendaient via un « serveur » SVN : un laptop sans écran relié à plusieurs disques, et perdaient au moins une journée par semaine. J’ai trouvé la cause, proposé la solution et migré seul vers Git LFS sur notre GitLab auto-hébergé, qui centralise aussi les fichiers.",
+        "Les motion designers stockaient leurs rendus sur SVN, hébergé sur un vieux laptop sans écran relié à plusieurs disques, et perdaient environ une journée par semaine. J’ai trouvé la cause, proposé la solution et migré seul vers Git LFS sur notre GitLab auto-hébergé, qui centralise aussi les fichiers. Les fichiers sont répliqués sur des buckets S3 Glacier en secours.",
         "Panne de la base de production : j’ai trouvé la cause, une requête récursive, puis ajouté un ORM pour les développeurs, du multi-AZ, du multi-cluster et des déploiements blue-green.",
         "Scripts Python avec boto3 pour le nettoyage et la production ; migration des Lambdas de Python 2.7 vers Python 3.",
       ],
@@ -488,12 +488,12 @@ export const automations: Automation[] = [
   {
     where: { en: "Pitchy · motion design team", fr: "Pitchy · équipe motion design" },
     before: {
-      en: "Renders went through an SVN “server”, a screenless laptop wired to several disks. Designers lost about a day a week.",
-      fr: "Les rendus passaient par un « serveur » SVN, un laptop sans écran relié à plusieurs disques. Les designers perdaient environ une journée par semaine.",
+      en: "The designers stored their renders on SVN, hosted on an old screenless laptop wired to several disks. They lost about a day a week.",
+      fr: "Les designers stockaient leurs rendus sur SVN, hébergé sur un vieux laptop sans écran relié à plusieurs disques. Ils perdaient environ une journée par semaine.",
     },
     after: {
-      en: "Their files live in Git LFS on the company’s self-hosted GitLab.",
-      fr: "Leurs fichiers sont dans Git LFS, sur le GitLab auto-hébergé de l’entreprise.",
+      en: "Their files live in Git LFS on the company’s self-hosted GitLab, replicated to S3 Glacier buckets as a backup.",
+      fr: "Leurs fichiers sont dans Git LFS, sur le GitLab auto-hébergé de l’entreprise, et répliqués sur des buckets S3 Glacier en secours.",
     },
     runs: { en: "Self-hosted GitLab, on the company’s own infrastructure", fr: "GitLab auto-hébergé, sur l’infrastructure de l’entreprise" },
   },
