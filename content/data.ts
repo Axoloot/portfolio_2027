@@ -10,10 +10,7 @@ export const site = {
   cv: { fr: "/cv-fr.pdf", en: "/cv-en.pdf" },
   cvPages: {
     fr: [{ src: "/cv/page-1.jpg", width: 1242, height: 1755 }],
-    en: [
-      { src: "/cv/en-page-1.jpg", width: 1242, height: 1755 },
-      { src: "/cv/en-page-2.jpg", width: 1242, height: 1755 },
-    ],
+    en: [{ src: "/cv/en-page-1.jpg", width: 1242, height: 1755 }],
   },
   links: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/cyrildelajudie" },
