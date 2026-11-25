@@ -236,3 +236,7 @@ body {
     animation: none !important;
   }
 }
+
+/* 404: show only the visitor's language once the boot script has picked it. */
+html[data-l="en"] [data-only="fr"],
+html[data-l="fr"] [data-only="en"] { display: none; }
