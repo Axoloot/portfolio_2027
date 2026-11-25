@@ -465,9 +465,9 @@ export const skills: { automate: SkillGroup[]; host: SkillGroup[]; secure: Skill
 };
 
 export const impact = [
-  { delta: "−75%", name: { en: "search costs at Sézame", fr: "de coûts de recherche chez Sézame" }, how: { en: "I moved product search from Algolia to Typesense.", fr: "J’ai migré la recherche d’Algolia vers Typesense." } },
-  { delta: "−40%", name: { en: "video generation time at Pitchy", fr: "de temps de génération vidéo chez Pitchy" }, how: { en: "I moved rendering from Windows Server to headless macOS images built with Packer.", fr: "J’ai passé le rendu de Windows Server à des images macOS headless construites avec Packer." } },
-  { delta: "−22%", name: { en: "on Pitchy’s AWS bill", fr: "sur la facture AWS de Pitchy" }, how: { en: "Autoscaling, right-sizing and on-demand services.", fr: "Autoscaling, bon dimensionnement et services à la demande." } },
+  { delta: "−75%", role: "Sézame", name: { en: "search costs at Sézame", fr: "de coûts de recherche chez Sézame" }, how: { en: "I moved product search from Algolia to Typesense.", fr: "J’ai migré la recherche d’Algolia vers Typesense." } },
+  { delta: "−40%", role: "Pitchy", name: { en: "video generation time at Pitchy", fr: "de temps de génération vidéo chez Pitchy" }, how: { en: "I moved rendering from Windows Server to headless macOS images built with Packer.", fr: "J’ai passé le rendu de Windows Server à des images macOS headless construites avec Packer." } },
+  { delta: "−22%", role: "Pitchy", name: { en: "on Pitchy’s AWS bill", fr: "sur la facture AWS de Pitchy" }, how: { en: "Autoscaling, right-sizing and on-demand services.", fr: "Autoscaling, bon dimensionnement et services à la demande." } },
 ];
 
 // cost / result: short chips on the before/after flow; facts only, taken from the before and after texts.
