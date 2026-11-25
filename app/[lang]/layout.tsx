@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { dictionaries, hasLocale, locales } from "@/content/ui";
 import { site, skills, type Locale } from "@/content/data";
 import { ThemeSync } from "@/components/client";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const archivo = Archivo({ variable: "--font-archivo", subsets: ["latin", "latin-ext"], axes: ["wdth"] });
@@ -60,6 +62,8 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema(lang)).replace(/</g, "\\u003c") }}
         />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
