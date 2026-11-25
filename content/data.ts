@@ -4,7 +4,7 @@ export type Focus = { dev: number; ops: number };
 
 export const site = {
   name: "Cyril de Lajudie",
-  email: "cyril_de_lajudie@hotmail.fr",
+  email: "contact@cyrildelajudie.fr",
   url: "https://cyrildelajudie.fr",
   photo: "/photo.jpg",
   cv: { fr: "/cv-fr.pdf", en: "/cv-en.pdf" },
