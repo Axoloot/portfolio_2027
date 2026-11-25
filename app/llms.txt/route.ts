@@ -19,6 +19,7 @@ export function GET() {
     `- [CV in English (PDF)](${site.url}${site.cv.en})`,
     `- [CV in French (PDF)](${site.url}${site.cv.fr})`,
     `- [Email](mailto:${site.email}): ${site.email}`,
+    `- [Book a 15-min call](${site.booking})`,
     ...site.links.map((l) => `- [${l.label}](${l.href})`),
     "",
     "## Results",

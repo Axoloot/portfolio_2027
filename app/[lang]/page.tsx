@@ -99,6 +99,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   >
                     {t.hero.cv}
                   </Link>
+                  <a
+                    href={site.booking}
+                    target="_blank"
+                    rel="noopener"
+                    className="inline-flex h-12 items-center rounded-full px-3 text-[15px] font-medium underline decoration-ink/30 underline-offset-[5px] transition-colors hover:decoration-ink"
+                  >
+                    {t.contact.call}
+                  </a>
                 </div>
               </div>
 
@@ -389,6 +397,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <Link href={`/${lang}/cv`} className="inline-flex h-12 items-center rounded-full border border-rule-2 px-5 text-[15px] transition-colors hover:border-foam/40">
                 {t.hero.cv}
               </Link>
+              <a
+                href={site.booking}
+                target="_blank"
+                rel="noopener"
+                className="inline-flex h-12 items-center rounded-full bg-sun px-5 text-[15px] font-medium text-[#0b2230] transition-opacity hover:opacity-90"
+              >
+                {t.contact.call}
+              </a>
             </div>
             <p className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
               {site.links.map((l) => (
