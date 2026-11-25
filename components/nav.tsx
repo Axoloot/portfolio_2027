@@ -352,14 +352,19 @@ export function ToolRow({
   tone,
   uses,
   usedAt,
+  more,
 }: {
   lead: string[];
   other: string[];
   tone: string;
   uses: Record<string, Use[]>;
   usedAt: string;
+  more: string;
 }) {
   const [sel, setSel] = useState<string | null>(null);
+  // Show the lead tools and the first few others; the rest stay in the HTML, folded behind "+N more".
+  const SHOWN = 3;
+  const [all, setAll] = useState(other.length <= SHOWN + 1);
   const chip = (name: string, cls: string) =>
     uses[name]?.length ? (
       <button
@@ -380,7 +385,19 @@ export function ToolRow({
     <>
       <p className="mt-2 leading-relaxed">
         {lead.map((n) => chip(n, tone))}
-        {other.map((n) => chip(n, "text-mist"))}
+        {other.slice(0, SHOWN).map((n) => chip(n, "text-mist"))}
+        {other.length > SHOWN && (
+          <span className={all ? "contents" : "hidden"}>{other.slice(SHOWN).map((n) => chip(n, "text-mist"))}</span>
+        )}
+        {!all && (
+          <button
+            type="button"
+            onClick={() => setAll(true)}
+            className="inline-block text-[15px] text-dim underline decoration-dotted underline-offset-4 transition-colors hover:text-foam"
+          >
+            +{other.length - SHOWN} {more}
+          </button>
+        )}
       </p>
       {sel && (
         <p

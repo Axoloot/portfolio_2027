@@ -108,14 +108,16 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 </h2>
                 <ul className="mt-3">
                   {impact.map((m) => (
-                    <li key={m.delta} className="grid grid-cols-[96px_1fr] items-baseline gap-4 border-t border-rule-ink py-4">
-                      <span className="stretch-112 text-[34px] font-semibold leading-none tracking-[-0.03em] tabular-nums">
-                        <CountUp value={m.delta} />
-                      </span>
-                      <span>
-                        <span className="block font-medium">{tl(m.name)}</span>
-                        <span className="block text-[15px] leading-snug text-ink-soft">{tl(m.how)}</span>
-                      </span>
+                    <li key={m.delta} className="border-t border-rule-ink">
+                      <a href={`#${roleId(m.role)}`} className="group/res grid grid-cols-[96px_1fr] items-baseline gap-4 py-4">
+                        <span className="stretch-112 text-[34px] font-semibold leading-none tracking-[-0.03em] tabular-nums">
+                          <CountUp value={m.delta} />
+                        </span>
+                        <span>
+                          <span className="block font-medium underline decoration-current/0 decoration-1 underline-offset-4 transition-colors group-hover/res:decoration-current/60">{tl(m.name)}</span>
+                          <span className="block text-[15px] leading-snug text-ink-soft">{tl(m.how)}</span>
+                        </span>
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -254,7 +256,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                       </ul>
                     )}
                     {r.bullets && r.bullets[lang].length > 1 && (
-                      <details className="group/role max-w-[44em]" open={r.start >= "2025"}>
+                      <details className="group/role max-w-[44em]" open={i === 0}>
                         <summary className="mt-3 inline-flex cursor-pointer list-none items-center gap-2 text-[15px] text-glow transition-colors hover:text-foam [&::-webkit-details-marker]:hidden">
                           <span className="group-open/role:hidden">
                             {t.experience.more} (+{r.bullets[lang].length - 1})
@@ -351,9 +353,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <h2 className="stretch-88 text-[clamp(40px,6vw,76px)] font-bold leading-[0.95] tracking-[-0.035em]">{t.skills.title}</h2>
             <p className="mt-4 max-w-[34em] text-mist">{t.skills.intro}</p>
             <div className="mt-14 grid gap-14 lg:grid-cols-3 lg:gap-12">
-              <SkillColumn title={t.skills.automate} sub={t.skills.automateSub} tone="sun" groups={skills.automate} lang={lang} uses={uses} usedAt={t.skills.usedAt} />
-              <SkillColumn title={t.skills.host} sub={t.skills.hostSub} tone="glow" groups={skills.host} lang={lang} uses={uses} usedAt={t.skills.usedAt} />
-              <SkillColumn title={t.skills.secure} sub={t.skills.secureSub} tone="foam" groups={skills.secure} lang={lang} uses={uses} usedAt={t.skills.usedAt} />
+              <SkillColumn title={t.skills.automate} sub={t.skills.automateSub} tone="sun" groups={skills.automate} lang={lang} uses={uses} usedAt={t.skills.usedAt} more={t.skills.more} />
+              <SkillColumn title={t.skills.host} sub={t.skills.hostSub} tone="glow" groups={skills.host} lang={lang} uses={uses} usedAt={t.skills.usedAt} more={t.skills.more} />
+              <SkillColumn title={t.skills.secure} sub={t.skills.secureSub} tone="foam" groups={skills.secure} lang={lang} uses={uses} usedAt={t.skills.usedAt} more={t.skills.more} />
             </div>
             <p className="mt-10 text-foam/85">
               <span className="font-semibold text-foam">{t.skills.spoken}</span> · {t.skills.spokenValue}
@@ -423,7 +425,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
 type Uses = (name: string) => { label: string; href: string }[];
 
-function SkillColumn({ title, sub, tone, groups, lang, uses, usedAt }: { title: string; sub: string; tone: "sun" | "glow" | "foam"; groups: SkillGroup[]; lang: Locale; uses: Uses; usedAt: string }) {
+function SkillColumn({ title, sub, tone, groups, lang, uses, usedAt, more }: { title: string; sub: string; tone: "sun" | "glow" | "foam"; groups: SkillGroup[]; lang: Locale; uses: Uses; usedAt: string; more: string }) {
   const dot = { sun: "bg-sun", glow: "bg-glow", foam: "bg-foam" }[tone];
   const lead = { sun: "text-sun", glow: "text-glow", foam: "text-foam" }[tone];
   return (
@@ -436,17 +438,17 @@ function SkillColumn({ title, sub, tone, groups, lang, uses, usedAt }: { title: 
         <p className="mt-1 text-[15px] text-mist">{sub}</p>
       </div>
       {groups.map((g) => (
-        <SkillRow key={g.title.en} g={g} lang={lang} lead={lead} uses={uses} usedAt={usedAt} />
+        <SkillRow key={g.title.en} g={g} lang={lang} lead={lead} uses={uses} usedAt={usedAt} more={more} />
       ))}
     </div>
   );
 }
 
-function SkillRow({ g, lang, lead, uses, usedAt }: { g: SkillGroup; lang: Locale; lead: string; uses: Uses; usedAt: string }) {
+function SkillRow({ g, lang, lead, uses, usedAt, more }: { g: SkillGroup; lang: Locale; lead: string; uses: Uses; usedAt: string; more: string }) {
   return (
     <div className="border-b border-rule py-6">
       <h4 className="font-semibold">{g.title[lang]}</h4>
-      <ToolRow lead={g.lead} other={g.other} tone={lead} uses={Object.fromEntries([...g.lead, ...g.other].map((n) => [n, uses(n)]))} usedAt={usedAt} />
+      <ToolRow lead={g.lead} other={g.other} tone={lead} uses={Object.fromEntries([...g.lead, ...g.other].map((n) => [n, uses(n)]))} usedAt={usedAt} more={more} />
       <p className="mt-2 text-[15px] leading-snug text-dim">{g.proof[lang]}</p>
     </div>
   );
