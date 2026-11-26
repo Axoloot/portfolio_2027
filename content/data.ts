@@ -85,18 +85,18 @@ export const roles: Role[] = [
     bullets: {
       en: [
         "Time-slot search ran on Algolia. I moved it to Typesense, which cut its cost by ~75%, and automated product listings on Google Shopping (200+ offers).",
-        "Worked on a fully serverless, event-driven AWS architecture: Lambda, EventBridge and single-table DynamoDB (DynamoDB Toolbox), with services talking through Kinesis or SNS/SQS. Events are stored and queried in SQL with Athena.",
+        "Worked on a fully serverless, event-driven AWS architecture: Lambda, Step Functions, EventBridge and single-table DynamoDB (DynamoDB Toolbox), with services talking through Kinesis or SNS/SQS. Events are stored and queried in SQL with Athena.",
         "Rebuilt the search page (V2) in Next.js and Tailwind and shipped other front-end changes, on Hono APIs deployed with AWS CDK.",
         "Wired production errors to Slack alerts, opened fix PRs when needed, shipped an email service on Brevo and wrote unit tests in Jest.",
       ],
       fr: [
         "La recherche par créneaux tournait sur Algolia. Je l’ai migrée vers Typesense, ce qui a réduit son coût de ~75 %, et j’ai automatisé le référencement des produits sur Google Shopping (plus de 200 offres).",
-        "Architecture entièrement serverless et événementielle sur AWS : Lambda, EventBridge et DynamoDB single-table (DynamoDB Toolbox), avec des services qui communiquent par Kinesis ou SNS/SQS. Événements stockés et consultés en SQL avec Athena.",
+        "Architecture entièrement serverless et événementielle sur AWS : Lambda, Step Functions, EventBridge et DynamoDB single-table (DynamoDB Toolbox), avec des services qui communiquent par Kinesis ou SNS/SQS. Événements stockés et consultés en SQL avec Athena.",
         "Refonte de la page de recherche (V2) en Next.js et Tailwind et autres évolutions de l’interface, sur des API Hono déployées en AWS CDK.",
         "Erreurs de production branchées sur des alertes Slack, PR correctives ouvertes au besoin, service d’emailing sur Brevo, tests unitaires en Jest.",
       ],
     },
-    tags: ["Typesense", "Next.js", "Hono", "Lambda", "EventBridge", "DynamoDB", "AWS CDK", "Jest", "Kinesis", "Athena"],
+    tags: ["Typesense", "Next.js", "Hono", "Lambda", "Step Functions", "EventBridge", "DynamoDB", "AWS CDK", "Jest", "Kinesis", "Athena"],
   },
   {
     company: { en: "Sabbatical year", fr: "Année sabbatique" },
@@ -134,7 +134,7 @@ export const roles: Role[] = [
         "Scripts Python avec boto3 pour le nettoyage et la production ; migration des Lambdas de Python 2.7 vers Python 3.",
       ],
     },
-    tags: ["AWS", "EC2", "Kubernetes", "GitLab CI", "Git LFS", "Terraform", "Packer", "Python", "Datadog", "FinOps"],
+    tags: ["AWS", "EC2", "Kubernetes", "GitLab CI", "Git LFS", "Terraform", "Packer", "Python", "RDS", "Datadog", "FinOps"],
   },
   {
     company: { en: "RedPill", fr: "RedPill" },
@@ -425,7 +425,7 @@ export const skills: { automate: SkillGroup[]; host: SkillGroup[]; secure: Skill
     },
     {
       title: { en: "Data & search", fr: "Données & recherche" },
-      lead: ["DynamoDB", "MongoDB"], other: ["Redis", "PostgreSQL", "Typesense", "Kinesis", "Athena"],
+      lead: ["DynamoDB", "MongoDB"], other: ["Redis", "PostgreSQL", "RDS", "Typesense", "Kinesis", "Athena"],
       proof: { en: "Single-table DynamoDB at Sézame; production MongoDB scripts for fraud detection at Quidol.", fr: "DynamoDB single-table chez Sézame ; scripts MongoDB de détection de fraude chez Quidol." },
     },
   ],
@@ -442,7 +442,7 @@ export const skills: { automate: SkillGroup[]; host: SkillGroup[]; secure: Skill
     },
     {
       title: { en: "Serverless & events", fr: "Serverless & événements" },
-      lead: ["AWS Lambda", "EventBridge"], other: ["SQS/SNS", "API Gateway"],
+      lead: ["AWS Lambda", "EventBridge"], other: ["Step Functions", "SQS/SNS", "API Gateway"],
       proof: { en: "Fully serverless, event-driven architecture at Sézame.", fr: "Architecture serverless et événementielle chez Sézame." },
     },
     {
