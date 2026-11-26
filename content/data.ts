@@ -5,6 +5,7 @@ export type Focus = { dev: number; ops: number };
 export const site = {
   name: "Cyril de Lajudie",
   email: "contact@cyrildelajudie.fr",
+  booking: "https://calendar.app.google/Krrr3wcVhwa1PXuy9",
   url: "https://cyrildelajudie.fr",
   photo: "/photo.jpg",
   cv: { fr: "/cv-fr.pdf", en: "/cv-en.pdf" },

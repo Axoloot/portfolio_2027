@@ -75,6 +75,7 @@ const en = {
     copy: "Copy email",
     copied: "Copied",
     email: "Email me",
+    call: "Book a 15-min call",
   },
   command: {
     open: "Open the command menu",
@@ -183,6 +184,7 @@ const fr: typeof en = {
     copy: "Copier l’e-mail",
     copied: "Copié",
     email: "M’écrire",
+    call: "Réserver un appel de 15 min",
   },
   command: {
     open: "Ouvrir le menu de commandes",
